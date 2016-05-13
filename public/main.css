@@ -1,6 +1,6 @@
 h1 {
     text-align: center;
-    -webkit-text-stroke: 1px #cccc00;
+    -webkit-text-stroke: 2px #cccc00;
     color: #1a1a65 ;
     font-size: 75px;
     font-family: "Tsukushi A Round Gothic";
@@ -17,7 +17,8 @@ body {
 }
 
 a {
-    color: #1a1a65 ;
+    color: #1a1a65;
+    text-decoration: none;
 }
 .center {
     text-align: center;
@@ -29,6 +30,6 @@ a {
 
 #tablerow { width: 400px; height: 100px; margin: 0px auto; background-color: #888844; font-size: larger;}
 
-#tabledata { padding-left: 100px; padding-right: 100px; font-weight: bold; link: black; active :black;font-family: "Kannada Sangam MN"; visited: black}
+#tabledata { padding-left: 100px; padding-right: 100px; font-weight: bold; font-family: "Kannada Sangam MN";}
 
 td:hover { background-color: #666633; text-decoration: underline ;}
