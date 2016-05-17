@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="Website_list">
+<html lang="en" ng-app="Websites">
 <head>
     <meta charset="UTF-8">
     <title>Websites</title>
@@ -22,7 +22,7 @@
         <div class="panel-body">
             <div ng-repeat="website in websites">
                 <h4 id="website_list">  
-                    {{website}}  
+                    {{website.name}}  
                     <span class="glyphicon glyphicon-play pull-right"  id="blue_glyph"></span>  
                     <span class="glyphicon glyphicon-cog pull-right"  id="blue_glyph"></span>  
                 </h4>
