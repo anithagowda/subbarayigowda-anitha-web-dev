@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Website_list">
+<head>
+    <meta charset="UTF-8">
+    <title>Websites</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+</head>
+
+<body>
+    <div ng_controller="Website_list_controller" class="panel panel-default">
+
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h5>
+                    Websites
+                    <span class="glyphicon glyphicon-plus pull-right"></span>
+                </h5>
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <div ng-repeat="website in websites">
+                <h4 id="website_list">  
+                    {{website}}  
+                    <span class="glyphicon glyphicon-play pull-right"  id="blue_glyph"></span>  
+                    <span class="glyphicon glyphicon-cog pull-right"  id="blue_glyph"></span>  
+                </h4>
+            </div>
+        </div>
+
+        <div class="panel-footer navbar-fixed-bottom">
+            <span class="glyphicon glyphicon-user pull-right" id="blue_glyph"></span>
+        </div>
+
+    </div>
+
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="js/app.js"></script>
+
+</body>
+</html>
