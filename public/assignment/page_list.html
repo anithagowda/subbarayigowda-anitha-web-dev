@@ -2,28 +2,27 @@
 <html lang="en" ng-app="Websites">
 <head>
     <meta charset="UTF-8">
-    <title>Websites</title>
+    <title>Pages</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 </head>
-
 <body>
-    <div ng_controller="Website_list_controller" class="panel panel-default">
+    <div class="panel panel-default" ng-controller="Page_list_controller">
 
         <div class="panel-heading">
             <div class="panel-title">
                 <h4>
-                    Websites
+                    <span class="glyphicon glyphicon-chevron-left pull-left padding_right20"></span>
+                    Pages
                     <span class="glyphicon glyphicon-plus pull-right"></span>
                 </h4>
             </div>
         </div>
 
         <div class="panel-body">
-            <div ng-repeat="website in websites">
+            <div ng-repeat="page in pages">
                 <h4 class="list">  
-                    {{website.name}}  
-                    <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>  
+                    {{page.name}}  
                     <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>  
                 </h4>
             </div>

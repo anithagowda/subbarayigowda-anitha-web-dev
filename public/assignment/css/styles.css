@@ -1,12 +1,12 @@
-#blue_glyph {
+.blue_glyph {
     color: #0099cc;
 }
 
-#website_list {
+.list {
     color: #0099cc;
     padding-bottom: 10px;
 }
 
-#padding_right20 {
+.padding_right20 {
     padding-right: 20px;
 }
