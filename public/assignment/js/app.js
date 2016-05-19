@@ -7,7 +7,8 @@
         .controller("Website_list_controller", Website_list_controller)
         .controller("Website_edit_controller", Website_edit_controller)
         .controller("Website_new_controller", Website_new_controller)
-        .controller("Page_list_controller", Page_list_controller);
+        .controller("Page_list_controller", Page_list_controller)
+        .controller("Widget_list_controller", Widget_list_controller);
 
 
     website_list = [
@@ -41,6 +42,12 @@
     
     function Page_list_controller($scope) {
         $scope.pages = page_list;
+    }
+
+    widget_list = ["Header", "Label", "HTML", "Text Input", "Link", "Button", "Image", "Youtube", "Data Table", "Repeater"];
+
+    function Widget_list_controller($scope) {
+        $scope.widgets = widget_list;
     }
     
 })();

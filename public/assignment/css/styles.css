@@ -1,3 +1,7 @@
+input.form-control {
+    margin: 5px;
+}
+
 .blue_glyph {
     color: #0099cc;
 }
@@ -9,4 +13,9 @@
 
 .padding_right20 {
     padding-right: 20px;
+}
+
+body {
+    padding-top: 45px;
+    padding-bottom: 45px;
 }
