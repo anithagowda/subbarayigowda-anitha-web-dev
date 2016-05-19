@@ -6,48 +6,49 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="panel panel-default">
 
-        <div class="panel-heading">
-            <div class="panel-title">
-                <h4>
-                    Profile
-                    <span class="glyphicon glyphicon-ok pull-right"></span>
-                </h4>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="container">
+                <a class="navbar-brand" href="#">Profile</a>
+                <a class="navbar-brand navbar-right" href="#">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div role="form">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control">
             </div>
         </div>
 
-
-        <div class="panel-body">
-
-            <div role="form">
-                <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label>First Name</label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label>Last Name</label>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-
-            <a class="btn btn-primary btn-block" href="website_list.html">Websites</a>
-            <a class="btn btn-danger btn-block" href="login.html">Logout</a>
-        </div>
-
-        <div class="panel-footer navbar-fixed-bottom">
-            <span class="glyphicon glyphicon-user pull-right" id="blue_glyph"></span>
-        </div>
-
+        <a class="btn btn-primary btn-block" href="website_list.html">Websites</a>
+        <a class="btn btn-danger btn-block" href="login.html">Logout</a>
     </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <a class="navbar-brand navbar-right" href="#">
+                <span class="glyphicon glyphicon-user  blue_glyph"></span>
+            </a>
+        </div>
+    </nav>
 
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 
