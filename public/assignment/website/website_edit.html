@@ -5,7 +5,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <title>Choose widget</title>
+    <title>Edit Website</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 </head>
@@ -16,16 +16,26 @@
             <a class="navbar-brand navbar-left" href="#">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
-            <a class="navbar-brand" href="#">Choose Widget</a>
+            <a class="navbar-brand" href="#">Edit Website</a>
+            <a class="navbar-brand navbar-right" href="#">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
         </div>
     </nav>
 
-    <div class="container" ng-controller="Widget_list_controller">
-        <div ng-repeat="widget in widgets">
-            <h4 class="list">  
-                {{widget}}
-            </h4>
+    <div class="container" ng-controller="Website_edit_controller">
+        <div role="form">
+            <div class="form-group">
+                <label>Application Name</label>
+                <input class="form-control" type="text" placeholder="Name" value={{selected_website.name}}>
+            </div>
+
+            <div class="form-group">
+                <label>Application Description</label>
+                <textarea class="form-control" type="text" rows="3" placeholder="Description">{{selected_website.description}}</textarea>
+            </div>
         </div>
+        <a class="btn btn-danger btn-block" href="#">Delete</a>
     </div>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -36,8 +46,8 @@
         </div>
     </nav>
 
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <script src="js/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <script src="../js/app.js"></script>
 
 </body>
 </html>
