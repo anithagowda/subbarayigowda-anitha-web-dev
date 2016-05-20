@@ -12,33 +12,58 @@
 
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Websites</a>
-                    <p class="navbar-text pull-right">
-                        <a href="#" class="navbar-link">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </a>
-                    </p>
-                </div>
+        <div class="container_fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Websites</a>
+                <p class="navbar-text pull-right">
+                    <a href="website_new.html" class="navbar-link">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </p>
             </div>
-        </nav>
+        </div>
     </nav>
 
     <div class="container" ng_controller="Website_list_controller">
+        <!--
         <div ng-repeat="website in websites">
             <h4 class="list">  
                 {{website.name}}  
                 <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>  
                 <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>  
             </h4>
-        </div>
+        </div> -->
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href="#">Blogger</a>
+                <a href="website_edit.html">
+                    <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a href="#">Gizmodo</a>
+                <a href="website_edit.html">
+                    <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a href="#">Facebook</a>
+                <a href="website_edit.html">
+                    <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a href="#">Twitter</a>
+                <a href="website_edit.html">
+                    <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
+                </a>
+            </li>
+        </ul>
     </div>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
-            <a class="navbar-brand navbar-right" href="#">
+            <a class="navbar-text pull-right" href="../user/profile.html">
                 <span class="glyphicon glyphicon-user  blue_glyph"></span>
             </a>
         </div>
