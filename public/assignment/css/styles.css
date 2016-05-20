@@ -19,3 +19,7 @@ body {
     padding-top: 55px;
     padding-bottom: 55px;
 }
+
+p.navbar-text.pull-right {
+    margin-right: 15px;
+}
