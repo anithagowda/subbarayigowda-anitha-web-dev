@@ -12,25 +12,61 @@
 <body>
 
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <a class="navbar-brand navbar-left" href="#">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a class="navbar-brand" href="#">Choose Widget</a>
+        <div class="container_fluid">
+            <div class="navbar-header">
+                <p class="navbar-text pull-left">
+                    <a href="widget_list.html" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                </p>
+                <a class="navbar-brand" href="#">Choose Widget</a>
+            </div>
         </div>
     </nav>
 
     <div class="container" ng-controller="Widget_list_controller">
-        <div ng-repeat="widget in widgets">
+        <!--<div ng-repeat="widget in widgets">
             <h4 class="list">  
                 {{widget}}
             </h4>
-        </div>
+        </div>-->
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href="widget_heading.html">Header</a>
+            </li>
+            <li class="list-group-item">
+                <a href="#">Label</a>
+            </li>
+            <li class="list-group-item">
+                <a href="#">HTML</a>
+            </li>
+            <li class="list-group-item">
+                <a href="#">Text Input</a>
+            </li>
+            <li class="list-group-item">
+                <a href="#">Link</a>
+            </li>
+            <li class="list-group-item">
+                <a href="#">Button</a>
+            </li>
+            <li class="list-group-item">
+                <a href="widget_image.html">Image</a>
+            </li>
+            <li class="list-group-item">
+                <a href="widget_youtube.html">YouTube</a>
+            </li>
+            <li class="list-group-item">
+                <a href="#">Date Table</a>
+            </li>
+            <li class="list-group-item">
+                <a href="#">Repeater</a>
+            </li>
+        </ul>
     </div>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
-            <a class="navbar-brand navbar-right" href="#">
+            <a class="navbar-text pull-right" href="../user/profile.html">
                 <span class="glyphicon glyphicon-user  blue_glyph"></span>
             </a>
         </div>
