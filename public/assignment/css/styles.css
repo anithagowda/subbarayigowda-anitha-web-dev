@@ -6,12 +6,16 @@ input.form-control {
     color: #0099cc;
 }
 
+.black_glyph {
+    color: #000000;
+}
+
 .list {
     color: #0099cc;
     padding-bottom: 10px;
 }
 
 body {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 55px;
+    padding-bottom: 55px;
 }
