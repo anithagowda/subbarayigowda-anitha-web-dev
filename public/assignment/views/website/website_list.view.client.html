@@ -1,80 +1,62 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="Websites">
-<head>
-    <meta charset="UTF-8">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <title>Websites</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-</head>
 
-<body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container_fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Websites</a>
-                <p class="navbar-text pull-right">
-                    <a href="website_new.view.client.html" class="navbar-link">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </a>
-                </p>
-            </div>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container_fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Websites</a>
+            <p class="navbar-text pull-right">
+                <a href="website_new.view.client.html" class="navbar-link">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </p>
         </div>
-    </nav>
-
-    <div class="container" ng_controller="Website_list_controller">
-        <!--
-        <div ng-repeat="website in websites">
-            <h4 class="list">  
-                {{website.name}}  
-                <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>  
-                <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>  
-            </h4>
-        </div> -->
-        <ul class="list-group">
-            <li class="list-group-item">
-                <a href="../views/page/page_list.view.client.html">Blogger</a>
-                <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>
-                <a href="website_edit.view.client.html">
-                    <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="../views/page/page_list.view.client.html">Gizmodo</a>
-                <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>
-                <a href="website_edit.view.client.html">
-                    <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="../views/page/page_list.view.client.html">Facebook</a>
-                <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>
-                <a href="website_edit.view.client.html">
-                    <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="../views/page/page_list.view.client.html">Twitter</a>
-                <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>
-                <a href="website_edit.view.client.html">
-                    <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
-                </a>
-            </li>
-        </ul>
     </div>
+</nav>
 
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container">
-            <a class="navbar-text pull-right" href="../views/user/profile.view.client.html">
-                <span class="glyphicon glyphicon-user  blue_glyph"></span>
+<div class="container" ng_controller="Website_list_controller">
+    <!--
+    <div ng-repeat="website in websites">
+        <h4 class="list">  
+            {{website.name}}  
+            <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>  
+            <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>  
+        </h4>
+    </div> -->
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="../views/page/page_list.view.client.html">Blogger</a>
+            <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>
+            <a href="website_edit.view.client.html">
+                <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
             </a>
-        </div>
-    </nav>
+        </li>
+        <li class="list-group-item">
+            <a href="../views/page/page_list.view.client.html">Gizmodo</a>
+            <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>
+            <a href="website_edit.view.client.html">
+                <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="../views/page/page_list.view.client.html">Facebook</a>
+            <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>
+            <a href="website_edit.view.client.html">
+                <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="../views/page/page_list.view.client.html">Twitter</a>
+            <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>
+            <a href="website_edit.view.client.html">
+                <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
+            </a>
+        </li>
+    </ul>
+</div>
 
-    <link rel="stylesheet" type="text/css" href="../css/styles.css">
-    <script src="../js/app.js"></script>
-
-</body>
-</html>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <a class="navbar-text pull-right" href="../views/user/profile.view.client.html">
+            <span class="glyphicon glyphicon-user  blue_glyph"></span>
+        </a>
+    </div>
+</nav>
