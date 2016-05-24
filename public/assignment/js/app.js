@@ -3,7 +3,7 @@
  */
 (function() {
     angular
-        .module("Websites", [])
+        .module("WebAppMaker", [])
         .controller("Website_list_controller", Website_list_controller)
         .controller("Website_edit_controller", Website_edit_controller)
         .controller("Website_new_controller", Website_new_controller)

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="Websites">
 <head>
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <title>Widget Edit</title>
+    <title>Edit Website</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 </head>
 <body>
 
@@ -14,13 +15,13 @@
         <div class="container_fluid">
             <div class="navbar-header">
                 <p class="navbar-text pull-left">
-                    <a href="widget_list.html" class="navbar-link">
+                    <a href="website_list.view.client.html" class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </a>
                 </p>
-                <a class="navbar-brand" href="#">Widget Edit</a>
+                <a class="navbar-brand" href="#">Edit Website</a>
                 <p class="navbar-text pull-right">
-                    <a href="widget_list.html" class="navbar-link">
+                    <a href="website_list.view.client.html" class="navbar-link">
                         <span class="glyphicon glyphicon-ok"></span>
                     </a>
                 </p>
@@ -29,35 +30,30 @@
     </nav>
 
 
-    <div class="container">
+    <div class="container" ng-controller="Website_edit_controller">
         <div role="form">
             <div class="form-group">
-                <label>Name</label>
-                <input class="form-control" type="text" placeholder="Name" value=>
+                <label>Website Name</label>
+                <input class="form-control"
+                       type="text"
+                       placeholder="Google"
+                       value={{selected_website.name}}>
             </div>
 
             <div class="form-group">
-                <label>Text</label>
-                <input class="form-control" type="text" placeholder="US Senate Reaches Compromise">
-            </div>
-
-            <div class="form-group">
-                <label>Size</label>
-                <select class="form-control">
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                </select>
+                <label>Website Description</label>
+                <textarea class="form-control"
+                          type="text" rows="4"
+                          placeholder="Description">{{selected_website.description}}
+                </textarea>
             </div>
         </div>
-        <a class="btn btn-danger btn-block" href="widget_list.html">Delete</a>
+        <a class="btn btn-danger btn-block" href="website_list.view.client.html">Delete</a>
     </div>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
-            <a class="navbar-text pull-right" href="../user/profile.html">
+            <a class="navbar-text pull-right" href="../views/user/profile.view.client.html">
                 <span class="glyphicon glyphicon-user  blue_glyph"></span>
             </a>
         </div>

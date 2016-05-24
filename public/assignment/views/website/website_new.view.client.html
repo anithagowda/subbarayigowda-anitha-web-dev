@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="Websites">
 <head>
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <title>Widget Edit</title>
+    <title>New Website</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
 
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container_fluid">
             <div class="navbar-header">
                 <p class="navbar-text pull-left">
-                    <a href="widget_list.html" class="navbar-link">
+                    <a href="website_list.view.client.html" class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </a>
                 </p>
-                <a class="navbar-brand" href="#">Widget Edit</a>
+                <a class="navbar-brand" href="#">New Website</a>
                 <p class="navbar-text pull-right">
-                    <a href="widget_list.html" class="navbar-link">
+                    <a href="website_list.view.client.html" class="navbar-link">
                         <span class="glyphicon glyphicon-ok"></span>
                     </a>
                 </p>
@@ -28,40 +29,23 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container" ng-controller="Website_new_controller">
         <div role="form">
             <div class="form-group">
                 <label>Name</label>
-                <input class="form-control" type="text" placeholder="Name" value=>
+                <input ng-model="name" class="form-control" type="text" placeholder="Name">
             </div>
 
             <div class="form-group">
-                <label>Text</label>
-                <input type="text" class="form-control" placeholder="Text">
-            </div>
-
-            <div class="form-group">
-                <label>URL</label>
-                <input type="text" class="form-control" placeholder="https:/i.kinga-img.com/media/image.jpg">
-            </div>
-
-            <div class="form-group">
-                <label>Width</label>
-                <input type="text" class="form-control" placeholder="100%">
-            </div>
-
-            <div class="form-group">
-                <label>Upload</label>
-                <input type="file" class="form-control" placeholder="No file choosen">
+                <label>Description</label>
+                <textarea ng-model="description" class="form-control" type="text" rows="3" placeholder="Description"></textarea>
             </div>
         </div>
-        <a class="btn btn-primary btn-block" href="widget_list.html">Upload Image</a>
-        <a class="btn btn-danger btn-block" href="widget_list.html">Delete</a>
     </div>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
-            <a class="navbar-text pull-right" href="../user/profile.html">
+            <a class="navbar-text pull-right" href="../views/user/profile.view.client.html">
                 <span class="glyphicon glyphicon-user  blue_glyph"></span>
             </a>
         </div>
