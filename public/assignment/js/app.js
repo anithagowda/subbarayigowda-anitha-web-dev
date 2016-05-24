@@ -1,9 +1,10 @@
 /**
  * Created by asubbarayigowda on 5/17/16.
  */
+//IIFE : Immediately invoked function expression
 (function() {
     angular
-        .module("WebAppMaker", [])
+        .module("WebAppMaker", ['ngRoute'])
         .controller("Website_list_controller", Website_list_controller)
         .controller("Website_edit_controller", Website_edit_controller)
         .controller("Website_new_controller", Website_new_controller)
