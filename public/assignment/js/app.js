@@ -4,12 +4,7 @@
 //IIFE : Immediately invoked function expression
 (function() {
     angular
-        .module("WebAppMaker", ['ngRoute'])
-        .controller("Website_list_controller", Website_list_controller)
-        .controller("Website_edit_controller", Website_edit_controller)
-        .controller("Website_new_controller", Website_new_controller)
-        .controller("Page_list_controller", Page_list_controller)
-        .controller("Widget_list_controller", Widget_list_controller);
+        .module("WebAppMaker", ['ngRoute']);
 
 
     website_list = [
