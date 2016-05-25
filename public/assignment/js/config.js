@@ -26,28 +26,28 @@
                 controller: "ProfileController",
                 controllerAs: "model"
             })
-            .when("/website_list", {
+            .when("/user/:uid/website", {
                 templateUrl: "views/website/website_list.view.client.html"
             })
-            .when("/website_edit", {
-                templateUrl: "views/website/website_edit.view.client.html"
-            })
-            .when("/website_new", {
+            .when("/user/:uid/website/new", {
                 templateUrl: "views/website/website_new.view.client.html"
             })
-            .when("/page_list", {
+            .when("/user/:uid/website/:wid", {
+                templateUrl: "views/website/website_edit.view.client.html"
+            })
+            .when("/user/:uid/website/:wid/page", {
                 templateUrl: "views/page/page_list.view.client.html"
             })
-            .when("/page_edit", {
-                templateUrl: "views/page/page_edit.view.client.html"
-            })
-            .when("/page_new", {
+            .when("/user/:uid/website/:wid/page/new", {
                 templateUrl: "views/page/page_new.view.client.html"
             })
-            .when("/widget_list", {
+            .when("/user/:uid/website/:wid/page/:pid", {
+                templateUrl: "views/page/page_edit.view.client.html"
+            })
+            .when("/user/:uid/website/:wid/page/:pid/widget", {
                 templateUrl: "views/widget/widget_list.view.client.html"
             })
-            .when("/widget_choose", {
+            .when("/user/:uid/website/:wid/page/:pid/widget/new", {
                 templateUrl: "views/widget/widget_choose.view.client.html"
             })
             .when("/widget_heading", {
