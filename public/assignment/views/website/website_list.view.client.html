@@ -4,7 +4,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Websites</a>
             <p class="navbar-text pull-right">
-                <a href="#/website_new" class="navbar-link">
+                <a ng-click="model.new_website()" class="navbar-link">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </p>
@@ -12,41 +12,13 @@
     </div>
 </nav>
 
-<div class="container" ng_controller="Website_list_controller">
-    <!--
-    <div ng-repeat="website in websites">
-        <h4 class="list">  
-            {{website.name}}  
-            <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>  
-            <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>  
-        </h4>
-    </div> -->
-    <ul class="list-group">
+<div class="container">
+
+    <ul ng-repeat="website in model.websites" class="list-group">
         <li class="list-group-item">
-            <a href=#/page_list">Blogger</a>
+            <a ng-click="model.page_list(website._id)">{{website.name}}</a>
             <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>
-            <a href="website_edit.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="#/page_list">Gizmodo</a>
-            <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>
-            <a href="website_edit.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href=".#/page_list">Facebook</a>
-            <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>
-            <a href="website_edit.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="#/page_list">Twitter</a>
-            <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>
-            <a href="website_edit.view.client.html">
+            <a ng-click="model.edit_website(website._id)">
                 <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
             </a>
         </li>

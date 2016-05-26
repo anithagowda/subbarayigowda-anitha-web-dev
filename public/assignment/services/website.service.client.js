@@ -8,11 +8,11 @@
 
     function WebsiteService() {
         var apis = {
-            "createWebsite" : "createWebsite",
-            "findWebsitesByUser" : "findWebsitesByUser",
-            "findWebsiteById" : "findWebsiteById",
-            "updateWebsite" : "updateWebsite",
-            "deleteWebsite" : "deleteWebsite"
+            createWebsite : createWebsite,
+            findWebsitesByUser : findWebsitesByUser,
+            findWebsiteById : findWebsiteById,
+            updateWebsite : updateWebsite,
+            deleteWebsite : deleteWebsite
         };
 
         var websites = [
@@ -30,11 +30,13 @@
         }
         
         function findWebsitesByUser(userId) {
+            var matchedWebsites = [];
             for (var i in websites) {
                 if (websites[i].developerId === userId) {
-                    return websites[i];
+                    matchedWebsites.push(websites[i]);
                 }
             }
+            return matchedWebsites;
         }
         
         function findWebsiteById(websiteId) {
@@ -62,7 +64,10 @@
                 }
             }
         }
-        
+
+        return apis;
+
     }
+
 
 })();
