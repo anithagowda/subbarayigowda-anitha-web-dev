@@ -65,9 +65,10 @@
                     users[i].password = user.password;
                     users[i].firstName = user.firstName;
                     users[i].lastName = user.lastName;
-                    return;
+                    return true;
                 }
             }
+            return false;
         }
 
         function deleteUser(userId) {
