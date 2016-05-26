@@ -42,11 +42,13 @@
         }
         
         function findWidgetsByPageId(pageId) {
+            var matchedWidget = [];
             for (var i in widgets) {
                 if (widgets[i].pageId === pageId) {
-                    return widgets[i];
+                    matchedWidget.push(widgets[i]);
                 }
             }
+            return matchedWidget;
         }
         
         function findWidgetById(widgetId) {

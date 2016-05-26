@@ -64,14 +64,8 @@
             .when("/user/:uid/website/:wid/page/:pid/widget/new", {
                 templateUrl: "views/widget/widget_choose.view.client.html"
             })
-            .when("/widget_heading", {
-                templateUrl: "views/widget/widget_heading.view.client.html"
-            })
-            .when("/widget_image", {
-                templateUrl: "views/widget/widget_image.view.client.html"
-            })
-            .when("/widget_youtube", {
-                templateUrl: "views/widget/widget_youtube.view.client.html"
+            .when("/user/:uid/website/:wid/page/:pid/widget/:wgid", {
+                templateUrl: "views/widget/widget_edit.view.client.html"
             })
             .otherwise({
                 redirectTo: "/login"
