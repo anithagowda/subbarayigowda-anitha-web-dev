@@ -3,9 +3,9 @@
  */
 
 (function () {
-    angular.module("WebAppMaker")
-        .controller("LoginController", LoginController)
-        .controller("ProfileController", ProfileController);
+    angular.module("WebAppMaker");
+        // .controller("LoginController", LoginController)
+        // .controller("ProfileController", ProfileController);
 
     var users = [
         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },

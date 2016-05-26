@@ -9,12 +9,12 @@
     function UserService() {
 
         var apis = {
-            "createUser" : "createUser",
-            "findUserById" : "findUserById",
-            "findUserByUsername" : "findUserByUsername",
-            "findUserByCredentials" : "findUserByCredentials",
-            "updateUser" : "updateUser",
-            "deleteUser" : "deleteUser"
+            createUser : createUser,
+            findUserById : findUserById,
+            findUserByUsername : findUserByUsername,
+            findUserByCredentials : findUserByCredentials,
+            updateUser : updateUser,
+            deleteUser : deleteUser
         };
 
         var users = [
@@ -29,27 +29,33 @@
         }
 
         function findUserById(userId) {
+            var user = -1;
             for (var i in users) {
                 if (users[i]._id === userId) {
-                    return users[i];
+                    user = users[i];
                 }
             }
+            return user;
         }
 
         function findUserByUsername(username) {
+            var user = -1;
             for (var i in users) {
                 if (users[i].username === username) {
-                    return users[i];
+                    user = users[i];
                 }
             }
+            return user;
         }
 
         function findUserByCredentials(username, password) {
+            var user = -1;
             for (var i in users) {
                 if (users[i].username === username && users[i].password === password) {
-                    return users[i];
+                    user = users[i];
                 }
             }
+            return user;
         }
 
         function updateUser(userId, user) {
@@ -72,5 +78,6 @@
                 }
             }
         }
+        return apis;
     }
 })();
