@@ -25,7 +25,8 @@
         ];
 
         function createWebsite(userId, website) {
-            var newWebsite = { "_id": "111", "name": website.name, "developerId": userId};
+            var id = new Date().getTime().toString();
+            var newWebsite = { "_id": id, "name": website.name, "developerId": userId};
             websites.push(newWebsite);
         }
         

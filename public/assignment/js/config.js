@@ -34,7 +34,9 @@
                 controllerAs: "model"
             })
             .when("/user/:uid/website/new", {
-                templateUrl: "views/website/website_new.view.client.html"
+                templateUrl: "views/website/website_new.view.client.html",
+                controller: "NewWebsiteController",
+                controllerAs: "model"
             })
             .when("/user/:uid/website/:wid", {
                 templateUrl: "views/website/website_edit.view.client.html"
