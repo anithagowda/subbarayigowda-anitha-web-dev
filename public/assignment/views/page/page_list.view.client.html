@@ -2,13 +2,13 @@
     <div class="container_fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="#/website_list" class="navbar-link">
+                <a ng-click="model.website_list()" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
             <a class="navbar-brand" href="#">Pages</a>
             <p class="navbar-text pull-right">
-                <a href="#/page_new" class="navbar-link">
+                <a ng-click="model.new_page()" class="navbar-link">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </p>
@@ -17,36 +17,11 @@
 </nav>
 
 
-<div class="container" ng-controller="Page_list_controller">
-    <!--
-    <div ng-repeat="page in pages">
-        <h4 class="list">  
-            {{page.name}}  
-            <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>  
-        </h4>
-    </div>-->
-    <ul class="list-group">
+<div class="container">
+    <ul ng-repeat="page in model.pages" class="list-group">
         <li class="list-group-item">
-            <a href="#/widget_list">Some Blog Post</a>
-            <a href="page_edit.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="#/widget_list">Home</a>
-            <a href="page_edit.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="#/widget_list">About</a>
-            <a href="page_edit.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="#/widget_list">Product list</a>
-            <a href="page_edit.view.client.html">
+            <a href="#/widget_list">{{page.name}}</a>
+            <a ng-click="model.page_edit(page)">
                 <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
             </a>
         </li>

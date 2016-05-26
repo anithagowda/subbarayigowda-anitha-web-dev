@@ -8,11 +8,11 @@
 
     function PageService() {
         var apis = {
-            "createPage" : "createPage",
-            "findPageByWebsiteId" : "findPageByWebsiteId",
-            "findPageById" : "findPageById",
-            "updatePage" : "updatePage",
-            "deletePage" : "deletePage"
+            createPage : createPage,
+            findPageByWebsiteId : findPageByWebsiteId,
+            findPageById : findPageById,
+            updatePage : updatePage,
+            deletePage : deletePage
         };
 
         var pages = [
@@ -27,11 +27,13 @@
         }
         
         function findPageByWebsiteId(websiteId) {
+            var foundPages = [];
             for(var i in pages) {
                 if (pages[i].websiteId === websiteId) {
-                    return pages[i];
+                    foundPages.push(pages[i]);
                 }
             }
+            return foundPages;
         }
         
         function findPageById(pageId) {
@@ -60,6 +62,8 @@
                 }
             }
         }
+
+        return apis;
     }
 
 })();
