@@ -2,13 +2,13 @@
     <div class="container_fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="#/page_list" class="navbar-link">
+                <a ng-click="model.page_list()" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
             <a class="navbar-brand" href="#">Edit Page</a>
             <p class="navbar-text pull-right">
-                <a href="#/page_list" class="navbar-link">
+                <a ng-click="model.update_page(model.page)" class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
@@ -20,7 +20,7 @@
     <div role="form">
         <div class="form-group">
             <label>Name</label>
-            <input class="form-control" type="text" placeholder="Name" value="Blog Post">
+            <input ng-model="model.page.name" class="form-control" type="text" placeholder="Name" value="Blog Post">
         </div>
 
         <div class="form-group">
@@ -28,7 +28,7 @@
             <input class="form-control" type="text" placeholder="Page Title">
         </div>
     </div>
-    <a class="btn btn-danger btn-block" href="#/page_list">Delete</a>
+    <a ng-click="model.delete_page()" class="btn btn-danger btn-block">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
