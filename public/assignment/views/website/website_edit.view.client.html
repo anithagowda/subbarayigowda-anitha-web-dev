@@ -3,13 +3,13 @@
     <div class="container_fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="#/website_list" class="navbar-link">
+                <a ng-click="model.website_list()" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
             <a class="navbar-brand" href="#">Edit Website</a>
             <p class="navbar-text pull-right">
-                <a href="website_list.view.client.html" class="navbar-link">
+                <a ng-click="model.update_website(model.website)" class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
@@ -18,25 +18,26 @@
 </nav>
 
 
-<div class="container" ng-controller="Website_edit_controller">
+<div class="container">
     <div role="form">
         <div class="form-group">
             <label>Website Name</label>
-            <input class="form-control"
+            <input ng-model="model.website.name"
+                   class="form-control"
                    type="text"
-                   placeholder="Google"
-                   value={{selected_website.name}}>
+                   placeholder="Google">
         </div>
 
         <div class="form-group">
             <label>Website Description</label>
-            <textarea class="form-control"
+            <textarea ng-model="model.website.description"
+                      class="form-control"
                       type="text" rows="4"
-                      placeholder="Description">{{selected_website.description}}
+                      placeholder="Description">
             </textarea>
         </div>
     </div>
-    <a class="btn btn-danger btn-block" href="#/website_list">Delete</a>
+    <a ng-click="model.delete_website()" class="btn btn-danger btn-block">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
