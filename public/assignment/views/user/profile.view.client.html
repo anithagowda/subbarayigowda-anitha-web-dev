@@ -14,7 +14,7 @@
 
 <div class="container">
 
-    <div class="alert alert-success alert-dismissible" role="alert">
+    <div ng-if="model.success" class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>Success!</strong> Your profile was saved.
     </div>
@@ -38,6 +38,6 @@
         </div>
     </div>
 
-    <a class="btn btn-primary btn-block" href="#/website_list">Websites</a>
+    <a ng-click="model.navigateToWebsite()" class="btn btn-primary btn-block" >Websites</a>
     <a class="btn btn-danger btn-block" href="#/login">Logout</a>
 </div>

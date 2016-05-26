@@ -12,15 +12,12 @@
         vm.login = login;
         
         function login(username, password) {
-            var user = UserService.findUserByUsername(username);
+            var user = UserService.findUserByCredentials(username, password);
             if (user === -1) {
-                vm.error = "Invalid username!"
-            }
-            else if (user.password === password) {
-                $location.url("/profile/"+user._id);
+                vm.error = "Invalid username/password!"
             }
             else {
-                vm.error = "Password Incorrect!"
+                $location.url("/user/"+user._id);
             }
         }
     }
