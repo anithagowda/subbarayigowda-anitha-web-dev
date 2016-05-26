@@ -27,19 +27,17 @@
         }
         
         function findPageByWebsiteId(websiteId) {
-            var page;
             for(var i in pages) {
                 if (pages[i].websiteId === websiteId) {
-                    page = pages[i];
+                    return pages[i];
                 }
             }
         }
         
         function findPageById(pageId) {
-            var page;
             for(var i in pages) {
                 if (pages[i]._id === pageId) {
-                    page = pages[i];
+                    return pages[i];
                 }
             }
         }
@@ -49,6 +47,7 @@
                 if (pages[i]._id === pageId) {
                     pages[i].name = page.name;
                     pages[i].websiteId = page.websiteId;
+                    return;
                 }
             }
         }
@@ -57,6 +56,7 @@
             for(var i in pages) {
                 if (pages[i]._id === pageId) {
                     pages.splice(i,1);
+                    return;
                 }
             }
         }

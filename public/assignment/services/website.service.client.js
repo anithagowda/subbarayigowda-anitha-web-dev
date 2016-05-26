@@ -30,19 +30,17 @@
         }
         
         function findWebsitesByUser(userId) {
-            var website;
             for (var i in websites) {
                 if (websites[i].developerId === userId) {
-                    website = websites[i];
+                    return websites[i];
                 }
             }
         }
         
         function findWebsiteById(websiteId) {
-            var website;
             for (var i in websites) {
                 if (websites[i]._id === websiteId) {
-                    website = websites[i];
+                    return websites[i];
                 }
             }
         }
@@ -51,6 +49,7 @@
             for (var i in websites) {
                 if (websites[i]._id === websiteId) {
                     websites[i].name = website.name;
+                    return;
                 }
             }
         }
@@ -59,6 +58,7 @@
             for (var i in websites) {
                 if (websites[i]._id === websiteId) {
                     websites.splice(i, 1);
+                    return;
                 }
             }
         }

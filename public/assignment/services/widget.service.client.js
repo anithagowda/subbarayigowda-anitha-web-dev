@@ -42,19 +42,17 @@
         }
         
         function findWidgetsByPageId(pageId) {
-            var widget;
             for (var i in widgets) {
                 if (widgets[i].pageId === pageId) {
-                    widget = widgets[i];
+                    return widgets[i];
                 }
             }
         }
         
         function findWidgetById(widgetId) {
-            var widget;
             for (var i in widgets) {
                 if (widgets[i]._id === widgetId) {
-                    widget = widgets[i];
+                    return widgets[i];
                 }
             }
         }
@@ -87,6 +85,7 @@
             for (var i in widgets) {
                 if (widgets[i]._id === widgetId) {
                     widgets.splice(i, 1);
+                    return;
                 }
             }
         }

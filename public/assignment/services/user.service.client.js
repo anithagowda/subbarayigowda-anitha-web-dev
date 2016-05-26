@@ -29,28 +29,25 @@
         }
 
         function findUserById(userId) {
-            var user = -1;
             for (var i in users) {
                 if (users[i]._id === userId) {
-                    user = users[i];
+                    return users[i];
                 }
             }
         }
 
         function findUserByUsername(username) {
-            var user = -1;
             for (var i in users) {
                 if (users[i].username === username) {
-                    user = users[i];
+                    return users[i];
                 }
             }
         }
 
         function findUserByCredentials(username, password) {
-            var user = -1;
             for (var i in users) {
                 if (users[i].username === username && users[i].password === password) {
-                    user = users[i];
+                    return users[i];
                 }
             }
         }
@@ -62,6 +59,7 @@
                     users[i].password = user.password;
                     users[i].firstName = user.firstName;
                     users[i].lastName = user.lastName;
+                    return;
                 }
             }
         }
@@ -70,6 +68,7 @@
             for (var i in users) {
                 if (users[i]._id === userId) {
                     users.splice(i, 1);
+                    return;
                 }
             }
         }
