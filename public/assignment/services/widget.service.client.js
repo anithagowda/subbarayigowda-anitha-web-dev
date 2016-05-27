@@ -68,17 +68,14 @@
             }
 
             if (widget.widgetType === "HEADER") {
-                oldwidget.pageId = widget.pageId;
                 oldwidget.size = widget.size;
                 oldwidget.text = widget.text;
             }
             else if (widget.widgetType === "IMAGE" || widget.widgetType === "YOUTUBE") {
-                oldwidget.pageId = widget.pageId;
                 oldwidget.width = widget.width;
                 oldwidget.url = widget.url;
             }
             else if (widget.widgetType === "HTML") {
-                oldwidget.pageId = widget.pageId;
                 oldwidget.text = widget.text;
             }
         }

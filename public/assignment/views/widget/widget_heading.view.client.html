@@ -3,13 +3,13 @@
     <div class="container_fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="widget_list.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
             <a class="navbar-brand" href="#">Widget Edit</a>
             <p class="navbar-text pull-right">
-                <a href="widget_list.view.client.html" class="navbar-link">
+                <a ng-click="model.update_widget(model.widget)" class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
@@ -22,7 +22,7 @@
     <div role="form">
         <div class="form-group">
             <label>Name</label>
-            <input class="form-control" type="text" placeholder="Name" value=>
+            <input ng-model="model.widget.text" class="form-control" type="text" placeholder="Name" >
         </div>
 
         <div class="form-group">
@@ -32,16 +32,17 @@
 
         <div class="form-group">
             <label>Size</label>
-            <select class="form-control">
+            <select ng-model="model.widget.size" class="form-control">
+                <option>1</option>
+                <option>2</option>
                 <option>3</option>
                 <option>4</option>
                 <option>5</option>
                 <option>6</option>
-                <option>7</option>
             </select>
         </div>
     </div>
-    <a class="btn btn-danger btn-block" href="widget_list.view.client.html">Delete</a>
+    <a class="btn btn-danger btn-block" ng-click="model.delete_widget(model.widget)">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
