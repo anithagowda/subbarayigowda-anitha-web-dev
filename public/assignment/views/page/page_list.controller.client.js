@@ -8,9 +8,13 @@
     
     function PageListController($routeParams, $location, PageService) {
         var vm = this;
+       
         var uid = $routeParams.uid;
         var wid = $routeParams.wid;
 
+        vm.uid = $routeParams.uid;
+        vm.wid = $routeParams.wid;
+        
         vm.new_page = new_page;
         vm.website_list = website_list;
         vm.page_edit = page_edit;

@@ -20,7 +20,7 @@
 <div class="container">
     <ul ng-repeat="page in model.pages" class="list-group">
         <li class="list-group-item">
-            <a href="#/widget_list">{{page.name}}</a>
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}/widget">{{page.name}}</a>
             <a ng-click="model.page_edit(page)">
                 <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
             </a>

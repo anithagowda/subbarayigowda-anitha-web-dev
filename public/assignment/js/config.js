@@ -59,7 +59,9 @@
                 controllerAs: "model"
             })
             .when("/user/:uid/website/:wid/page/:pid/widget", {
-                templateUrl: "views/widget/widget_list.view.client.html"
+                templateUrl: "views/widget/widget_list.view.client.html",
+                controller: "WidgetListController",
+                controllerAs: "model"
             })
             .when("/user/:uid/website/:wid/page/:pid/widget/new", {
                 templateUrl: "views/widget/widget_choose.view.client.html"
