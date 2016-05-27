@@ -2,9 +2,9 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container_fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Websites</a>
+            <a class="navbar-brand">Websites</a>
             <p class="navbar-text pull-right">
-                <a ng-click="model.new_website()" class="navbar-link">
+                <a href="#user/{{model.uid}}/website/new" class="navbar-link">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </p>
@@ -16,9 +16,9 @@
 
     <ul ng-repeat="website in model.websites" class="list-group">
         <li class="list-group-item">
-            <a ng-click="model.page_list(website._id)">{{website.name}}</a>
+            <a href="#/user/{{model.uid}}/website/{{website._id}}/page">{{website.name}}</a>
             <span class="glyphicon glyphicon-play pull-right blue_glyph"></span>
-            <a ng-click="model.edit_website(website._id)">
+            <a href="#/user/{{model.uid}}/website/{{website._id}}">
                 <span class="glyphicon glyphicon-cog pull-right blue_glyph"></span>
             </a>
         </li>
