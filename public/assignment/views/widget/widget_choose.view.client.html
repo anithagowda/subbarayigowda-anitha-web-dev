@@ -3,7 +3,7 @@
     <div class="container_fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="widget_list.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
@@ -12,12 +12,7 @@
     </div>
 </nav>
 
-<div class="container" ng-controller="Widget_list_controller">
-    <!--<div ng-repeat="widget in widgets">
-        <h4 class="list">  
-            {{widget}}
-        </h4>
-    </div>-->
+<div class="container">
     <ul class="list-group">
         <li class="list-group-item">
             <a href="widget_heading.view.client.html">Header</a>
@@ -54,7 +49,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
-        <a class="navbar-text pull-right" href="../views/user/profile.view.client.html">
+        <a class="navbar-text pull-right" href="#/user/{{model.uid}}">
             <span class="glyphicon glyphicon-user  blue_glyph"></span>
         </a>
     </div>

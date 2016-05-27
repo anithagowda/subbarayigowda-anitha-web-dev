@@ -12,6 +12,7 @@
         var wid = $routeParams.wid;
         var pid = $routeParams.pid;
         
+        vm.uid = $routeParams.uid;
         vm.delete_page = delete_page;
         vm.page_list = page_list;
         vm.update_page = update_page;

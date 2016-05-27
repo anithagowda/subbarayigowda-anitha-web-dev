@@ -10,6 +10,7 @@
         var vm = this;
         var uid = $routeParams.uid;
         
+        vm.uid = $routeParams.uid;
         vm.page_list = page_list;
         vm.edit_website = edit_website;
         vm.new_website = new_website;

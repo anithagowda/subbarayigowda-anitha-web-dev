@@ -11,6 +11,7 @@
         var uid = $routeParams.uid;
         var wid = $routeParams.wid;
 
+        vm.uid = $routeParams.uid;
         vm.create_page = create_page;
         vm.page_list = page_list;
 

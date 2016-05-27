@@ -9,7 +9,8 @@
     function NewWebsiteController($routeParams, $location, WebsiteService) {
         var vm = this;
         var uid = $routeParams.uid;
-
+        
+        vm.uid = $routeParams.uid;
         vm.create_website = create_website;
         vm.website_list = website_list;
 

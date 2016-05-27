@@ -11,6 +11,7 @@
         var uid = $routeParams.uid;
         var wid = $routeParams.wid;
 
+        vm.uid = $routeParams.uid;
         vm.update_website = update_website;
         vm.website_list = website_list;
         vm.delete_website = delete_website;
