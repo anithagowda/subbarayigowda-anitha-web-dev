@@ -30,13 +30,13 @@
         function createWidget(pageId, widget) {
             var newWidget;
             if (widget.widgetType === "HEADER") {
-                newWidget = { "_id": "111", "widgetType": "HEADER", "pageId": pageId, "size": widget.size, "text": widget.text};
+                newWidget = { "_id": widget._id, "widgetType": "HEADER", "pageId": pageId, "size": widget.size, "text": widget.text};
             }
             else if (widget.widgetType === "IMAGE" || widget.widgetType === "YOUTUBE") {
-                newWidget = { "_id": "111", "widgetType": widget.widgetType, "pageId": pageId, "width": widget.width, "url": widget.url};
+                newWidget = { "_id": widget._id, "widgetType": widget.widgetType, "pageId": pageId, "width": widget.width, "url": widget.url};
             }
             else if (widget.widgetType === "HTML") {
-                newWidget = { "_id": "111", "widgetType": "HTML", "pageId": pageId, "text": widget.text};
+                newWidget = { "_id": widget._id, "widgetType": "HTML", "pageId": pageId, "text": widget.text};
             }
             widgets.push(newWidget);
         }
