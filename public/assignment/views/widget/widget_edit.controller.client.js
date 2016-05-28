@@ -23,7 +23,7 @@
         init();
 
         function update_widget(widget) {
-            WidgetService.updateWidget($routeParams.wid, widget);
+            WidgetService.updateWidget($routeParams.wgid, widget);
             $location.url("/user/"+$routeParams.uid+"/website/"+$routeParams.wid+"/page/"+$routeParams.pid+"/widget");
         }
 
