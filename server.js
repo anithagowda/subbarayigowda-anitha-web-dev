@@ -14,6 +14,9 @@ var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 // configure server
-require("./public/assignment/app.js")(app);
+//load module
+var assignment = require("./assignment/app.js");
+//call module
+assignment(app);
 
 app.listen(port, ipaddress);
