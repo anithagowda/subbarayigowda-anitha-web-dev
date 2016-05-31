@@ -12,6 +12,7 @@
 
         vm.updateUser = updateUser;
         vm.navigateToWebsite = navigateToWebsite;
+        vm.unregister = unregister;
         
         function init() {
             UserService
@@ -25,15 +26,32 @@
         function updateUser(user) {
             UserService
                 .updateUser(id, user)
-                .then(function (res) {
-                    if (res.status == 200) {
-                        vm.success = true;
-                    }
+                .then(
+                    function (res) {
+                        if (res.status == 200) {
+                            vm.success = "Updated successfully";
+                        }
+                    },
+                function (err) {
+                    vm.error = "Unable to update user";
                 });
         }
         
         function navigateToWebsite() {
             $location.url("/user/"+id+"/website");
+        }
+
+        function unregister() {
+            UserService
+                .deleteUser(id)
+                .then(
+                    function (res) {
+                        $location.url("/login");
+                    },
+                    function (err) {
+                        vm.error = "Unable to remove user";
+                    }
+                );
         }
     }
 })();

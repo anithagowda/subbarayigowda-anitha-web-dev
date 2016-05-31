@@ -44,12 +44,8 @@
         }
 
         function deleteUser(userId) {
-            for (var i in users) {
-                if (users[i]._id === userId) {
-                    users.splice(i, 1);
-                    return;
-                }
-            }
+            var url = "/api/user/"+userId;
+            return $http.delete(url);
         }
         return apis;
     }

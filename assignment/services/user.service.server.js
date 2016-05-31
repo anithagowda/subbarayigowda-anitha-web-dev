@@ -78,15 +78,14 @@ module.exports = function (app) {
         var user = req.body;
         for (var i in users) {
             if (users[i]._id === userId) {
-                //assuming username is not allowed to be changed
-                users[i].password = user.password;
+                //assuming username & password is not allowed to be changed
                 users[i].firstName = user.firstName;
                 users[i].lastName = user.lastName;
                 res.sendStatus(200);
                 return;
             }
         }
-        req.sendStatus(400);
+        res.sendStatus(400);
     }
 
     function deleteUser(req, res) {
@@ -98,6 +97,6 @@ module.exports = function (app) {
                 return;
             }
         }
-
+        res.sendStatus(400);
     }
 };

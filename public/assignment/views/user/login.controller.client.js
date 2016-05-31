@@ -15,8 +15,8 @@
             UserService
                 .findUserByCredentials(username, password)
                 .then(function (res) {
-                    if (res.status === 200) {
-                        var user = res.data;
+                    var user = res.data;
+                    if (user._id) {
                         $location.url("/user/"+user._id);
                     }
                     else {
