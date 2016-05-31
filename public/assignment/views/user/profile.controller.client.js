@@ -14,15 +14,22 @@
         vm.navigateToWebsite = navigateToWebsite;
         
         function init() {
-            vm.user = UserService.findUserById(id);
+            UserService
+                .findUserById(id)
+                .then(function (res) {
+                    vm.user = res.data;
+                });
         }
         init();
         
         function updateUser(user) {
-            if(true === UserService.updateUser(id, user)) {
-                vm.success = true;
-            }
-            
+            UserService
+                .updateUser(id, user)
+                .then(function (res) {
+                    if (res.status == 200) {
+                        vm.success = true;
+                    }
+                });
         }
         
         function navigateToWebsite() {

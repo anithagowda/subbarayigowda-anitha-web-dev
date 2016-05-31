@@ -11,20 +11,32 @@
         vm.register = register;
 
         function register(username, password, verify_password) {
-            var user = UserService.findUserByUsername(username);
-            if (user === -1) {
-                if (password === verify_password) {
-                    var id = (new Date).getTime().toString();
-                    var newUser = {_id:id, username:username, password:password };
-                    UserService.createUser(newUser);
-                    $location.url("/user/"+id);
-                }
-                else {
-                    vm.error = "Password doesn't match!"
-                }
+            UserService
+                .findUserByUsername(username)
+                .then(function (res) {
+                    var user = res.data;
+                    if (user._id) {
+                        vm.error = "Username already in use!";
+                    }
+                    else {
+                        createUser(username, password, verify_password);
+                    }
+                });
+        }
+
+        function createUser(username, password, verify_password) {
+            if (password === verify_password) {
+                UserService
+                    .createUser(username, password)
+                    .then(function (res) {
+                        var user = res.data;
+                        if (user) {
+                            $location.url("/user/"+user._id);
+                        }
+                    });
             }
             else {
-                vm.error = "Username already in use!"
+                vm.error = "Password doesn't match!"
             }
         }
     }

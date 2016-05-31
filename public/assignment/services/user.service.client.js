@@ -18,28 +18,19 @@
         };
 
 
-        function createUser(newUser) {
-            users.push(newUser);
+        function createUser(username, password) {
+            var user = {username:username, password:password };
+            return $http.post("/api/user", user);
         }
 
         function findUserById(userId) {
-            var user = -1;
-            for (var i in users) {
-                if (users[i]._id === userId) {
-                    user = users[i];
-                }
-            }
-            return user;
+            var url = "/api/user/"+userId;
+            return $http.get(url);
         }
 
         function findUserByUsername(username) {
-            var user = -1;
-            for (var i in users) {
-                if (users[i].username === username) {
-                    user = users[i];
-                }
-            }
-            return user;
+            var url = "/api/user?username="+username;
+            return $http.get(url);
         }
 
         function findUserByCredentials(username, password) {
@@ -48,16 +39,8 @@
         }
 
         function updateUser(userId, user) {
-            for (var i in users) {
-                if (users[i]._id === userId) {
-                    //assuming username is not allowed to be changed
-                    users[i].password = user.password;
-                    users[i].firstName = user.firstName;
-                    users[i].lastName = user.lastName;
-                    return true;
-                }
-            }
-            return false;
+            var url = "/api/user/"+userId;
+            return $http.put(url, user);
         }
 
         function deleteUser(userId) {

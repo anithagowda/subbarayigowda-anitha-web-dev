@@ -36,7 +36,10 @@ module.exports = function (app) {
 
     function createUser(req, res) {
         var user = req.body;
-        users.push(user);
+        var id = (new Date).getTime().toString();
+        var newUser = {_id:id, username:user.username, password:user.password };
+        users.push(newUser);
+        res.send(newUser);
     }
 
     function findUserByUsername(username, res) {
@@ -72,16 +75,18 @@ module.exports = function (app) {
 
     function updateUser(req, res) {
         var userId = req.params.userId;
+        var user = req.body;
         for (var i in users) {
             if (users[i]._id === userId) {
                 //assuming username is not allowed to be changed
                 users[i].password = user.password;
                 users[i].firstName = user.firstName;
                 users[i].lastName = user.lastName;
-                res.send(200);
+                res.sendStatus(200);
                 return;
             }
         }
+        req.sendStatus(400);
     }
 
     function deleteUser(req, res) {
@@ -89,7 +94,7 @@ module.exports = function (app) {
         for (var i in users) {
             if (users[i]._id === userId) {
                 users.splice(i, 1);
-                res.send(200);
+                res.sendStatus(200);
                 return;
             }
         }
