@@ -14,13 +14,11 @@
             updateWebsite : updateWebsite,
             deleteWebsite : deleteWebsite
         };
-
-
-
+        
         function createWebsite(userId, website) {
-            var id = new Date().getTime().toString();
-            var newWebsite = { "_id": id, "name": website.name, "developerId": userId};
-            websites.push(newWebsite);
+            var newWebsite = { "name": website.name, "developerId": userId};
+            var url = "/api/user/"+userId+"/website";
+            return $http.post(url, newWebsite);
         }
         
         function findWebsitesByUser(userId) {
@@ -29,29 +27,18 @@
         }
         
         function findWebsiteById(websiteId) {
-            for (var i in websites) {
-                if (websites[i]._id === websiteId) {
-                    return websites[i];
-                }
-            }
+            var url = "/api/website/"+websiteId;
+            return $http.get(url);
         }
         
         function updateWebsite(websiteId, website) {
-            for (var i in websites) {
-                if (websites[i]._id === websiteId) {
-                    websites[i].name = website.name;
-                    return;
-                }
-            }
+            var url = "/api/website/"+websiteId;
+            return $http.put(url, website);
         }
 
         function deleteWebsite(websiteId) {
-            for (var i in websites) {
-                if (websites[i]._id === websiteId) {
-                    websites.splice(i, 1);
-                    return;
-                }
-            }
+            var url = "/api/website/"+websiteId;
+            return $http.delete(url);
         }
 
         return apis;

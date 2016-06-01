@@ -18,7 +18,14 @@ module.exports = function (app) {
     ];
     
     function createWebsite(req, res) {
-        
+        var website = req.query.website;
+        var userId = req.params.userId;
+
+        var id = new Date().getTime().toString();
+        var newWebsite = { "_id": id, "name": website.name, "developerId": userId};
+        websites.push(newWebsite);
+
+        res.send(newWebsite);
     }
     
     function findAllWebsitesForUser(req, res) {
@@ -43,10 +50,25 @@ module.exports = function (app) {
     }
     
     function updateWebsite(req, res) {
-        
+        var website = req.body;
+        var websiteId = req.params.websiteId;
+        for (var i in websites) {
+            if (websites[i]._id === websiteId) {
+                websites[i].name = website.name;
+                res.sendStatus(200);
+            }
+        }
+        res.sendStatus(400);
     }
     
     function deleteWebsite(req, res) {
-        
+        var websiteId = req.params.websiteId;
+        for (var i in websites) {
+            if (websites[i]._id === websiteId) {
+                websites.splice(i, 1);
+                res.sendStatus(200);
+            }
+        }
+        res.sendStatus(400);
     }
 };

@@ -16,11 +16,26 @@
         vm.website_list = website_list;
         vm.delete_website = delete_website;
 
-        vm.website = WebsiteService.findWebsiteById(wid);;
-
+        function init() {
+            WebsiteService
+                .findWebsiteById(wid)
+                .then(function (res) {
+                    vm.website = res.data;
+                });
+        }
+        init();
+       
         function update_website(website) {
-            WebsiteService.updateWebsite(wid, website);
-            website_list();
+            WebsiteService
+                .updateWebsite(wid, website)
+                .then(
+                    function (res) {
+                        website_list();
+                    },
+                    function (err) {
+                        vm.error = "Failed to update website";
+                    }
+                );
         }
 
         function website_list() {
@@ -28,8 +43,16 @@
         }
 
         function delete_website() {
-            WebsiteService.deleteWebsite(wid);
-            website_list();
+            WebsiteService
+                .deleteWebsite(wid)
+                .then(
+                    function (res) {
+                        website_list();
+                    },
+                    function (err) {
+                        vm.error = "Failed to delete website";
+                    }
+                );
         }
     }
 })();

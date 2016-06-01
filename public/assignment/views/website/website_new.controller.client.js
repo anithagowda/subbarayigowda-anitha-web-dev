@@ -15,10 +15,14 @@
         vm.website_list = website_list;
 
         function create_website(name, description) {
-            var id = new Date().getTime().toString();
-            var newWebsite = { "_id": id, "name": name, "developerId": uid};
-            WebsiteService.createWebsite(uid, newWebsite);
-            website_list();
+            var newWebsite = { "name": name, "developerId": uid};
+            WebsiteService
+                .createWebsite(uid, newWebsite)
+                .then(
+                    function (res) {
+                        website_list();
+                    }
+                );
         }
 
         function website_list() {
