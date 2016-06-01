@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container_fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </p>
+            <a class="navbar-brand">Search Flickr</a>
+        </div>
+    </div>
+</nav>
+
+
+
+<div class="container">
+    <div class="input-group">
+        <input ng-model="searchText" type="text" class="form-control">
+        <span class="input-group-btn">
+            <a ng-click="model.searchPhotos(searchText)" class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+        </span>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <a class="navbar-text pull-right" href="#/user/{{model.uid}}">
+            <span class="glyphicon glyphicon-user  blue_glyph"></span>
+        </a>
+    </div>
+</nav>
