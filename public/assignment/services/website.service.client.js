@@ -6,7 +6,7 @@
         .module("WebAppMaker")
         .factory("WebsiteService", WebsiteService);
 
-    function WebsiteService() {
+    function WebsiteService($http) {
         var apis = {
             createWebsite : createWebsite,
             findWebsitesByUser : findWebsitesByUser,
@@ -15,14 +15,7 @@
             deleteWebsite : deleteWebsite
         };
 
-        var websites = [
-            { "_id": "123", "name": "Facebook",    "developerId": "456" },
-            { "_id": "234", "name": "Tweeter",     "developerId": "456" },
-            { "_id": "456", "name": "Gizmodo",     "developerId": "456" },
-            { "_id": "567", "name": "Tic Tac Toe", "developerId": "123" },
-            { "_id": "678", "name": "Checkers",    "developerId": "123" },
-            { "_id": "789", "name": "Chess",       "developerId": "234" }
-        ];
+
 
         function createWebsite(userId, website) {
             var id = new Date().getTime().toString();
@@ -31,13 +24,8 @@
         }
         
         function findWebsitesByUser(userId) {
-            var matchedWebsites = [];
-            for (var i in websites) {
-                if (websites[i].developerId === userId) {
-                    matchedWebsites.push(websites[i]);
-                }
-            }
-            return matchedWebsites;
+            var url = "/api/user/"+userId+"/website";
+            return $http.get(url);
         }
         
         function findWebsiteById(websiteId) {
