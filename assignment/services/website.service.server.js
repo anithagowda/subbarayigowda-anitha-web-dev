@@ -18,7 +18,7 @@ module.exports = function (app) {
     ];
     
     function createWebsite(req, res) {
-        var website = req.query.website;
+        var website = req.body;
         var userId = req.params.userId;
 
         var id = new Date().getTime().toString();
@@ -44,6 +44,7 @@ module.exports = function (app) {
         for (var i in websites) {
             if (websites[i]._id === websiteId) {
                 res.json(websites[i]);
+                return;
             }
         }
         res.sendStatus(400);
@@ -56,6 +57,7 @@ module.exports = function (app) {
             if (websites[i]._id === websiteId) {
                 websites[i].name = website.name;
                 res.sendStatus(200);
+                return;
             }
         }
         res.sendStatus(400);
@@ -67,6 +69,7 @@ module.exports = function (app) {
             if (websites[i]._id === websiteId) {
                 websites.splice(i, 1);
                 res.sendStatus(200);
+                return;
             }
         }
         res.sendStatus(400);

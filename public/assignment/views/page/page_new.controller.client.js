@@ -16,9 +16,18 @@
         vm.page_list = page_list;
 
         function create_page(name, title) {
-            var newPage = { "_id":new Date().getTime().toString(), "name":name, "websiteId":wid};
-            PageService.createPage(wid, newPage);
-            page_list();
+            var newPage = { "name":name, "websiteId":wid};
+            PageService
+                .createPage(wid, newPage)
+                .then(function (res) {
+                    var page = res.data;
+                    if (page._id) {
+                        page_list();
+                    }
+                    else {
+                        vm.error = "Failed to create page";
+                    }
+                });
         }
 
         function page_list() {

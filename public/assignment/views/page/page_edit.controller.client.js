@@ -18,14 +18,31 @@
         vm.update_page = update_page;
 
         function init() {
-            vm.page = PageService.findPageById(pid);
+            PageService
+                .findPageById(pid)
+                .then(
+                    function (res) {
+                        vm.page = res.data;
+                    },
+                function (err) {
+                    vm.error = "Page not found";
+                });
         }
         
         init();
         
         function delete_page() {
-            PageService.deletePage(pid);
-            page_list();
+            PageService
+                .deletePage(pid)
+                .then(
+                    function (res) {
+                        page_list();
+                    },
+                    function (err) {
+                        vm.error = "Failed to delete the page";
+                    }
+                );
+            
         }
 
         function page_list() {
@@ -33,9 +50,17 @@
         }
 
         function update_page(page) {
-            var newPage = { "_id":pid, "name":page.name, "websiteId":wid};
-            PageService.updatePage(pid, newPage);
-            page_list();
+            var newPage = { "name":page.name, "websiteId":wid};
+            PageService
+                .updatePage(pid, newPage)
+                .then(
+                    function (res) {
+                        page_list();
+                    },
+                    function (err) {
+                        vm.error = "Failed to update the page";
+                    }
+                );
         }
     }
 })();
