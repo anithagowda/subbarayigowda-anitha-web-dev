@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <link href="../css/jquery-ui.css"/>
+</head>
+<body>
+
+    <h1>Hello World</h1>
+
+    <ul class="list">
+
+    </ul>
+
+    <script>
+        //jQuery get hold of the elements by its tag name, class or id & converts to jQuery object; similar to CSS
+        jQuery("h1")
+                .html("Hello from jQuery")//returns back the original jQuery object to be further modified
+                .css("background-color", "green");
+
+        var list = jQuery(".list");
+        list.append("<li>Item1</li>");
+
+        for (var i=2; i<5; i++) {
+            var li = $("<li>Item"+i+"</li>"); //$ refers to main jQuery object
+            list.append(li);
+        }
+
+        list.sortable({
+            axis: 'y'
+        });
+
+    </script>
+
+
+</body>
+</html>

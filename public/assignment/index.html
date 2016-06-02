@@ -7,6 +7,12 @@
     <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
     <title>Assignment Home Page</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- load jquery before angular otherwise angular loads jQuery lite; load jQuery before jquery-ui as jQuery-ui assumes it to be loaded-->
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <link href="../css/jquery-ui.css" rel="stylesheet"/>
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
 

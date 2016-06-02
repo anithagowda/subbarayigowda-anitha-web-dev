@@ -21,6 +21,11 @@
                 .findWidgetsByPageId($routeParams.pid)
                 .then(function (res) {
                     vm.widgets = res.data;
+
+                    //angular is not notified of the change in order
+                    $(".container").sortable({
+                        axis : 'y'
+                    });
                 });
         }
         init();
