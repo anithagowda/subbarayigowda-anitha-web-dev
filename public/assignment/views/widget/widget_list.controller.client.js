@@ -17,7 +17,11 @@
         vm.getSafeUrl = getSafeUrl;
         
         function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId($routeParams.pid);
+            WidgetService
+                .findWidgetsByPageId($routeParams.pid)
+                .then(function (res) {
+                    vm.widgets = res.data;
+                });
         }
         init();
         

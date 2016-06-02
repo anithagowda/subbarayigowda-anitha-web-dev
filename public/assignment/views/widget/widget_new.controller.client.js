@@ -30,10 +30,16 @@
         }
 
         function create_widget(widget_type) {
-            var wgid = new Date().getTime().toString();
-            var widget = { "_id": wgid, "widgetType": widget_type, "pageId": $routeParams.pid};
-            WidgetService.createWidget($routeParams.pid, widget);
-            $location.url("user/"+$routeParams.uid+"/website/"+$routeParams.wid+"/page/"+$routeParams.pid+"/widget/"+wgid);
+            var widget = {"widgetType": widget_type, "pageId": $routeParams.pid};
+            WidgetService
+                .createWidget($routeParams.pid, widget)
+                .then(function (res) {
+                    var widget = res.data;
+                    if (widget._id){
+                        $location.url("user/"+$routeParams.uid+"/website/"+$routeParams.wid+"/page/"+$routeParams.pid+"/widget/"+widget._id);
+                    }
+                });
+
         }
     }
 })();

@@ -18,18 +18,45 @@
         vm.delete_widget = delete_widget;
 
         function init() {
-            vm.widget = WidgetService.findWidgetById($routeParams.wgid);
+            WidgetService
+                .findWidgetById($routeParams.wgid)
+                .then(
+                    function (res) {
+                        vm.widget = res.data;
+                    },
+                    function (err) {
+                        vm.error = "Widget not found";
+                    }
+                );
         }
         init();
 
         function update_widget(widget) {
-            WidgetService.updateWidget($routeParams.wgid, widget);
-            $location.url("/user/"+$routeParams.uid+"/website/"+$routeParams.wid+"/page/"+$routeParams.pid+"/widget");
+            WidgetService
+                .updateWidget($routeParams.wgid, widget)
+                .then(
+                    function (res) {
+                        $location.url("/user/"+$routeParams.uid+"/website/"+$routeParams.wid+"/page/"+$routeParams.pid+"/widget");
+                    },
+                    function (err) {
+                        vm.error = "Update widget failed";
+                    }
+                );
+            
         }
 
         function delete_widget(widget) {
-            WidgetService.deleteWidget(widget._id);
-            $location.url("/user/"+$routeParams.uid+"/website/"+$routeParams.wid+"/page/"+$routeParams.pid+"/widget");
+            WidgetService
+                .deleteWidget(widget._id)
+                .then(
+                    function (res) {
+                        $location.url("/user/"+$routeParams.uid+"/website/"+$routeParams.wid+"/page/"+$routeParams.pid+"/widget");
+                    },
+                    function (err) {
+                        vm.error = "Delete widget failed";
+                    }
+                );
+            
         }
     }
 })();

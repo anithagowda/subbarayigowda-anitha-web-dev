@@ -6,7 +6,7 @@
         .module("WebAppMaker")
         .factory("WidgetService", WidgetService);
 
-    function WidgetService() {
+    function WidgetService($http) {
         var apis = {
             createWidget : createWidget,
             findWidgetsByPageId : findWidgetsByPageId,
@@ -14,79 +14,30 @@
             updateWidget : updateWidget,
             deleteWidget : deleteWidget
         };
-
-        var widgets = [
-            { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
-            { "_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-            { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-                "url": "http://lorempixel.com/400/200/"},
-            { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": '<p>Lorem ipsum html</p>'},
-            { "_id": "567", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-            { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-                "url": "https://youtu.be/AM2Ivdi9c4E" },
-            { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum html</p>"}
-        ];
         
         function createWidget(pageId, widget) {
-            var newWidget;
-            if (widget.widgetType === "HEADER") {
-                newWidget = { "_id": widget._id, "widgetType": "HEADER", "pageId": pageId, "size": widget.size, "text": widget.text};
-            }
-            else if (widget.widgetType === "IMAGE" || widget.widgetType === "YOUTUBE") {
-                newWidget = { "_id": widget._id, "widgetType": widget.widgetType, "pageId": pageId, "width": widget.width, "url": widget.url};
-            }
-            else if (widget.widgetType === "HTML") {
-                newWidget = { "_id": widget._id, "widgetType": "HTML", "pageId": pageId, "text": widget.text};
-            }
-            widgets.push(newWidget);
+            var url = "/api/page/"+pageId+"/widget";
+            return $http.post(url, widget);
         }
         
         function findWidgetsByPageId(pageId) {
-            var matchedWidget = [];
-            for (var i in widgets) {
-                if (widgets[i].pageId === pageId) {
-                    matchedWidget.push(widgets[i]);
-                }
-            }
-            return matchedWidget;
+            var url = "/api/page/"+pageId+"/widget";
+            return $http.get(url);
         }
         
         function findWidgetById(widgetId) {
-            for (var i in widgets) {
-                if (widgets[i]._id === widgetId) {
-                    return widgets[i];
-                }
-            }
+            var url = "/api/widget/"+widgetId;
+            return $http.get(url);
         }
         
         function updateWidget(widgetId, widget) {
-            var oldwidget;
-            for (var i in widgets) {
-                if (widgets[i]._id === widgetId) {
-                    oldwidget = widgets[i];
-                }
-            }
-
-            if (widget.widgetType === "HEADER") {
-                oldwidget.size = widget.size;
-                oldwidget.text = widget.text;
-            }
-            else if (widget.widgetType === "IMAGE" || widget.widgetType === "YOUTUBE") {
-                oldwidget.width = widget.width;
-                oldwidget.url = widget.url;
-            }
-            else if (widget.widgetType === "HTML") {
-                oldwidget.text = widget.text;
-            }
+            var url = "/api/widget/"+widgetId;
+            return $http.put(url, widget);
         }
 
         function deleteWidget(widgetId) {
-            for (var i in widgets) {
-                if (widgets[i]._id === widgetId) {
-                    widgets.splice(i, 1);
-                    return;
-                }
-            }
+            var url = "/api/widget/"+widgetId;
+            return $http.delete(url);
         }
         
         return apis;
