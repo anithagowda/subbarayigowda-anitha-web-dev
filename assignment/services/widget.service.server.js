@@ -102,4 +102,40 @@ module.exports = function (app) {
         }
         res.sendStatus(400);
     }
+
+    /*  Handle Image upload  */
+
+    //multer for parsing file - adds a body object and a file or files object to the request object
+    var multer = require('multer');
+    var upload = multer({dest: __dirname+'/../../public/assignment/uploads'});
+
+    //There is a file attached which will be called 'myFile' which should go to dest folder
+    app.post("/api/upload", upload.single('myFile'), uploadImage);
+
+    //req.file holds 'myFile', req.body holds form values
+    function uploadImage(req, res) {
+
+        var widgetId = req.body.widgetId;
+        var width = req.body.width;
+        var uid = req.body.uid;
+        var wid = req.body.wid;
+        var pid = req.body.pid;
+        var myFile = req.file;
+
+        var originalName = myFile.originalname;
+        var filename = myFile.filename; //multer assigns a unique name
+        var path = myFile.path;
+        var destination = myFile.destination;
+        var size = myFile.size;
+        var mimetype = myFile.mimetype;
+
+        for (var i in widgets) {
+            if (widgets[i]._id === widgetId) {
+                widgets[i].url = "uploads/" + filename;
+                res.redirect("/assignment/#/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget/"+widgetId);
+                return;
+            }
+        }
+        res.sendStatus(400);
+    }
 };
