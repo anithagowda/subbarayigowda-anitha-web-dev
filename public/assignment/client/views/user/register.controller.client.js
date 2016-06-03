@@ -11,6 +11,11 @@
         vm.register = register;
 
         function register(username, password, verify_password) {
+            if (username === "" || password === "" || username == null || password == null) {
+                vm.error = "Username or Password cannot be left empty"
+                return;
+            }
+
             UserService
                 .findUserByUsername(username)
                 .then(function (res) {
