@@ -3,10 +3,10 @@
  */
 (function () {
     angular
-        .module("jgaDirectives", [])
-        .directive("jga-sortable", jga_sortable);
+        .module("jgaSortable", [])
+        .directive("jgaSortable", jgaSortable);
 
-    function jga_sortable() {
+    function jgaSortable() {
         var start;
         var end;
 
