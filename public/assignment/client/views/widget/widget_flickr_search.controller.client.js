@@ -9,6 +9,11 @@
     function FlickrImageSearchController(FlickrService, WidgetService, $routeParams, $location) {
         var vm = this;
 
+        vm.uid = $routeParams.uid;
+        vm.wid = $routeParams.wid;
+        vm.pid = $routeParams.pid;
+        vm.wgid = $routeParams.wgid;
+        
         var wgid = $routeParams.wgid;
 
         vm.searchPhotos = searchPhotos;
