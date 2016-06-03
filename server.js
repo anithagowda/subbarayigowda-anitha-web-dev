@@ -15,7 +15,7 @@ var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 // configure server
 //load module
-var assignment = require("./assignment/app.js");
+var assignment = require("./public/assignment/server/app.js");
 //call module
 assignment(app);
 

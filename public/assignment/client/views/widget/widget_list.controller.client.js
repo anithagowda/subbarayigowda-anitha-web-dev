@@ -23,9 +23,9 @@
                     vm.widgets = res.data;
 
                     //angular is not notified of the change in order
-                    $(".container").sortable({
-                        axis : 'y'
-                    });
+                    // $(".container").sortable({
+                    //     axis : 'y'
+                    // });
                 });
         }
         init();
