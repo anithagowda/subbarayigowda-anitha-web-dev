@@ -78,15 +78,15 @@ module.exports = function (app) {
     }
     
     function update(oldwidget, widget) {
-        if (widget.widgetType === "HEADER") {
+        if (oldwidget.widgetType === "HEADER") {
             oldwidget.size = widget.size;
             oldwidget.text = widget.text;
         }
-        else if (widget.widgetType === "IMAGE" || widget.widgetType === "YOUTUBE") {
+        else if (oldwidget.widgetType === "IMAGE" || oldwidget.widgetType === "YOUTUBE") {
             oldwidget.width = widget.width;
             oldwidget.url = widget.url;
         }
-        else if (widget.widgetType === "HTML") {
+        else if (oldwidget.widgetType === "HTML") {
             oldwidget.text = widget.text;
         }
     }
