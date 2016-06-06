@@ -1,4 +1,4 @@
-.image_container {
+#image_container {
     margin: 10px;
     padding: 5px;
 }
@@ -10,7 +10,7 @@
     top: 0;
     text-align: center;
     padding-left: 15px;
-    padding-right: 15px;
+    padding-right: 25px;
 }
 
 
@@ -25,4 +25,13 @@ p.navbar-text.pull-right {
 
 p.navbar-text.pull-left {
     margin-left: 15px;
+}
+
+#nav_dropdown {
+    display: none;
+}
+
+
+@media (max-width: 768px) {
+    #nav_dropdown{ display: inline-block; }
 }

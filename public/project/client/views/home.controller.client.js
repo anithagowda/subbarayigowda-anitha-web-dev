@@ -12,7 +12,7 @@
         vm.searchRecipes = searchRecipes;
 
         function searchRecipes(ingredients) {
-            $location.url("#/search/"+ingredients);
+            $location.url("/search/"+ingredients);
         }
     }
 })();

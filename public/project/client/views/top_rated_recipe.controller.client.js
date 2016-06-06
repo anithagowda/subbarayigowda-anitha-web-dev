@@ -6,12 +6,12 @@
         .module("OnlineKitchen")
         .controller("TopRecipeController", TopRecipeController);
     
-    function TopRecipeController(SearchRecipeService, $window) {
+    function TopRecipeController(RecipeService, $window) {
         var vm = this;
         vm.selectRecipe = selectRecipe;
 
         function init() {
-            SearchRecipeService
+            RecipeService
                 .getTopRecipes()
                 .then(
                     function (res) {
