@@ -2,3 +2,27 @@
     margin: 10px;
     padding: 5px;
 }
+
+.navbar-header
+{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+body {
+    padding-top: 55px;
+    padding-bottom: 55px;
+}
+
+p.navbar-text.pull-right {
+    margin-right: 15px;
+}
+
+p.navbar-text.pull-left {
+    margin-left: 15px;
+}

@@ -6,32 +6,25 @@
         .module("OnlineKitchen")
         .controller("SearchRecipeController", SearchRecipeController);
     
-    function SearchRecipeController(SearchRecipeService) {
+    function SearchRecipeController(RecipeService, $window, $routeParams) {
         var vm = this;
+        var ingredients = $routeParams.ingredients;
 
-        vm.searchRecipes = searchRecipes;
         vm.selectRecipe = selectRecipe;
-
+        
         function init() {
-            SearchRecipeService
-                .getTopRecipes()
+            RecipeService
+                .searchRecipe(ingredients)
                 .then(function (res) {
                     vm.recipes = res.data;
-                })
+                });
         }
         init();
         
-        function searchRecipes(ingredients) {
-            console.log(ingredients);
-            SearchRecipeService
-                .searchRecipe(ingredients)
-                .then(function (res) {
-                   vm.recipes = res.data.recipes;
-                });
-        }
 
         function selectRecipe(recipe) {
             console.log(recipe.title);
+            $window.open(recipe.source_url, '_blank');
         }
     }
 })();

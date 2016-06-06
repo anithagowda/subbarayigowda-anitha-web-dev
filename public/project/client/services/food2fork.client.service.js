@@ -4,9 +4,9 @@
 (function () {
     angular
         .module("OnlineKitchen")
-        .factory("SearchRecipeService", SearchRecipeService);
+        .factory("RecipeService", RecipeService);
 
-    function SearchRecipeService($http) {
+    function RecipeService($http) {
 
         var api = {
             searchRecipe: searchRecipe,
@@ -15,6 +15,7 @@
         return api;
         
         function searchRecipe(ingredients) {
+            return $http.get("/search/"+ingredients);
         }
 
         function getTopRecipes() {
