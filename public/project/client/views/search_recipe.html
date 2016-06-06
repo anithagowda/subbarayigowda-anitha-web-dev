@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="input-group">
+        <input ng-model="ingredients" type="text" class="form-control" placeholder="Search Recipes by ingredients">
+        <span class="input-group-btn">
+            <a ng-click="model.searchRecipes(ingredients)" class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+        </span>
+    </div>
+
+
+    <div ng-if="model.recipes" class="row">
+        <div class="col-xs-4" ng-repeat="recipe in model.recipes">
+            <img id="image_container" ng-click="model.selectRecipe(recipe)"
+                 width=100% height="200px"
+                 ng-src="{{recipe.image_url}}"/>
+            <title>{{recipe.title}}</title>
+        </div>
+    </div>
+</div>

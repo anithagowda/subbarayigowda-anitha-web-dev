@@ -19,4 +19,8 @@ var assignment = require("./public/assignment/server/app.js");
 //call module
 assignment(app);
 
+//Configure project server
+var request = require('request');
+require("./public/project/server/app.js")(app, request);
+
 app.listen(port, ipaddress);
