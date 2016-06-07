@@ -17,6 +17,7 @@
         vm.create_image = create_image;
         vm.create_youtube = create_youtube;
         vm.create_html = create_html;
+        vm.create_text = create_text;
 
         function create_header() {
             create_widget("HEADER");
@@ -32,6 +33,10 @@
 
         function create_html() {
             create_widget("HTML");
+        }
+        
+        function create_text() {
+            create_widget("TEXT");
         }
         
         function create_widget(widget_type) {

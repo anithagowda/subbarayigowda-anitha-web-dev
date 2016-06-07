@@ -35,6 +35,9 @@ module.exports = function (app) {
         else if (widget.widgetType === "HTML") {
             newWidget = { "_id": id, "widgetType": "HTML", "pageId": pageId, "text": widget.text};
         }
+        else if (widget.widgetType === "TEXT") {
+            newWidget = { "_id": id, "widgetType": "TEXT", "pageId": pageId, "text": widget.text};
+        }
         widgets.push(newWidget);
         res.json(newWidget);
     }
@@ -88,6 +91,12 @@ module.exports = function (app) {
         }
         else if (oldwidget.widgetType === "HTML") {
             oldwidget.text = widget.text;
+        }
+        else if (oldwidget.widgetType === "TEXT") {
+            oldwidget.text = widget.text;
+            oldwidget.rows = widget.rows;
+            oldwidget.placeholder = widget.placeholder;
+            oldwidget.formatted = widget.formatted;
         }
     }
 
