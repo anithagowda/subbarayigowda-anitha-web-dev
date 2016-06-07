@@ -9,7 +9,7 @@
     function ProfileHomeController($routeParams, UserService) {
         var vm = this;
 
-        vm.uid = $routeParams;
+        vm.uid = $routeParams.uid;
         vm.unregister = unregister;
         
         function unregister() {
