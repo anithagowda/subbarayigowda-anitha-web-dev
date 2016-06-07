@@ -1,17 +1,28 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top black">
     <div class="container_fluid">
         <div class="navbar-header">
-            <p class="navbar-text pull-left">
+            <div class="navbar-brand">OnlineKitchen</div>
+            <p class="navbar-text pull-right">
+                <a href="#/user/{{model.uid}}" class="navbar-link right_pad">
+                    Home
+                </a>
                 <a href="#/" class="navbar-link">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    Logout
                 </a>
             </p>
-            <a class="navbar-brand">Top Rated Recipes</a>
         </div>
     </div>
 </nav>
 
 <div class="container">
+    <div class="input-group">
+        <input ng-model="ingredients" type="text" class="form-control" placeholder="Search Recipes by ingredients">
+        <span class="input-group-btn">
+            <a ng-click="model.searchRecipes(ingredients)" class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+        </span>
+    </div>
 
     <div ng-if="model.error">
         <h2>{{model.error}}</h2>

@@ -1,0 +1,81 @@
+<nav class="navbar navbar-default navbar-fixed-top black">
+    <div class="container_fluid">
+        <div class="navbar-header">
+            <div class="navbar-brand">OnlineKitchen</div>
+            <p class="navbar-text pull-right">
+                <a href="#/user/{{model.uid}}" class="navbar-link right_pad">
+                    Home
+                </a>
+                <a href="#/" class="navbar-link">
+                    Logout
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="input-group">
+        <input ng-model="ingredients" type="text" class="form-control" placeholder="Search Recipes by ingredients">
+        <span class="input-group-btn">
+            <a href="#/user/{{model.uid}}/search/ingredients}" class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+        </span>
+    </div>
+
+    <div class="profile_body">
+        <div class="profile_tab_header" style="margin-top: 2%">
+            <ul class="nav nav-tabs nav-justified">
+                <li class="active"><a href="#">Profile</a></li>
+                <li><a href="#">Favourite</a></li>
+                <li><a href="#">Followers</a></li>
+                <li><a href="#">Follows</a></li>
+            </ul>
+        </div>
+
+
+        <div class="profile_tab_body" style="margin-top: 2%; ">
+            <div class="profile_avatar">
+                <img src="https://farm8.staticflickr.com/7490/27488695586_8c84a993d0_s.jpg" width="25%" height="35%" border="1px" style="border: solid; border-color: lightgray; border-radius: 10px; margin-top: 10px;margin-left: auto;margin-right: auto;display: block;">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div ng-if="model.success" class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Success!</strong> {{model.success}}
+        </div>
+
+        <div ng-if="model.error" class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Error!</strong> {{model.error}}
+        </div>
+
+        <div role="form">
+            <div class="form-group">
+                <label>Username</label>
+                <input ng-model="model.user.username" type="text" class="form-control" placeholder="Ex:JohnPinto"  width="75%">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input ng-model="model.user.email" type="email" class="form-control" placeholder="John@gmail.com">
+            </div>
+            <div class="form-group">
+                <label>First Name</label>
+                <input ng-model="model.user.firstName" type="text" class="form-control" placeholder="John">
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input ng-model="model.user.lastName" type="text" class="form-control" placeholder="Pinto">
+            </div>
+        </div>
+
+        <a class="btn btn-success btn-block" href="#/login">Save</a>
+        <a ng-click="model.unregister()" class="btn btn-danger btn-block">Unregister</a>
+    </div>
+
+</div>

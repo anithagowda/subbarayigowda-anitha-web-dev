@@ -34,8 +34,13 @@
                 controllerAs: "model"
             })
             .when("/user/:uid", {
-                templateUrl: "views/user/profile.view.client.html",
-                controller: "ProfileController",
+                templateUrl: "views/profile/profile_home.view.client.html",
+                controller: "ProfileHomeController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/search/:ingredients", {
+                templateUrl: "views/profile/profile_search.view.client.html",
+                controller: "ProfileSearchController",
                 controllerAs: "model"
             })
             .otherwise({
