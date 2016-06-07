@@ -16,6 +16,7 @@
         vm.create_header = create_header;
         vm.create_image = create_image;
         vm.create_youtube = create_youtube;
+        vm.create_html = create_html;
 
         function create_header() {
             create_widget("HEADER");
@@ -29,6 +30,10 @@
             create_widget("YOUTUBE");
         }
 
+        function create_html() {
+            create_widget("HTML");
+        }
+        
         function create_widget(widget_type) {
             var widget = {"widgetType": widget_type, "pageId": $routeParams.pid};
             WidgetService
