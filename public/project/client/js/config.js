@@ -43,6 +43,11 @@
                 controller: "ProfileSearchController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/favourites", {
+                templateUrl: "views/profile/profile_favourites.view.client.html",
+                controller: "ProfileFavouriteController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/"
             });

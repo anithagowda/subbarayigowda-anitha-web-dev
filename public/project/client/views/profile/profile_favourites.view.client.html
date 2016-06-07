@@ -1,0 +1,69 @@
+<nav class="navbar navbar-default navbar-fixed-top black">
+    <div class="container_fluid">
+        <div class="navbar-header">
+            <div class="navbar-brand">OnlineKitchen</div>
+            <p class="navbar-text pull-right">
+                <a href="#/user/{{model.uid}}" class="navbar-link right_pad">
+                    Home
+                </a>
+                <a href="#/" class="navbar-link">
+                    Logout
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="input-group">
+        <input ng-model="ingredients" type="text" class="form-control" placeholder="Search Recipes by ingredients">
+        <span class="input-group-btn">
+            <a href="#/user/{{model.uid}}/search/{{ingredients}}" class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+        </span>
+    </div>
+
+    <div class="profile_body">
+        <div class="profile_tab_header" style="margin-top: 2%">
+            <ul class="nav nav-tabs nav-justified">
+                <li><a href="#/user/{{model.uid}}">Profile</a></li>
+                <li class="active"><a href="#/user/{{model.uid}}/favourites">Favourite</a></li>
+                <li><a href="#">Followers</a></li>
+                <li><a href="#">Follows</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div ng-if="model.error">
+            <h2>{{model.error}}</h2>
+        </div>
+
+        <div ng-if="model.favourites" class="row">
+            <div class="col-xs-4" ng-repeat="recipe in model.favourites">
+
+                <div class="jga-widget-tool">
+                    <a href="#/">
+                    <span class="glyphicon-stack">
+                        <i class="glyphicon glyphicon-circle glyphicon-stack-2x black"></i>
+                        <i class="glyphicon glyphicon-heart glyphicon-stack glyphicon-stack-1x white"></i>
+                    </span>
+                    </a>
+                </div>
+
+                <img id="image_container"
+                     ng-click="model.selectRecipe(recipe)"
+                     width=100% height="200px"
+                     ng-src="{{recipe.image_url}}"/>
+
+                <div class="carousel-caption">
+                    <label>{{recipe.title}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
