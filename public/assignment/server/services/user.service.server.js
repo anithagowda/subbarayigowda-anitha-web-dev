@@ -48,11 +48,6 @@ module.exports = function (app, module) {
                 function (error) {
                     res.sendStatus(400).send(error);
                 });
-
-        // var id = (new Date).getTime().toString();
-        // var newUser = {_id:id, username:user.username, password:user.password };
-        // users.push(newUser);
-        // res.send(newUser);
     }
 
     function findUserByUsername(username, res) {
@@ -66,13 +61,16 @@ module.exports = function (app, module) {
     }
 
     function findUserByCredentials(username, password, res) {
-        for (var i in users) {
-            if (users[i].username === username && users[i].password === password) {
-                res.send(users[i]);
-                return;
-            }
-        }
-        res.send({});
+        UserModel
+            .findUserByCredentials(username, password)
+            .then(
+                function (user) {
+                    res.json(user);
+                },
+                function (err) {
+                    res.sendStatus(404);
+                }
+            );
     }
 
     function findUserById(req, res) {
@@ -87,39 +85,45 @@ module.exports = function (app, module) {
                     res.sendStatus(404);
                 }
             );
-        // for (var i in users) {
-        //     if (users[i]._id === userId) {
-        //         res.send(users[i]);
-        //         return;
-        //     }
-        // }
-        // res.send({});
     }
 
     function updateUser(req, res) {
         var userId = req.params.userId;
         var user = req.body;
-        for (var i in users) {
-            if (users[i]._id === userId) {
-                //assuming username & password is not allowed to be changed
-                users[i].firstName = user.firstName;
-                users[i].lastName = user.lastName;
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.sendStatus(400);
+        UserModel
+            .updateUser(userId, user)
+            .then(
+                function (stat) {
+                    res.sendStatus(200);
+                },
+                function (err) {
+                    res.sendStatus(404);
+                }
+            );
+        
+        // for (var i in users) {
+        //     if (users[i]._id === userId) {
+        //         //assuming username & password is not allowed to be changed
+        //         users[i].firstName = user.firstName;
+        //         users[i].lastName = user.lastName;
+        //         res.sendStatus(200);
+        //         return;
+        //     }
+        // }
+        // res.sendStatus(400);
     }
 
     function deleteUser(req, res) {
         var userId = req.params.userId;
-        for (var i in users) {
-            if (users[i]._id === userId) {
-                users.splice(i, 1);
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.sendStatus(400);
+        UserModel
+            .deleteUser(userId)
+            .then(
+                function (stat) {
+                    res.sendStatus(200);
+                },
+                function (err) {
+                    res.sendStatus(404);
+                }
+            );
     }
 };

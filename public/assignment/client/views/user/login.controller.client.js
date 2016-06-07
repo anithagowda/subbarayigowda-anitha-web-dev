@@ -16,12 +16,15 @@
                 .findUserByCredentials(username, password)
                 .then(function (res) {
                     var user = res.data;
-                    if (user._id) {
-                        $location.url("/user/"+user._id);
+                    if (user == null) {
+                        vm.error = "Invalid username/password!";
                     }
                     else {
-                        vm.error = "Invalid username/password!"
+                        $location.url("/user/"+user._id);
                     }
+                },
+                function (err) {
+                    vm.error = "Invalid username/password!"
                 });
         }
     }
