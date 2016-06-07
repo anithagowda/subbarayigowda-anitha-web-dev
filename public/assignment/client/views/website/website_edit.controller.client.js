@@ -26,6 +26,10 @@
         init();
        
         function update_website(website) {
+            if (website.name === "" || website.name == null) {
+                vm.error = "Name cannot be left empty";
+                return;
+            }
             WebsiteService
                 .updateWebsite(wid, website)
                 .then(

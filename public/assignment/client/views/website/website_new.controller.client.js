@@ -15,6 +15,11 @@
         vm.website_list = website_list;
 
         function create_website(name, description) {
+            if (name === "" || name == null ) {
+                vm.error = "Name cannot be left empty";
+                return;
+            }
+            
             var newWebsite = { "name": name, "developerId": uid};
             WebsiteService
                 .createWebsite(uid, newWebsite)

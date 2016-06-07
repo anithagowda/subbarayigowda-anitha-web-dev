@@ -50,6 +50,11 @@
         }
 
         function update_page(page) {
+            if (page.name === "" || page.name == null) {
+                vm.error = "Name cannot be empty";
+                return;
+            }
+
             var newPage = { "name":page.name, "websiteId":wid};
             PageService
                 .updatePage(pid, newPage)

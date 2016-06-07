@@ -32,6 +32,11 @@
         init();
 
         function update_widget(widget) {
+            // if (widget.name === "" || widget.name == null) {
+            //     vm.error = "Name cannot be empty";
+            //     return;
+            // }
+
             WidgetService
                 .updateWidget($routeParams.wgid, widget)
                 .then(

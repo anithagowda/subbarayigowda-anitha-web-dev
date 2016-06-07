@@ -16,6 +16,11 @@
         vm.page_list = page_list;
 
         function create_page(name, title) {
+            if (name === "" || name == null) {
+                vm.error = "Name cannot be empty";
+                return;
+            }
+
             var newPage = { "name":name, "websiteId":wid};
             PageService
                 .createPage(wid, newPage)
