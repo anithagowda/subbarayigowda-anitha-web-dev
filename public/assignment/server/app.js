@@ -4,10 +4,13 @@
 
 //passing an instance of express which is used to create web services
 module.exports = function (app) {
-    require("./services/user.service.server.js")(app);
-    require("./services/website.service.server.js")(app);
-    require("./services/page.service.server.js")(app);
-    require("./services/widget.service.server.js")(app);
+    
+    var models = require("./../model/models.server")();
+    
+    require("./services/user.service.server.js")(app, models);
+    require("./services/website.service.server.js")(app, models);
+    require("./services/page.service.server.js")(app, models);
+    require("./services/widget.service.server.js")(app, models);
 
     //Eg:
     // app.get("/say:something", function (req, res) {

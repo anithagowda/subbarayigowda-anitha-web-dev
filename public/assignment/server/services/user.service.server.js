@@ -2,7 +2,7 @@
  * Created by asubbarayigowda on 5/30/16.
  */
 
-module.exports = function (app) {
+module.exports = function (app, module) {
     app.get("/api/user", getUsers);
     app.post("/api/user", createUser);
     //express uses only base url for matching. anything after ? is ignored
@@ -12,6 +12,8 @@ module.exports = function (app) {
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
 
+    var UserModel = module.userModel;
+    
     var users = [
         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
         {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
@@ -36,10 +38,21 @@ module.exports = function (app) {
 
     function createUser(req, res) {
         var user = req.body;
-        var id = (new Date).getTime().toString();
-        var newUser = {_id:id, username:user.username, password:user.password };
-        users.push(newUser);
-        res.send(newUser);
+
+        UserModel
+            .createUser(user)
+            .then(
+                function (newUser) {
+                    res.json(newUser); 
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+                });
+
+        // var id = (new Date).getTime().toString();
+        // var newUser = {_id:id, username:user.username, password:user.password };
+        // users.push(newUser);
+        // res.send(newUser);
     }
 
     function findUserByUsername(username, res) {
@@ -64,13 +77,23 @@ module.exports = function (app) {
 
     function findUserById(req, res) {
         var userId = req.params.userId;
-        for (var i in users) {
-            if (users[i]._id === userId) {
-                res.send(users[i]);
-                return;
-            }
-        }
-        res.send({});
+        UserModel
+            .findUserById(userId)
+            .then(
+                function (user) {
+                    res.json(user);
+                },
+                function (err) {
+                    res.sendStatus(404);
+                }
+            );
+        // for (var i in users) {
+        //     if (users[i]._id === userId) {
+        //         res.send(users[i]);
+        //         return;
+        //     }
+        // }
+        // res.send({});
     }
 
     function updateUser(req, res) {
