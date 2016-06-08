@@ -18,12 +18,22 @@
 
 
 <div class="container">
+    <div ng-if="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+
+    <div class="form-group">
+        <label>Name</label>
+        <input ng-model="model.widget.name" class="form-control" type="text" placeholder="Name">
+    </div>
+
     <div ng-model="model.widget.text"
          text-angular
          ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
             ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
             ['indent','outdent'],['html']]">
     </div>
+    <a class="btn btn-danger btn-block" ng-click="model.delete_widget(model.widget)">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

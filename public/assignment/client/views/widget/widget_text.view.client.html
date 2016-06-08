@@ -17,6 +17,12 @@
 </nav>
 
 <div class="container">
+    <div ng-if="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+
+    Name
+    <input ng-model="model.widget.name" class="form-control"/>
     Text
     <input ng-model="model.widget.text" class="form-control"/>
     Rows
@@ -25,6 +31,7 @@
     <input ng-model="model.widget.placeholder" class="form-control"/>
     Formatted
     <input ng-model="model.widget.formatted" type="checkbox"/>
+    <a class="btn btn-danger btn-block" ng-click="model.delete_widget(model.widget)">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
