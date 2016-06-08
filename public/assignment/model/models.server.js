@@ -7,7 +7,8 @@ module.exports = function () {
     mongoose.connect('mongodb://localhost/cs5610WebAppMaker');
 
     var models = {
-        userModel: require("./user/user.model.server")()
+        userModel: require("./user/user.model.server")(),
+        websiteModel: require("./website/website.model.server")()
     };
     return models;
 };

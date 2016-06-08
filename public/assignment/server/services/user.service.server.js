@@ -13,13 +13,6 @@ module.exports = function (app, module) {
     app.delete("/api/user/:userId", deleteUser);
 
     var UserModel = module.userModel;
-    
-    var users = [
-        {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-        {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-        {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-        {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-    ];
 
     function getUsers(req, res) {
         var username = req.query.username;
@@ -30,9 +23,6 @@ module.exports = function (app, module) {
         }
         else if (username) {
             findUserByUsername(username, res);
-        }
-        else {
-            res.send(users);
         }
     }
 
@@ -51,13 +41,16 @@ module.exports = function (app, module) {
     }
 
     function findUserByUsername(username, res) {
-        for (var i in users) {
-            if (users[i].username === username) {
-                res.send(users[i]);
-                return;
-            }
-        }
-        res.send({});
+        UserModel
+            .findUserByUsername(username)
+            .then(
+                function (user) {
+                    res.json(user);
+                },
+                function (err) {
+                    res.sendStatus(404);
+                }
+            );
     }
 
     function findUserByCredentials(username, password, res) {
@@ -100,17 +93,6 @@ module.exports = function (app, module) {
                     res.sendStatus(404);
                 }
             );
-        
-        // for (var i in users) {
-        //     if (users[i]._id === userId) {
-        //         //assuming username & password is not allowed to be changed
-        //         users[i].firstName = user.firstName;
-        //         users[i].lastName = user.lastName;
-        //         res.sendStatus(200);
-        //         return;
-        //     }
-        // }
-        // res.sendStatus(400);
     }
 
     function deleteUser(req, res) {

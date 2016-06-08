@@ -14,6 +14,7 @@ module.exports = function () {
     var api = {
         createUser : createUser,
         findUserById : findUserById,
+        findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
         deleteUser: deleteUser,
         updateUser: updateUser
@@ -29,6 +30,10 @@ module.exports = function () {
     function findUserById(userId) {
         //return User.find({_id: userId});//returns an array which contains only one element
         return User.findById(userId);//returns only one element
+    }
+    
+    function findUserByUsername(username) {
+        return User.findOne({username:username});
     }
 
     function findUserByCredentials(username, password) {
