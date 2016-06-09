@@ -95,9 +95,9 @@ p.navbar-text.pull-left {
     border: solid;
     border-color: lightgray;
     border-radius: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    /*display: block;*/
 
 }
 
