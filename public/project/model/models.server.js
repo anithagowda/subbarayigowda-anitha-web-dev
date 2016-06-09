@@ -29,7 +29,8 @@ module.exports = function () {
     
     var models = {
         userModel: require("./user/user.model.server")(),
-        favouriteModel: require("./favourites/favourites.model.server")()
+        favouriteModel: require("./favourites/favourites.model.server")(),
+        followerModel: require("./followers/followers.model.server")()
     };
     return models;
 };

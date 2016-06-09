@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container_fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#/" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </p>
+            <a class="navbar-brand">Top Rated Recipes</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div ng-if="model.error">
+        <h2>{{model.error}}</h2>
+    </div>
+
+    <div ng-if="model.followers" class="row">
+        <div ng-repeat="followers in model.followers">
+            <a href="#/">{{model.followers.username}}</a>
+        </div>
+    </div>
+</div>
