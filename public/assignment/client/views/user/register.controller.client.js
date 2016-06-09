@@ -20,11 +20,11 @@
                 .findUserByUsername(username)
                 .then(function (res) {
                     var user = res.data;
-                    if (user._id) {
-                        vm.error = "Username already in use!";
+                    if (user == null) {
+                        createUser(username, password, verify_password);
                     }
                     else {
-                        createUser(username, password, verify_password);
+                        vm.error = "Username already in use!";
                     }
                 });
         }
