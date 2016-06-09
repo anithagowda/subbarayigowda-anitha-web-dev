@@ -1,14 +1,11 @@
 /**
- * Created by asubbarayigowda on 6/7/16.
+ * Created by asubbarayigowda on 6/8/16.
  */
 module.exports = function () {
-
-    var mongoose = require('mongoose');
-    // mongoose.connect('mongodb://localhost/cs5610WebAppMaker');
-
-    console.log(process.env.OPENSHIFT_APP_NAME);
-
-    var url = 'mongodb://localhost/webdev';
+  
+    var mongoose = require("mongoose");
+    
+    var url = 'mongodb://localhost/webdev_project';
 
     // if OPENSHIFT env variables are present, use the available connection info:
     if (process.env.OPENSHIFT_MONGODB_DB_URL) {
@@ -29,12 +26,10 @@ module.exports = function () {
     });
 
     db.on('disconnected', connect);
-
+    
     var models = {
         userModel: require("./user/user.model.server")(),
-        websiteModel: require("./website/website.model.server")(),
-        pageModel: require("./page/page.model.server")(),
-        widgetModel: require("./widget/widget.model.server")()
+        favouriteModel: require("./favourites/favourites.model.server")()
     };
     return models;
 };
