@@ -21,7 +21,7 @@
                 return;
             }
 
-            var newPage = { "name":name, "websiteId":wid};
+            var newPage = { "name":name, "title": title, "websiteId":wid};
             PageService
                 .createPage(wid, newPage)
                 .then(function (res) {

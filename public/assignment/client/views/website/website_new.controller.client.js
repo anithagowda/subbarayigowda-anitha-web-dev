@@ -20,7 +20,7 @@
                 return;
             }
             
-            var newWebsite = { "name": name, "developerId": uid};
+            var newWebsite = { "name": name, "description": description, "developerId": uid};
             WebsiteService
                 .createWebsite(uid, newWebsite)
                 .then(

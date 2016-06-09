@@ -15,12 +15,12 @@ module.exports = function () {
         url: String,
         width: String,
         height: String,
-        rows: String,
+        rows: Number,
         size: String,
         class: String,
         icon: String,
         deletable: String,
-        formatted: String,
+        formatted: Boolean,
         dateCreated: {type: Date, default: Date.now()}
     }, {collection: "assignment.widget"});
     

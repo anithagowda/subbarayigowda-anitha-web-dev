@@ -55,7 +55,7 @@
                 return;
             }
 
-            var newPage = { "name":page.name, "websiteId":wid};
+            var newPage = { "name":page.name, "title":page.title, "websiteId":wid};
             PageService
                 .updatePage(pid, newPage)
                 .then(
