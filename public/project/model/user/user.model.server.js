@@ -14,8 +14,8 @@ module.exports = function () {
         findUserById : findUserById,
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
-        deleteUser: deleteUser,
-        updateUser: updateUser
+        updateUser: updateUser,
+        deleteUser: deleteUser
     };
     
     return api;
@@ -37,18 +37,22 @@ module.exports = function () {
         return ProjUser.findOne({username:username, password:password});
     }
 
-    function deleteUser(userId) {
-        return ProjUser.remove({_id: userId});
-    }
-
     function updateUser(userId, user) {
         delete user._id; //remove _id field as older version of mongoDB complains about updating _id
         return ProjUser
             .update({_id:userId}, {
                 $set: {
                     firstName: user.firstName,
-                    lastName: user.lastName
+                    lastName: user.lastName,
+                    email: user.email,
+                    grocery: user.grocery,
+                    followers: user.followers,
+                    following: user.following
                 }
             });
+    }
+    
+    function deleteUser(userId) {
+        return ProjUser.remove({_id: userId});
     }
 };
