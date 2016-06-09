@@ -7,6 +7,7 @@ module.exports = function (app, module) {
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
+    app.put("/api/page/:pageId/widget", reorderWidget);
 
     var widgetModel = module.widgetModel;
 
@@ -85,6 +86,23 @@ module.exports = function (app, module) {
                     res.sendStatus(400);
                 }
             );
+    }
+
+    function reorderWidget(req, res) {
+        var pageId = req.params.pageId;
+        var start = req.query.start;
+        var end = req.query.end;
+
+        widgetModel
+            .reorderWidget(pageId, start, end)
+            .then(
+                function (stat) {
+                    res.sendStatus(200);
+                },
+                function (err) {
+                    res.sendStatus(400);
+                }
+            )
     }
 
     /*  Handle Image upload  */

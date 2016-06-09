@@ -75,14 +75,6 @@ p.navbar-text.pull-left {
     color: white;
 }
 
-.carousel-caption {
-    height: 20px;
-    top: 10px;
-    bottom: auto;
-    color: white;
-    border-radius: 20%;
-}
-
 .jga-widget-tool {
     position: absolute;
     right: 15px;
@@ -108,3 +100,13 @@ p.navbar-text.pull-left {
     display: block;
 
 }
+
+.carousel-indicators .active {
+    background-color: black;
+}
+
+.carousel-indicators li {
+    background-color: white;
+    border: none;
+}
+

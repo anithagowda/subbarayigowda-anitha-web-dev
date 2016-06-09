@@ -12,7 +12,8 @@ module.exports = function () {
         findAllWidgetsForPage: findAllWidgetsForPage,
         findWidgetById: findWidgetById,
         updateWidget: updateWidget,
-        deleteWidget: deleteWidget
+        deleteWidget: deleteWidget,
+        reorderWidget: reorderWidget
     };
 
     return apis;
@@ -36,5 +37,9 @@ module.exports = function () {
 
     function deleteWidget(widgetId) {
         return Widget.remove({_id: widgetId});
+    }
+    
+    function reorderWidget(pageId, start, end) {
+        
     }
 };
