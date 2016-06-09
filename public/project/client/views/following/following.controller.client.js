@@ -1,34 +1,33 @@
-
 /**
  * Created by asubbarayigowda on 6/9/16.
  */
 (function () {
-    
+
     angular
         .module("OnlineKitchen")
-        .controller("FollowersController", FollowersController);
-    
-    function FollowersController(FollowersService) {
+        .controller("FollowingsController", FollowingsController);
+
+    function FollowingsController(FollowingsService) {
         var vm = this;
 
         vm.uid = $routeParams.uid;
-        vm.selectFollower = selectFollower;
+        vm.selectFollowing = selectFollowing;
 
         function init() {
-            FollowersService
-                .findFollowerById($routeParams.uid)
+            FollowingsService
+                .findFollowingById($routeParams.uid)
                 .then(
                     function (res) {
-                        vm.followers = res.data;
+                        vm.followings = res.data;
                     },
                     function (err) {
-                        vm.error = "Failed to retrieve your followers.."
+                        vm.error = "Failed to retrieve your followings.."
                     }
                 )
         }
         init();
 
-        function selectFollower(follower) {
+        function selectFollowing(following) {
             //Go to followers profile
         }
     }

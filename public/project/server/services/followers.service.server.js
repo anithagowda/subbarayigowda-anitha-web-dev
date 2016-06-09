@@ -16,7 +16,7 @@ module.exports = function (app, module) {
         var userId = req.params.userId;
 
         followerModel
-            .createfollower(userId, follower)
+            .createFollower(userId, follower)
             .then(
                 function (follower) {
                     res.json(follower);
@@ -31,7 +31,7 @@ module.exports = function (app, module) {
         var userId = req.params.userId;
 
         followerModel
-            .findAllfollowersForUser(userId)
+            .findAllFollowersForUser(userId)
             .then(
                 function (followers) {
                     res.json(followers);
@@ -45,7 +45,7 @@ module.exports = function (app, module) {
     function findFollowerById(req, res) {
         var followerId = req.params.followerId;
         followerModel
-            .findfollowerById(followerId)
+            .findFollowerById(followerId)
             .then(
                 function (follower) {
                     res.json(follower);
@@ -60,7 +60,7 @@ module.exports = function (app, module) {
         var followerId = req.params.followerId;
         var follower = req.body;
         followerModel
-            .updatefollower(followerId, follower)
+            .updateFollower(followerId, follower)
             .then(
                 function (stat) {
                     res.sendStatus(200);
@@ -74,7 +74,7 @@ module.exports = function (app, module) {
     function deleteFollower(req, res) {
         var followerId = req.params.followerId;
         followerModel
-            .deletefollower(followerId)
+            .deleteFollower(followerId)
             .then(
                 function (stat) {
                     res.sendStatus(200);

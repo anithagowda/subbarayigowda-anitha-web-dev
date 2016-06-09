@@ -30,7 +30,8 @@ module.exports = function () {
     var models = {
         userModel: require("./user/user.model.server")(),
         favouriteModel: require("./favourites/favourites.model.server")(),
-        followerModel: require("./followers/followers.model.server")()
+        followerModel: require("./followers/followers.model.server")(),
+        followingModel: require("./followers/following.model.server")()
     };
     return models;
 };

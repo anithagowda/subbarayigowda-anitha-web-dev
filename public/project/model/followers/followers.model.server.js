@@ -16,24 +16,24 @@ module.exports = function () {
     };
     return apis;
 
-    function createFollower(userId, Follower) {
-        Follower._user = userId;
-        return ProjFollowers.create(Follower);
+    function createFollower(userId, follower) {
+        follower._user = userId;
+        return ProjFollowers.create(follower);
     }
 
     function findAllFollowersForUser(userId) {
         return ProjFollowers.find({"_user": userId});
     }
 
-    function findFollowerById(FollowerId) {
-        return ProjFollowers.findById(FollowerId);
+    function findFollowerById(followerId) {
+        return ProjFollowers.findById(followerId);
     }
 
-    function updateFollower(FollowerId, Follower) {
-        return ProjFollowers.update({_id: FollowerId}, {$set: Follower});
+    function updateFollower(followerId, follower) {
+        return ProjFollowers.update({_id: followerId}, {$set: follower});
     }
 
-    function deleteFollower(FollowerId) {
-        return ProjFollowers.remove({_id: FollowerId});
+    function deleteFollower(followerId) {
+        return ProjFollowers.remove({_id: followerId});
     }
 };
