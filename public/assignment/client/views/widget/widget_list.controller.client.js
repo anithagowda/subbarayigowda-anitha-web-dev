@@ -15,6 +15,7 @@
         
         vm.getSafeHTML = getSafeHTML;
         vm.getSafeUrl = getSafeUrl;
+        vm.reorderWidget = reorderWidget;
         
         function init() {
             WidgetService
@@ -23,9 +24,9 @@
                     vm.widgets = res.data;
 
                     //angular is not notified of the change in order
-                    $(".container").sortable({
-                        axis : 'y'
-                    });
+                    // $(".container").sortable({
+                    //     axis : 'y'
+                    // });
                 });
         }
         init();
@@ -39,6 +40,20 @@
             var id = urlParts[urlParts.length - 1];
             var url = "https://www.youtube.com/embed/" + id;
             return $sce.trustAsResourceUrl(url);
+        }
+        
+        function reorderWidget(start, end) {
+            console.log("reorderWidget"+start+end);
+            WidgetService
+                .reorderWidget($routeParams.pid, start, end)
+                .then(
+                    function (res) {
+                        init();
+                    },
+                    function (err) {
+                        vm.error = "Sorting Failed";
+                    }
+                );
         }
     }
 })();

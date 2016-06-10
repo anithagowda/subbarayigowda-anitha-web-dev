@@ -4,5 +4,5 @@
 //IIFE : Immediately invoked function expression
 (function() {
     angular
-        .module("WebAppMaker", ['ngRoute', 'jgaSortable']);
+        .module("WebAppMaker", ['ngRoute', 'WAMDirectives']);
 })();

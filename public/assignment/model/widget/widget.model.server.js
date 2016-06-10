@@ -4,7 +4,10 @@
 module.exports = function () {
   
     var mongoose = require("mongoose");
+//    var autoIncrement = require('mongoose-auto-increment');
+
     var WidgetSchema = require("./widget.schema.server")();
+//    WidgetSchema.plugin(autoIncrement.plugin, {model: 'Widget', field: 'order'});
     var Widget = mongoose.model("Widget", WidgetSchema);
 
     var apis = {
@@ -40,6 +43,35 @@ module.exports = function () {
     }
     
     function reorderWidget(pageId, start, end) {
-        
+        var startNum = parseInt(start);
+        var endNum = parseInt(end);
+
+        //iterate through all the widgets in DB
+        Widget.find(function (err, widgets) {
+            widgets.forEach(function (widget) {
+                //this widget has reference to DB object. any change done to this obj will reflect in db change
+                if (startNum > endNum) {
+                    if(widget.order >= endNum && widget.order < startNum) {
+                        widget.order++;
+                        widget.save(function () {}); // save requires a function as a parameter even if we dont need it
+                    }
+                    else if (widget.order === startNum) {
+                        widget.order = endNum;
+                        widget.save(function () {});
+                    }
+                }
+                else {
+                    if(widget.order > startNum && widget.order <= endNum) {
+                        widget.order--;
+                        widget.save(function () {});
+                    }
+                    else if (widget.order === startNum) {
+                        widget.order = endNum;
+                        widget.save(function () {});
+                    }
+                }
+            });
+        });
+        return findAllWidgetsForPage(pageId);
     }
 };

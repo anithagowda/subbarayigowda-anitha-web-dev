@@ -17,9 +17,9 @@
     </div>
 </nav>
 
-<div jgaSortable class="container">
+<div sort class="container">
 
-    <div ng-repeat="widget in model.widgets" class="jga-widget">
+    <div ng-repeat="widget in model.widgets | orderBy : 'order'" class="jga-widget">
         <div class="jga-widget-tool">
             <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}">
                 <span class="glyphicon glyphicon-cog blue_glyph"></span>

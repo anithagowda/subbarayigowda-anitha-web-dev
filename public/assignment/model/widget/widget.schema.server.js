@@ -21,8 +21,9 @@ module.exports = function () {
         icon: String,
         deletable: String,
         formatted: Boolean,
+        order: Number,
         dateCreated: {type: Date, default: Date.now()}
     }, {collection: "assignment.widget"});
-    
+
     return WidgetSchema;
 };
