@@ -45,6 +45,8 @@
         }
 
         function addFavourite(recipe) {
+            delete recipe._id;
+            delete recipe._user;
             FavouritesService
                 .createFavourite($routeParams.uid, recipe)
                 .then(
