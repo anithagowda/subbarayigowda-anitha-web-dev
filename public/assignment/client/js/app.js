@@ -4,5 +4,5 @@
 //IIFE : Immediately invoked function expression
 (function() {
     angular
-        .module("WebAppMaker", ['ngRoute', 'WAMDirectives']);
+        .module("WebAppMaker", ['ngRoute', 'WAMDirectives', 'textAngular']);
 })();
