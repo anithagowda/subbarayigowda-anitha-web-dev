@@ -12,7 +12,8 @@ module.exports = function () {
         findAllFollowersForUser: findAllFollowersForUser,
         findFollowerById: findFollowerById,
         updateFollower: updateFollower,
-        deleteFollower: deleteFollower
+        deleteFollowerById: deleteFollowerById,
+        deleteFollowerByName: deleteFollowerByName
     };
     return apis;
 
@@ -33,7 +34,11 @@ module.exports = function () {
         return ProjFollowers.update({_id: followerId}, {$set: follower});
     }
 
-    function deleteFollower(followerId) {
+    function deleteFollowerById(followerId) {
         return ProjFollowers.remove({_id: followerId});
+    }
+
+    function deleteFollowerByName(followerName) {
+        return ProjFollowers.remove({"follower.username": followerName});
     }
 };

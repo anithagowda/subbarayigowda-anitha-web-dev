@@ -12,6 +12,7 @@
             createUser : createUser,
             findUserById : findUserById,
             findUserByUsername : findUserByUsername,
+            findUserStartingWithUsername: findUserStartingWithUsername,
             findUserByCredentials : findUserByCredentials,
             updateUser : updateUser,
             deleteUser : deleteUser
@@ -30,6 +31,11 @@
 
         function findUserByUsername(username) {
             var url = "/api/user?username="+username;
+            return $http.get(url);
+        }
+        
+        function findUserStartingWithUsername(username) {
+            var url = "/api/user?search="+username;
             return $http.get(url);
         }
 

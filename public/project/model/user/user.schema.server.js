@@ -11,9 +11,6 @@ module.exports = function () {
         firstName: String,
         lastName: String,
         email: String,
-        grocery: Array,
-        followers: Array,
-        following: Array,
         dateCreated: {type: Date, default: Date.now()}
     }, {collection: "project.user"});
     

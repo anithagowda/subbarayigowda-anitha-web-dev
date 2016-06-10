@@ -45,7 +45,9 @@
 
         <div ng-if="model.followers" class="row">
             <div ng-repeat="follower in model.followers">
-                <a href="#/">{{follower.username}}</a>
+                <div class="col-xs-6 margin_top">
+                    <a href="#/">{{follower.follower.username}}</a>
+                </div>
             </div>
         </div>
     </div>

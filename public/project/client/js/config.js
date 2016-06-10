@@ -53,7 +53,7 @@
                 controller: "FollowersController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/followings", {
+            .when("/user/:uid/following", {
                 templateUrl: "views/following/following.view.client.html",
                 controller: "FollowingsController",
                 controllerAs: "model"

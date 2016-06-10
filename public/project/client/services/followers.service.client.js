@@ -14,13 +14,15 @@
             findFollowersByUserId : findFollowersByUserId,
             findFollowerById : findFollowerById,
             updateFollower : updateFollower,
-            deleteFollower : deleteFollower
+            deleteFollowerById : deleteFollowerById,
+            deleteFollowerByName : deleteFollowerByName
         };
 
 
         function createFollower(userId, follower) {
+            var newFollower = {"_user": userId, "follower": follower};
             var url = "/api/user/"+userId+"/follower";
-            return $http.post(url, follower);
+            return $http.post(url, newFollower);
         }
 
         function findFollowersByUserId(userId) {
@@ -38,8 +40,13 @@
             return $http.put(url, follower);
         }
 
-        function deleteFollower(followerId) {
-            var url = "/api/follower/"+followerId;
+        function deleteFollowerById(followerId) {
+            var url = "/api/follower/?id="+followerId;
+            return $http.delete(url);
+        }
+        
+        function deleteFollowerByName(followerName) {
+            var url = "/api/follower/?name="+followerName;
             return $http.delete(url);
         }
 

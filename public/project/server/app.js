@@ -9,5 +9,5 @@ module.exports = function (app, request) {
     require("./services/user.service.server.js")(app, models);
     require("./services/favourites.service.server.js")(app, models);
     require("./services/followers.service.server.js")(app, models);
-    require("./services/following.service.server.js")(app, models);
+    require("./services/followings.service.server.js")(app, models);
 };

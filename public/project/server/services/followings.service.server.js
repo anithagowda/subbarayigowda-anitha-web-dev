@@ -6,7 +6,8 @@ module.exports = function (app, module) {
     app.get("/api/user/:userId/following", findAllFollowingsForUser);
     app.get("/api/following/:followingId", findFollowingById);
     app.put("/api/following/:followingId", updateFollowing);
-    app.delete("/api/following/:followingId", deleteFollowing);
+    //app.delete("/api/following/:followingId", deleteFollowing);
+    app.delete("/api/following/", deleteFollowing);
 
 
     var followingModel = module.followingModel;
@@ -72,9 +73,33 @@ module.exports = function (app, module) {
     }
 
     function deleteFollowing(req, res) {
-        var followingId = req.params.followingId;
+        var followingId = req.query.id;
+        var followingName = req.query.name;
+        
+        if (followingId) {
+            deleteFollowingById(followingId, res);
+        }
+        else {
+            deleteFollowingByName(followingName, res);
+        }
+    }
+    
+    function deleteFollowingById(followingId, res) {
         followingModel
-            .deleteFollowing(followingId)
+            .deleteFollowingById(followingId)
+            .then(
+                function (stat) {
+                    res.sendStatus(200);
+                },
+                function (err) {
+                    res.sendStatus(400);
+                }
+            );
+    }
+
+    function deleteFollowingByName(followingName, res) {
+        followingModel
+            .deleteFollowingByName(followingName)
             .then(
                 function (stat) {
                     res.sendStatus(200);

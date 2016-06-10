@@ -31,7 +31,7 @@ module.exports = function () {
         userModel: require("./user/user.model.server")(),
         favouriteModel: require("./favourites/favourites.model.server")(),
         followerModel: require("./followers/followers.model.server")(),
-        followingModel: require("./followers/following.model.server")()
+        followingModel: require("./following/following.model.server")()
     };
     return models;
 };

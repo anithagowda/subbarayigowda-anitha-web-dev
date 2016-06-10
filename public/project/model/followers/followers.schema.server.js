@@ -4,9 +4,11 @@
 module.exports = function () {
     
     var mongoose = require("mongoose");
+    var followerUserSchema = require("./../user/user.schema.server")();
+
     var ProjFollowersSchema = mongoose.Schema({
         "_user": {type: mongoose.Schema.ObjectId, ref: "ProjectUser"},
-        "username" : String
+        "follower" : followerUserSchema
     }, {collection: "project.followers"});
     
     return ProjFollowersSchema;

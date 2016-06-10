@@ -8,6 +8,7 @@ module.exports = function (app, module) {
     //express uses only base url for matching. anything after ? is ignored
     // app.get("/api/user?username=username", findUserByUsername);
     // app.get("/api/user?username=username&password=password", findUserByCredentials);
+    // app.get("/api/user?search=username", findUserStartingWithUsername);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
@@ -17,8 +18,12 @@ module.exports = function (app, module) {
     function getUsers(req, res) {
         var username = req.query.username;
         var password = req.query.password;
+        var search = req.query.search;
 
-        if (username && password) {
+        if (search) {
+            findUserStartingWithUsername(search, res);
+        }
+        else if (username && password) {
             findUserByCredentials(username, password, res);
         }
         else if (username) {
@@ -45,6 +50,20 @@ module.exports = function (app, module) {
             .findUserByUsername(username)
             .then(
                 function (user) {
+                    res.json(user);
+                },
+                function (err) {
+                    res.sendStatus(404);
+                }
+            );
+    }
+
+    function findUserStartingWithUsername(username, res) {
+        UserModel
+            .findUserStartingWithUsername(username)
+            .then(
+                function (user) {
+                    console.log(user[0].username);
                     res.json(user);
                 },
                 function (err) {

@@ -8,7 +8,7 @@
         .module("OnlineKitchen")
         .controller("FollowersController", FollowersController);
     
-    function FollowersController(FollowersService) {
+    function FollowersController($routeParams, FollowersService) {
         var vm = this;
 
         vm.uid = $routeParams.uid;
@@ -16,7 +16,7 @@
 
         function init() {
             FollowersService
-                .findFollowerById($routeParams.uid)
+                .findFollowersByUserId($routeParams.uid)
                 .then(
                     function (res) {
                         vm.followers = res.data;

@@ -13,6 +13,7 @@ module.exports = function () {
         createUser : createUser,
         findUserById : findUserById,
         findUserByUsername: findUserByUsername,
+        findUserStartingWithUsername: findUserStartingWithUsername,
         findUserByCredentials: findUserByCredentials,
         updateUser: updateUser,
         deleteUser: deleteUser
@@ -31,6 +32,13 @@ module.exports = function () {
     
     function findUserByUsername(username) {
         return ProjUser.findOne({username:username});
+    }
+
+    function findUserStartingWithUsername(username) {
+        //return ProjUser.findOne({username:{$regex: /^al/i}});
+        var query = {};
+        query.username = new RegExp(username, 'i');
+        return ProjUser.find(query);
     }
 
     function findUserByCredentials(username, password) {

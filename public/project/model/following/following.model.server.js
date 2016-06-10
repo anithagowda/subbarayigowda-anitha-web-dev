@@ -12,7 +12,8 @@ module.exports = function () {
         findAllFollowingsForUser: findAllFollowingsForUser,
         findFollowingById: findFollowingById,
         updateFollowing: updateFollowing,
-        deleteFollowing: deleteFollowing
+        deleteFollowingById: deleteFollowingById,
+        deleteFollowingByName: deleteFollowingByName
     };
     return apis;
 
@@ -33,7 +34,11 @@ module.exports = function () {
         return ProjFollowing.update({_id: followingId}, {$set: following});
     }
 
-    function deleteFollowing(followingId) {
+    function deleteFollowingById(followingId) {
         return ProjFollowing.remove({_id: followingId});
+    }
+
+    function deleteFollowingByName(followingName) {
+        return ProjFollowing.remove({"following.username": followingName});
     }
 };

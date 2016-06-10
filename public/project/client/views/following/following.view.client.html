@@ -39,22 +39,39 @@
 
     <div class="container">
 
-        <div class="input-group">
-            <input ng-model="ingredients" type="text" class="form-control" placeholder="Search Users by Username">
-        <span class="input-group-btn">
-            <a href="#" class="btn btn-default" type="button">
-                <span class="glyphicon glyphicon-search"></span>
-            </a>
-        </span>
+        <div class="input-group margin_top">
+            <input ng-model="username" type="text" class="form-control" placeholder="Search Users by Username">
+            <span class="input-group-btn">
+                <a ng-click="model.searchUsers(username)" class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+            </span>
         </div>
 
         <div ng-if="model.error">
             <h2>{{model.error}}</h2>
         </div>
 
+
         <div ng-if="model.followings" class="row">
             <div ng-repeat="following in model.followings">
-                <a href="#/">{{following.username}}</a>
+                <div class="col-xs-6 margin_top">
+                    <a href="#/">{{following.following.username}}</a>
+                </div>
+                <div class="col-xs-6 margin_top">
+                    <a ng-click="model.unFollowUser(following)">UnFollow</a>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="model.users" class="row">
+            <div ng-repeat="user in model.users">
+                <div class="col-xs-6 margin_top">
+                    <a href="#/">{{user.username}}</a>
+                </div>
+                <div class="col-xs-6 margin_top">
+                    <a ng-click="model.followUser(user)">Follow</a>
+                </div>
             </div>
         </div>
     </div>
