@@ -22,9 +22,9 @@
                         vm.recipes = res.data;
                     },
                     function (err) {
-                        vm.error = "Failed to retreive recipes"
+                        vm.error = "Failed to retreive recipes";
                     }
-                )
+                );
         }
         init();
         
@@ -33,12 +33,12 @@
                 .createFavourite($routeParams.uid, recipe)
                 .then(
                     function (res) {
-                        vm.success = "Saved favourite successfully"
+                        vm.success = "Saved favourite successfully";
                     },
                     function (err) {
-                        vm.error = "Failed to save favourite"
+                        vm.error = "Failed to save favourite";
                     }
-                )
+                );
         }
     }
 })();

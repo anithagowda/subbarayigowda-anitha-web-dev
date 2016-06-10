@@ -9,7 +9,7 @@
     function Config($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "views/home.view.client.html",
+                templateUrl: "views/home/home.view.client.html",
                 controller: "HomeController",
                 controllerAs: "model"
             })
@@ -56,6 +56,11 @@
             .when("/user/:uid/following", {
                 templateUrl: "views/following/following.view.client.html",
                 controller: "FollowingsController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/following/:followingid", {
+                templateUrl: "views/following/following_profile.view.client.html",
+                controller: "FollowingProfileController",
                 controllerAs: "model"
             })
             .otherwise({

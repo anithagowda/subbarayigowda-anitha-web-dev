@@ -18,6 +18,7 @@
 
 
         function createFavourite(userId, favourite) {
+            favourite._user = userId;
             var url = "/api/user/"+userId+"/favourite";
             return $http.post(url, favourite);
         }

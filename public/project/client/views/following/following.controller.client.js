@@ -12,7 +12,6 @@
 
         vm.uid = $routeParams.uid;
         var user = null;
-        vm.selectFollowing = selectFollowing;
         vm.searchUsers = searchUsers;
         vm.followUser = followUser;
         vm.unFollowUser = unFollowUser;
@@ -41,10 +40,6 @@
 
         }
         init();
-
-        function selectFollowing(following) {
-            //Go to followers profile
-        }
         
         function searchUsers(username) {
             UserService
@@ -105,5 +100,7 @@
                     }
                 )
         }
+
+        
     }
 })();

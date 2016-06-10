@@ -13,7 +13,7 @@
 
 <div class="container">
     <div ng-if="model.recipes" class="row">
-        <div class="col-xs-4" ng-repeat="recipe in model.recipes">
+        <div class="col-sm-4" ng-repeat="recipe in model.recipes">
             <img id="image_container" ng-click="model.selectRecipe(recipe)"
                  width=100% height="200px"
                  ng-src="{{recipe.image_url}}"/>
