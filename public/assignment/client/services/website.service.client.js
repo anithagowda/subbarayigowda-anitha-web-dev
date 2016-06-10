@@ -16,9 +16,9 @@
         };
         
         function createWebsite(userId, website) {
-            var newWebsite = { "name": website.name, "developerId": userId};
+            //var newWebsite = { "name": website.name, "developerId": userId};
             var url = "/api/user/"+userId+"/website";
-            return $http.post(url, newWebsite);
+            return $http.post(url, website);
         }
         
         function findWebsitesByUser(userId) {

@@ -8,7 +8,7 @@ module.exports = function () {
 
     console.log(process.env.OPENSHIFT_APP_NAME);
 
-    var url = 'mongodb://localhost/webdev';
+    var url = 'mongodb://localhost/webdev_assignment';
 
     // if OPENSHIFT env variables are present, use the available connection info:
     if (process.env.OPENSHIFT_MONGODB_DB_URL) {

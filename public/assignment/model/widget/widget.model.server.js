@@ -4,10 +4,8 @@
 module.exports = function () {
   
     var mongoose = require("mongoose");
-//    var autoIncrement = require('mongoose-auto-increment');
 
     var WidgetSchema = require("./widget.schema.server")();
-//    WidgetSchema.plugin(autoIncrement.plugin, {model: 'Widget', field: 'order'});
     var Widget = mongoose.model("Widget", WidgetSchema);
 
     var apis = {
@@ -22,8 +20,22 @@ module.exports = function () {
     return apis;
 
     function createWidget(pageId, widget) {
-        widget._page = pageId;
-        return Widget.create(widget);
+        Widget
+            .findOne({"_page": pageId})
+            .sort('-order')
+            .then(
+                function (endWidget) {
+                    if (endWidget) {
+                        widget.order = ++endWidget.order;
+                    }
+                    widget._page = pageId;
+                    return Widget.create(widget);
+                },
+                function (err) {
+                    console.log("Create error : "+err);
+                }
+            );
+
     }
 
     function findAllWidgetsForPage(pageId) {
@@ -47,31 +59,38 @@ module.exports = function () {
         var endNum = parseInt(end);
 
         //iterate through all the widgets in DB
-        Widget.find(function (err, widgets) {
-            widgets.forEach(function (widget) {
-                //this widget has reference to DB object. any change done to this obj will reflect in db change
-                if (startNum > endNum) {
-                    if(widget.order >= endNum && widget.order < startNum) {
-                        widget.order++;
-                        widget.save(function () {}); // save requires a function as a parameter even if we dont need it
-                    }
-                    else if (widget.order === startNum) {
-                        widget.order = endNum;
-                        widget.save(function () {});
-                    }
+        Widget
+            .find({'_page': pageId})
+            .then(
+                function (widgets) {
+                    widgets.forEach(function (widget) {
+                        //this widget has reference to DB object. any change done to this obj will reflect in db change
+                        if (startNum > endNum) {
+                            if(widget.order >= endNum && widget.order < startNum) {
+                                widget.order++;
+                                widget.save(function () {}); // save requires a function as a parameter even if we dont need it
+                            }
+                            else if (widget.order === startNum) {
+                                widget.order = endNum;
+                                widget.save(function () {});
+                            }
+                        }
+                        else {
+                            if(widget.order > startNum && widget.order <= endNum) {
+                                widget.order--;
+                                widget.save(function () {});
+                            }
+                            else if (widget.order === startNum) {
+                                widget.order = endNum;
+                                widget.save(function () {});
+                            }
+                        }
+                    });
+                },
+                function (err) {
+                    console.log("reorderWidget error:"+err);
                 }
-                else {
-                    if(widget.order > startNum && widget.order <= endNum) {
-                        widget.order--;
-                        widget.save(function () {});
-                    }
-                    else if (widget.order === startNum) {
-                        widget.order = endNum;
-                        widget.save(function () {});
-                    }
-                }
-            });
-        });
+            );
         return findAllWidgetsForPage(pageId);
     }
 };
