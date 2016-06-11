@@ -6,7 +6,7 @@
         .module("WebAppMaker")
         .controller("NewPageController", NewPageController);
 
-    function NewPageController($routeParams, $location, PageService) {
+    function NewPageController($routeParams, $location, PageService, WebsiteService) {
         var vm = this;
         var uid = $routeParams.uid;
         var wid = $routeParams.wid;
@@ -28,13 +28,29 @@
                     var page = res.data;
                     if (page._id) {
                         page_list();
+                        updateWebsite(page);
                     }
                     else {
                         vm.error = "Failed to create page";
                     }
                 });
         }
-
+        
+        function updateWebsite(newPage) {
+            WebsiteService
+                .findWebsiteById(wid)
+                .then(function (res) {
+                    var website = res.data;
+                    if(website.pages) {
+                        website.pages.push(newPage);
+                    }
+                    else {
+                        website.pages = [newPage];
+                    }
+                    WebsiteService.updateWebsite(wid, website);
+                });
+        }
+        
         function page_list() {
             $location.url("/user/" +uid + "/website/" +wid+"/page");
         }

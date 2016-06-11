@@ -10,6 +10,7 @@ module.exports = function () {
         _user: {type: mongoose.Schema.ObjectId, ref:"User"}, //_ is used to identify the unique identifier pointing to parent
         name: {type: String, required: true, unique: true},
         description: String,
+        pages: [{type: mongoose.Schema.ObjectId, ref:"Page"}],
         dateCreated: {type: Date, default: Date.now()}
     }, {collection: "assignment.website"});
     

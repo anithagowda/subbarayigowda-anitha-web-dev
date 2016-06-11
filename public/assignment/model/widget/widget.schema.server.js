@@ -16,10 +16,10 @@ module.exports = function () {
         width: String,
         height: String,
         rows: Number,
-        size: String,
+        size: Number,
         class: String,
         icon: String,
-        deletable: String,
+        deletable: Boolean,
         formatted: Boolean,
         order: {type: Number, default: 0},
         dateCreated: {type: Date, default: Date.now()}

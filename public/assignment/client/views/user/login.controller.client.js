@@ -12,6 +12,11 @@
         vm.login = login;
         
         function login(username, password) {
+            if (username === "" || password === "" || username == null || password == null) {
+                vm.error = "Username & Password required";
+                return;
+            }
+            
             UserService
                 .findUserByCredentials(username, password)
                 .then(function (res) {

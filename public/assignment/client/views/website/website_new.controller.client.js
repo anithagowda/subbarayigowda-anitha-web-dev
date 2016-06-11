@@ -6,7 +6,7 @@
         .module("WebAppMaker")
         .controller("NewWebsiteController", NewWebsiteController);
 
-    function NewWebsiteController($routeParams, $location, WebsiteService) {
+    function NewWebsiteController($routeParams, $location, WebsiteService, UserService) {
         var vm = this;
         var uid = $routeParams.uid;
         
@@ -26,8 +26,25 @@
                 .then(
                     function (res) {
                         website_list();
+                        updateUser(res.data);
                     }
                 );
+        }
+        
+        function updateUser(newWebsite) {
+            UserService
+                .findUserById(uid)
+                .then(function (res) {
+                    var user = res.data;
+                    if(user.websites) {
+                        user.websites.push(newWebsite);
+                    }
+                    else {
+                        user.websites = [newWebsite];
+                    }
+
+                    UserService.updateUser(uid, user);
+                });
         }
 
         function website_list() {

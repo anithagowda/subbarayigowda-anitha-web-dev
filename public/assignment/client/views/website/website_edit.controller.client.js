@@ -6,7 +6,7 @@
         .module("WebAppMaker")
         .controller("EditWebsiteController", EditWebsiteController);
 
-    function EditWebsiteController($routeParams, $location, WebsiteService) {
+    function EditWebsiteController($routeParams, $location, WebsiteService, UserService) {
         var vm = this;
         var uid = $routeParams.uid;
         var wid = $routeParams.wid;
@@ -30,6 +30,7 @@
                 vm.error = "Name cannot be left empty";
                 return;
             }
+            
             WebsiteService
                 .updateWebsite(wid, website)
                 .then(
@@ -40,6 +41,22 @@
                         vm.error = "Failed to update website";
                     }
                 );
+
+            UserService
+                .findUserById($routeParams.uid)
+                .then(function (res) {
+                    var user = res.data;
+                    for (var i in user.websites) {
+                        if(user.websites[i]._id === wid) {
+                            var edit = user.websites.splice(i,1);
+                            edit.name = website.name;
+                            edit.description = website.description;
+                            user.websites.push(edit);
+                            UserService.updateUser($routeParams.uid, user);
+                            return;
+                        }
+                    }
+                });
         }
 
         function website_list() {
@@ -57,6 +74,19 @@
                         vm.error = "Failed to delete website";
                     }
                 );
+
+            UserService
+                .findUserById($routeParams.uid)
+                .then(function (res) {
+                    var user = res.data;
+                    for (var i in user.websites) {
+                        if(user.websites[i] === wid) {
+                            user.websites.splice(i,1);
+                            UserService.updateUser($routeParams.uid, user);
+                            return;
+                        }
+                    }
+                });
         }
     }
 })();

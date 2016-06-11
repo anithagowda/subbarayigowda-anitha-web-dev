@@ -11,8 +11,9 @@
         vm.register = register;
 
         function register(username, password, verify_password) {
-            if (username === "" || password === "" || username == null || password == null) {
-                vm.error = "Username or Password cannot be left empty"
+            if (username === "" || password === "" || verify_password === "" ||
+                username == null || password == null || verify_password == null) {
+                vm.error = "Username, Password & Verify_password required";
                 return;
             }
 
@@ -41,7 +42,7 @@
                     });
             }
             else {
-                vm.error = "Password doesn't match!"
+                vm.error = "Passwords don't match!"
             }
         }
     }

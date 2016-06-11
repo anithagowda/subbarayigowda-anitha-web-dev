@@ -20,7 +20,7 @@ module.exports = function () {
     return apis;
 
     function createWidget(pageId, widget) {
-        Widget
+        return Widget
             .findOne({"_page": pageId})
             .sort('-order')
             .then(

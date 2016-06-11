@@ -6,7 +6,7 @@
         .module("WebAppMaker")
         .controller("EditPageController", EditPageController);
     
-    function EditPageController($routeParams, $location, PageService) {
+    function EditPageController($routeParams, $location, PageService, WebsiteService) {
         var vm = this;
         var uid = $routeParams.uid;
         var wid = $routeParams.wid;
@@ -42,6 +42,19 @@
                         vm.error = "Failed to delete the page";
                     }
                 );
+
+            WebsiteService
+                .findWebsiteById(wid)
+                .then(function (res) {
+                    var website = res.data;
+                    for (var i in website.pages) {
+                        if(website.pages[i] === pid) {
+                            website.pages.splice(i,1);
+                            WebsiteService.updateWebsite(wid, website);
+                            return;
+                        }
+                    }
+                });
             
         }
 
@@ -66,6 +79,22 @@
                         vm.error = "Failed to update the page";
                     }
                 );
+
+            WebsiteService
+                .findWebsiteById(wid)
+                .then(function (res) {
+                    var website = res.data;
+                    for (var i in website.pages) {
+                        if(website.pages[i] === pid) {
+                            var edit = website.pages.splice(i,1);
+                            edit.name = newPage.name;
+                            edit.title = newPage.title;
+                            website.pages.push(edit);
+                            WebsiteService.updateWebsite(wid, website);
+                            return;
+                        }
+                    }
+                });
         }
     }
 })();

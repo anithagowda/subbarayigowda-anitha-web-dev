@@ -6,12 +6,14 @@
         .module("WebAppMaker")
         .controller("NewWidgetController", NewWidgetController);
     
-    function NewWidgetController($routeParams, $location, WidgetService) {
+    function NewWidgetController($routeParams, $location, WidgetService, PageService) {
         var vm = this;
         
         vm.uid = $routeParams.uid;
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
+        
+        var pid = $routeParams.pid;
 
         vm.create_header = create_header;
         vm.create_image = create_image;
@@ -46,10 +48,25 @@
                 .then(function (res) {
                     var widget = res.data;
                     if (widget._id){
+                        updatePage(widget);
                         $location.url("user/"+$routeParams.uid+"/website/"+$routeParams.wid+"/page/"+$routeParams.pid+"/widget/"+widget._id);
                     }
                 });
+        }
 
+        function updatePage(newWidget) {
+            PageService
+                .findPageById(pid)
+                .then(function (res) {
+                    var page = res.data;
+                    if(page.widgets) {
+                        page.widgets.push(newWidget);
+                    }
+                    else {
+                        page.widgets = [newWidget];
+                    }
+                    PageService.updatePage(pid, page);
+                });
         }
     }
 })();

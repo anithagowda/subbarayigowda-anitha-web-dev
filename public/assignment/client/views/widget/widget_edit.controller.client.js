@@ -6,7 +6,7 @@
         .module("WebAppMaker")
         .controller("EditWidgetController", EditWidgetController);
 
-    function EditWidgetController($routeParams, $location, WidgetService) {
+    function EditWidgetController($routeParams, $location, WidgetService, PageService) {
         var vm = this;
         
         vm.uid = $routeParams.uid;
@@ -47,7 +47,39 @@
                         vm.error = "Update widget failed";
                     }
                 );
-            
+
+            PageService
+                .findPageById($routeParams.pid)
+                .then(function (res) {
+                    var page = res.data;
+                    for (var i in page.widgets) {
+                        if(page.widgets[i] === $routeParams.wgid) {
+                            var edit = page.widgets.splice(i,1);
+
+                            edit.name = widget.name;
+                            edit.text = widget.text;
+                            if(widget.widgetType === "HEADER") {
+                                edit.size = widget.size;
+                            }
+                            else if(widget.widgetType === "HTML") {
+                                edit.text = widget.text;
+                            }
+                            else if(widget.widgetType === "IMAGE" || widget.widgetType === "YOUTUBE") {
+                                edit.url   = widget.url;
+                                edit.width = widget.width;
+                            }
+                            else if(widget.widgetType === "TEXT") {
+                                edit.placeholder = widget.placeholder;
+                                edit.rows = widget.rows;
+                                edit.formatted = widget.formatted;
+                            }
+
+                            page.widgets.push(edit);
+                            PageService.updatePage($routeParams.pid, page);
+                            return;
+                        }
+                    }
+                });
         }
 
         function delete_widget(widget) {
@@ -61,7 +93,19 @@
                         vm.error = "Delete widget failed";
                     }
                 );
-            
+
+            PageService
+                .findPageById($routeParams.pid)
+                .then(function (res) {
+                    var page = res.data;
+                    for (var i in page.widgets) {
+                        if(page.widgets[i] === widget._id) {
+                            page.widgets.splice(i,1);
+                            PageService.updatePage($routeParams.pid, page);
+                            return;
+                        }
+                    }
+                });
         }
     }
 })();

@@ -8,7 +8,7 @@ module.exports = function () {
     var Website = mongoose.model("Website", WebsiteSchema);
 
     var apis = {
-        createWebsite: createWebsite,
+        createWebsite: createWebsiteForUser,
         findAllWebsitesForUser: findAllWebsitesForUser,
         findWebsiteById: findWebsiteById,
         updateWebsite: updateWebsite,
@@ -17,7 +17,7 @@ module.exports = function () {
 
     return apis;
 
-    function createWebsite(userId, website) {
+    function createWebsiteForUser(userId, website) {
         website._user = userId;
         return Website.create(website);
     }
