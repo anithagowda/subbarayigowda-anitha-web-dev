@@ -4,15 +4,14 @@
 module.exports = function () {
 
     var mongoose = require('mongoose');
-    // mongoose.connect('mongodb://localhost/cs5610WebAppMaker');
-
-    console.log(process.env.OPENSHIFT_APP_NAME);
 
     var url = 'mongodb://localhost/webdev_assignment';
 
-    // if OPENSHIFT env variables are present, use the available connection info:
-    if (process.env.OPENSHIFT_MONGODB_DB_URL) {
-        url = process.env.OPENSHIFT_MONGODB_DB_URL +
+    if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
+        url = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+            process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+            process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+            process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
             process.env.OPENSHIFT_APP_NAME;
     }
 
