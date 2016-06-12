@@ -1,15 +1,27 @@
+<ng-include src="'views/header/header.view.client.html'"></ng-include>
 
-<div class="container">
-    <h1>Register</h1>
+<div class="background">
 
-    <div ng-if="model.error" class="alert alert-danger" role="alert">
-        {{model.error}}
+    <div class="container container-block">
+        <h3 style="color: white;">Register</h3>
+
+        <div ng-if="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+
+        <div class="form-group">
+            <input ng-model="username" type="text" class="form-control" placeholder="username">
+        </div>
+        <div class="form-group">
+            <input ng-model="password" type="password" class="form-control" placeholder="password">
+        </div>
+        <div class="form-group">
+            <input ng-model="verify_password" type="password" class="form-control" placeholder="verify password">
+        </div>
+
+        <a ng-click="model.register(username, password, verify_password)" class="btn btn-primary btn-block">Login</a>
+        <a class="btn btn-danger btn-block" href="#/">Cancel</a>
+
     </div>
 
-    <input ng-model="username" type="text" class="form-control" placeholder="username">
-    <input ng-model="password" type="password" class="form-control" placeholder="password">
-    <input ng-model="verify_password" type="password" class="form-control" placeholder="verify password">
-
-    <a ng-click="model.register(username, password, verify_password)" class="btn btn-primary btn-block">Register</a>
-    <a class="btn btn-danger btn-block" href="#/">Cancel</a>
 </div>
