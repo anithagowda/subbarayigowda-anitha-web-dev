@@ -2,12 +2,21 @@
  * Created by asubbarayigowda on 5/30/16.
  */
 module.exports = function (app, module) {
+    /*  Handle Image upload  */
+
+    //multer for parsing file - adds a body object and a file or files object to the request object
+    var multer = require('multer');
+    var upload = multer({dest: __dirname+'/../../uploads'});
+
     app.post("/api/page/:pageId/widget", createWidget);
     app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
     app.put("/api/page/:pageId/widget", reorderWidget);
+
+    //There is a file attached which will be called 'myFile' which should go to dest folder
+    app.post("/api/upload", upload.single('myFile'), uploadImage);
 
     var widgetModel = module.widgetModel;
 
@@ -106,14 +115,6 @@ module.exports = function (app, module) {
             )
     }
 
-    /*  Handle Image upload  */
-
-    //multer for parsing file - adds a body object and a file or files object to the request object
-    var multer = require('multer');
-    var upload = multer({dest: __dirname+'/../../uploads'});
-
-    //There is a file attached which will be called 'myFile' which should go to dest folder
-    app.post("/api/upload", upload.single('myFile'), uploadImage);
 
     //req.file holds 'myFile', req.body holds form values
     function uploadImage(req, res) {
@@ -135,7 +136,7 @@ module.exports = function (app, module) {
         var destination = myFile.destination;
         var size = myFile.size;
         var mimetype = myFile.mimetype;
-        
+
         console.log(widgetId);
         widgetModel
             .findWidgetById(widgetId)
