@@ -135,7 +135,8 @@ module.exports = function (app, module) {
         var destination = myFile.destination;
         var size = myFile.size;
         var mimetype = myFile.mimetype;
-
+        
+        console.log(widgetId);
         widgetModel
             .findWidgetById(widgetId)
             .then(
@@ -145,15 +146,21 @@ module.exports = function (app, module) {
                         .updateWidget(widgetId, widget)
                         .then(
                             function (stat) {
+                                console.log(uid);
+                                console.log(wid);
+                                console.log(pid);
+                                console.log(widgetId);
                                 res.redirect("/assignment/client/#/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget/"+widgetId);
                                 res.sendStatus(200);
                             },
                             function (err) {
-                                res.sendStatus(400);
+                                console.log("updateWidget : "+err);
+                                res.sendStatus(400).send(err);
                             }
                         );
                 },
                 function (err) {
+                    console.log("findWidgetById : "+err);
                     res.sendStatus(400).send(err);
                 }
             );
