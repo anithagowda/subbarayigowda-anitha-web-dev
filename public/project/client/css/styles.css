@@ -99,6 +99,10 @@ p.navbar-text.pull-left {
     margin-left: 2%;
 }
 
+.margin_right {
+    margin-right: 15%;
+}
+
 .profile_avatar img{
     border: solid;
     border-color: lightgray;
@@ -116,5 +120,29 @@ p.navbar-text.pull-left {
 .carousel-indicators li {
     background-color: white;
     border: none;
+}
+
+.background {
+    background: url("./../views/images/background.jpg") no-repeat center center fixed;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .navbar-collapse{ margin-top: 50px; }
+}
+
+.container-block {
+    background: #4D4D4D no-repeat center center fixed;
+    padding: 2%;
+    width: 50%;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
 }
 
