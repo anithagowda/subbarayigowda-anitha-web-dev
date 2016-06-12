@@ -1,42 +1,34 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container_fluid">
-        <div class="navbar-header">
-            <p class="navbar-text pull-left">
-                <a href="#/" class="navbar-link">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-            </p>
-            <a class="navbar-brand">Top Rated Recipes</a>
+<ng-include src="'views/header/header.view.client.html'"></ng-include>
+
+<div class="plain_background">
+    <div class="container">
+
+        <div ng-if="model.error">
+            <h2>{{model.error}}</h2>
         </div>
-    </div>
-</nav>
 
-<div class="container">
+        <div ng-if="model.recipes" class="row">
+            <div class="col-sm-4" ng-repeat="recipe in model.recipes">
 
-    <div ng-if="model.error">
-        <h2>{{model.error}}</h2>
-    </div>
-
-    <div ng-if="model.recipes" class="row">
-        <div class="col-sm-4" ng-repeat="recipe in model.recipes">
-
-            <div class="jga-widget-tool">
-                <a href="#/">
+                <div class="jga-widget-tool">
+                    <a href="#/">
                     <span class="glyphicon-stack">
                         <i class="glyphicon glyphicon-circle glyphicon-stack-2x black"></i>
                         <i class="glyphicon glyphicon-heart glyphicon-stack glyphicon-stack-1x white"></i>
                     </span>
-                </a>
-            </div>
+                    </a>
+                </div>
 
-            <img id="image_container"
-                 ng-click="model.selectRecipe(recipe)"
-                 width=100% height="200px"
-                 ng-src="{{recipe.image_url}}"/>
+                <img id="image_container"
+                     ng-click="model.selectRecipe(recipe)"
+                     width=100% height="200px"
+                     ng-src="{{recipe.image_url}}"/>
 
-            <div class="carousel-caption">
-                <label>{{recipe.title}}</label>
+                <div class="carousel-caption">
+                    <label>{{recipe.title}}</label>
+                </div>
             </div>
         </div>
     </div>
 </div>
+

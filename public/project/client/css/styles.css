@@ -27,14 +27,6 @@ p.navbar-text.pull-left {
     margin-left: 15px;
 }
 
-#nav_dropdown {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    #nav_dropdown{ display: inline-block; }
-}
-
 .fav_overlay {
     position: relative;
 }
@@ -114,16 +106,30 @@ p.navbar-text.pull-left {
 }
 
 .carousel-indicators .active {
-    background-color: black;
+    background-color: #4D4D4D;
 }
 
 .carousel-indicators li {
-    background-color: white;
-    border: none;
+    /*border-color: #4D4D4D;*/
 }
 
-.background {
+.carousel-inner .item img {
+    padding-bottom: 10%;
+    border-radius: 10px;
+}
+
+.img_background {
     background: url("./../views/images/background.jpg") no-repeat center center fixed;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 1;
+}
+
+.plain_background {
+    background: black no-repeat center center fixed;
     background-size: cover;
     position: absolute;
     width: 100%;
