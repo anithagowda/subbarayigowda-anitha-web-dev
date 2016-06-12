@@ -8,7 +8,7 @@ module.exports = function () {
     
     var WebsiteSchema = mongoose.Schema({
         _user: {type: mongoose.Schema.ObjectId, ref:"User"}, //_ is used to identify the unique identifier pointing to parent
-        name: {type: String, required: true, unique: true},
+        name: {type: String, required: true},
         description: String,
         pages: [{type: mongoose.Schema.ObjectId, ref:"Page"}],
         dateCreated: {type: Date, default: Date.now()}

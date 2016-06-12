@@ -7,7 +7,7 @@ module.exports = function () {
     
     var PageSchema = mongoose.Schema({
         _website : {type: mongoose.Schema.ObjectId, ref:"Website"},
-        name: {type: String, required: true, unique: true},
+        name: {type: String, required: true},
         title: String,
         description: String,
         widgets: [{type: mongoose.Schema.ObjectId, ref:"Widget"}],
