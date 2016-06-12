@@ -68,6 +68,7 @@ module.exports = function (app, module) {
                     res.sendStatus(200);
                 },
                 function (err) {
+                    console.log("updateWidget: "+err);
                     res.sendStatus(400).send(err);
                 }
             );
