@@ -21,7 +21,7 @@ module.exports = function (app, module) {
                     res.json(page);
                 },
                 function (err) {
-                    res.sendStatus(400);
+                    res.sendStatus(400).send(err);
                 }
             );
     }
@@ -36,7 +36,7 @@ module.exports = function (app, module) {
                     res.json(pages);
                 },
                 function (err) {
-                    res.sendStatus(400);
+                    res.sendStatus(400).send(err);
                 }
             );
     }
@@ -51,7 +51,7 @@ module.exports = function (app, module) {
                     res.json(page);
                 },
                 function (err) {
-                    res.sendStatus(400);
+                    res.sendStatus(400).send(err);
                 }
             );
     }
@@ -67,7 +67,7 @@ module.exports = function (app, module) {
                     res.sendStatus(200);
                 },
                 function (err) {
-                    res.sendStatus(400);
+                    res.sendStatus(400).send(err);
                 }
             );
     }
@@ -81,7 +81,7 @@ module.exports = function (app, module) {
                     res.sendStatus(200);
                 },
                 function (err) {
-                    res.sendStatus(400);
+                    res.sendStatus(400).send(err);
                 }
             );
     }

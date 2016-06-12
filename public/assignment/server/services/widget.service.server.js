@@ -22,7 +22,7 @@ module.exports = function (app, module) {
                     res.json(widget);
                 },
                 function (err) {
-                    res.sendStatus(400);
+                    res.sendStatus(400).send(err);
                 }
             );
     }
@@ -37,7 +37,7 @@ module.exports = function (app, module) {
                     res.json(widgets);
                 },
                 function (err) {
-                    res.sendStatus(400);
+                    res.sendStatus(400).send(err);
                 }
             );
     }
@@ -52,7 +52,7 @@ module.exports = function (app, module) {
                     res.json(widget);
                 },
                 function (err) {
-                    res.sendStatus(400);
+                    res.sendStatus(400).send(err);
                 }
             );
     }
@@ -68,7 +68,7 @@ module.exports = function (app, module) {
                     res.sendStatus(200);
                 },
                 function (err) {
-                    res.sendStatus(400);
+                    res.sendStatus(400).send(err);
                 }
             );
     }
@@ -83,7 +83,7 @@ module.exports = function (app, module) {
                     res.sendStatus(200);
                 },
                 function (err) {
-                    res.sendStatus(400);
+                    res.sendStatus(400).send(err);
                 }
             );
     }
@@ -100,7 +100,7 @@ module.exports = function (app, module) {
                     res.sendStatus(200);
                 },
                 function (err) {
-                    res.sendStatus(400);
+                    res.sendStatus(400).send(err);
                 }
             )
     }
@@ -153,7 +153,7 @@ module.exports = function (app, module) {
                         );
                 },
                 function (err) {
-                    res.sendStatus(400);
+                    res.sendStatus(400).send(err);
                 }
             );
     }
