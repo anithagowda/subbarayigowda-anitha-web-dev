@@ -143,14 +143,14 @@ module.exports = function (app, module) {
             .then(
                 function (widget) {
                     widget.url = "../uploads/" + filename;
+                    delete widget._id;
+                    console.log("After deleting id: " +widget);
+                    var newWidget  = {"widgetType": "IMAGE", "name":widget.name, "text":widget.text, "url": "../uploads/" + filename, "width":widget.width};
+                    console.log("Cloned widget: " +newWidget);
                     widgetModel
-                        .updateWidget(widgetId, widget)
+                        .updateWidget(widgetId, newWidget)
                         .then(
                             function (stat) {
-                                console.log(uid);
-                                console.log(wid);
-                                console.log(pid);
-                                console.log(widgetId);
                                 res.redirect("/assignment/client/#/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget/"+widgetId);
                                 res.sendStatus(200);
                             },
