@@ -17,7 +17,7 @@
 body {
     padding-top: 55px;
     padding-bottom: 55px;
-    /*background-color: black;*/
+    /*background-color: #4D4D4D;*/
 }
 
 p.navbar-text.pull-right {
@@ -68,15 +68,6 @@ p.navbar-text.pull-left {
     color: white;
 }
 
-.app_gray{
-    color: #4D4D4D;
-}
-
-.app_gray2{
-    color: #B8B8B8;
-}
-
-
 .jga-widget-tool {
     position: absolute;
     right: 15px;
@@ -117,10 +108,6 @@ p.navbar-text.pull-left {
 
 .carousel-indicators .active {
     background-color: #4D4D4D;
-}
-
-.carousel-indicators li {
-    /*border-color: #4D4D4D;*/
 }
 
 .carousel-inner .item img {
@@ -166,4 +153,9 @@ p.navbar-text.pull-left {
     background: transparent;
     color: #436EEE;
     border-radius: 15px
+}
+
+.nav-tabs li a {
+    color: #4D4D4D;
+    font-weight: bold;
 }

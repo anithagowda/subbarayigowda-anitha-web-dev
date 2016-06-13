@@ -25,9 +25,9 @@
     </div>
 
     <div class="input-group margin_top">
-        <input ng-model="username" type="text" class="form-control" placeholder="Search Users by Username">
+        <input ng-model="username" type="text" class="form-control clear_search" placeholder="Search Users by Username">
                 <span class="input-group-btn">
-                    <a ng-click="model.searchUsers(username)" class="btn btn-default" type="button">
+                    <a id="search_toggle" ng-click="model.handleSearchToggle(username)" class="btn btn-default" type="button">
                         <span class="glyphicon glyphicon-search"></span>
                     </a>
                 </span>
@@ -58,7 +58,7 @@
                     <a href="#/">{{user.username}}</a>
                 </div>
                 <div class="col-xs-6 margin_top">
-                    <button class="unfollow_btn" ng-click="model.followUser(user)">Follow</button>
+                    <button class="unfollow_btn" ng-click="model.followUser(user)" style="border-color: red">Follow</button>
                 </div>
             </div>
         </div>

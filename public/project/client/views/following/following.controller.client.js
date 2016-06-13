@@ -12,7 +12,7 @@
 
         vm.uid = $routeParams.uid;
         var user = null;
-        vm.searchUsers = searchUsers;
+        vm.handleSearchToggle = handleSearchToggle;
         vm.followUser = followUser;
         vm.unFollowUser = unFollowUser;
 
@@ -40,14 +40,39 @@
             $(".followings").show();
             $(".users_search").hide();
         }
+
+        function initSearchToggle() {
+            $("#search_toggle").click(function () {
+                $(this).find('span').toggleClass('glyphicon-search').toggleClass('glyphicon-remove');
+            });
+        }
         init();
-        
+        initSearchToggle();
+
+
+        function handleSearchToggle(username) {
+            //glyphicon is already changed to remove before taking action for search
+            if ($("#search_toggle").find('span').hasClass('glyphicon-remove'))   {
+                searchUsers(username);
+            }
+            else {
+                $(".clear_search").val("");
+                init();
+            }
+        }
+
         function searchUsers(username) {
             UserService
                 .findUserStartingWithUsername(username)
                 .then(
                     function (res) {
-                        vm.users = res.data;
+                        var users = res.data;
+                        for (var i in users) {
+                            if (isInArray(users[i], vm.followings)) {
+                                users.splice(i,1);
+                            }
+                        }
+                        vm.users = users;
                     },
                     function (err) {
                         vm.error = "Failed to retrieve Users..";
@@ -55,6 +80,15 @@
 
             $(".followings").hide();
             $(".users_search").show();
+        }
+
+        function isInArray(value, array) {
+            for (var i in array) {
+                if (array[i].following._id === value._id) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         function followUser(following) {
