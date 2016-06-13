@@ -1,21 +1,7 @@
 
-<nav class="navbar navbar-default navbar-fixed-top black">
-    <div class="container_fluid">
-        <div class="navbar-header">
-            <div class="navbar-brand">OnlineKitchen</div>
-            <p class="navbar-text pull-right">
-                <a href="#/user/{{model.uid}}" class="navbar-link right_pad">
-                    Home
-                </a>
-                <a href="#/" class="navbar-link">
-                    Logout
-                </a>
-            </p>
-        </div>
-    </div>
-</nav>
+<ng-include src="'views/header/header.view.client.html'"></ng-include>
 
-<div class="container">
+<div class="container margin_top">
     <div class="input-group">
         <input ng-model="ingredients" type="text" class="form-control" placeholder="Search Recipes by ingredients">
         <span class="input-group-btn">
@@ -26,7 +12,7 @@
     </div>
 
     <div class="profile_body">
-        <div class="profile_tab_header" style="margin-top: 2%">
+        <div class="profile_tab_header margin_top">
             <ul class="nav nav-tabs nav-justified">
                 <li><a href="#/user/{{model.uid}}">Profile</a></li>
                 <li><a href="#/user/{{model.uid}}/favourites">Favourite</a></li>
@@ -39,13 +25,13 @@
 
 
     <div class="container">
-        <div ng-if="model.error">
-            <h2>{{model.error}}</h2>
+        <div ng-if="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
         </div>
 
-        <div ng-if="model.followers" class="row">
+        <div ng-if="model.followers" class="table">
             <div ng-repeat="follower in model.followers">
-                <div class="col-xs-6 margin_top">
+                <div class="margin_top">
                     <a href="#/">{{follower.follower.username}}</a>
                 </div>
             </div>
@@ -53,4 +39,3 @@
     </div>
 
 </div>
-

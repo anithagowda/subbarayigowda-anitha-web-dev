@@ -1,3 +1,4 @@
+<!--
 <nav class="navbar navbar-default navbar-fixed-top black">
     <div class="container_fluid">
         <div class="navbar-header">
@@ -13,88 +14,90 @@
         </div>
     </div>
 </nav>
+-->
+<ng-include src="'views/header/header.view.client.html'"></ng-include>
 
-<div class="container">
-
-    <div ng-if="model.error" class="alert alert-danger" role="alert">
-        <h2>{{model.error}}</h2>
-    </div>
-
-    <div ng-if="model.success" class="alert alert-success" role="alert">
-        <h2>{{model.success}}</h2>
-    </div>
-
+<div class="plain_background">
     <div class="container">
-        <div class="row margin_top margin_left" style="height:80%;">
-            <div class="profile_avatar col-sm-4">
-                <img src="https://farm8.staticflickr.com/7490/27488695586_8c84a993d0_s.jpg" width="50%" height="50%" border="1px">
-            </div>
+        <div ng-if="model.error" class="alert alert-danger" role="alert">
+            <h2>{{model.error}}</h2>
+        </div>
 
-            <div class="col-sm-4">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <label class="control-label">Username</label>
-                    </div>
-                    <div class="col-xs-6">
-                        <p>{{model.user.username}}</p>
-                    </div>
+        <div ng-if="model.success" class="alert alert-success" role="alert">
+            <h2>{{model.success}}</h2>
+        </div>
+
+        <div class="container">
+            <div class="row margin_top margin_left" style="height:80%;">
+                <div class="profile_avatar col-sm-4">
+                    <img src="https://farm8.staticflickr.com/7490/27488695586_8c84a993d0_s.jpg" width="50%" height="50%" border="1px">
                 </div>
-                <div class="row">
-                    <div class="col-xs-6">
-                        <label class="control-label">Email</label>
+
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <label class="control-label app_gray2">Username</label>
+                        </div>
+                        <div class="col-xs-6">
+                            <p class="app_gray2">{{model.user.username}}</p>
+                        </div>
                     </div>
-                    <div class="col-xs-6">
-                        <p>{{model.user.email}}</p>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <label class="control-label app_gray2">Email</label>
+                        </div>
+                        <div class="col-xs-6">
+                            <p class="app_gray2">{{model.user.email}}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6">
-                        <label class="control-label">First Name</label>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <label class="control-label app_gray2">First Name</label>
+                        </div>
+                        <div class="col-xs-6">
+                            <p class="app_gray2">{{model.user.firstName}}</p>
+                        </div>
                     </div>
-                    <div class="col-xs-6">
-                        <p>{{model.user.firstName}}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6">
-                        <label class="control-label">Last Name</label>
-                    </div>
-                    <div class="col-xs-6">
-                        <p>{{model.user.lastName}}</p>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <label class="control-label app_gray2">Last Name</label>
+                        </div>
+                        <div class="col-xs-6">
+                            <p class="app_gray2">{{model.user.lastName}}</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="container margin_top bottom_pad" style="background: gainsboro">
-        <div class="margin_top margin_left">
-            <h5>Favourites</h5>
-        </div>
-        <div ng-if="model.favourites" class="row">
-            <div class="col-sm-4" ng-repeat="recipe in model.favourites">
+        <div class="container margin_top bottom_pad" >
+            <div class="margin_top margin_left">
+                <h4 class="app_gray2">Favourites</h4>
+            </div>
+            <div ng-if="model.favourites" class="row">
+                <div class="col-sm-4" ng-repeat="recipe in model.favourites">
 
-                <div class="jga-widget-tool">
-                    <a ng-click="model.addFavourite(recipe)">
+                    <div class="jga-widget-tool">
+                        <a ng-click="model.addFavourite(recipe)">
                     <span class="glyphicon-stack">
                         <i class="glyphicon glyphicon-circle glyphicon-stack-2x black"></i>
                         <i class="glyphicon glyphicon-heart glyphicon-stack glyphicon-stack-1x white"></i>
                     </span>
-                    </a>
-                </div>
+                        </a>
+                    </div>
 
-                <img id="image_container"
-                     ng-click="model.selectRecipe(recipe)"
-                     width=100% height="200px"
-                     ng-src="{{recipe.image_url}}"/>
+                    <img id="image_container"
+                         ng-click="model.selectRecipe(recipe)"
+                         width=100% height="200px"
+                         ng-src="{{recipe.image_url}}"/>
 
-                <div class="carousel-caption">
-                    <label>{{recipe.title}}</label>
+                    <div class="carousel-caption">
+                        <label>{{recipe.title}}</label>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 
 </div>
 

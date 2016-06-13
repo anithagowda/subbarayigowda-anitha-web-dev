@@ -12,6 +12,7 @@
         vm.uid = $routeParams.uid;
         vm.unregister = unregister;
         vm.updateUser = updateUser;
+        vm.editUser = editUser;
 
         function init() {
             UserService
@@ -19,6 +20,9 @@
                 .then(function (res) {
                     vm.user = res.data;
                 });
+
+            $(".profile").show();
+            $(".edit").hide();
         }
         init();
         
@@ -47,6 +51,12 @@
                     function (err) {
                         vm.error = "Unable to update user";
                     });
+            init();
+        }
+
+        function editUser() {
+            $(".profile").hide();
+            $(".edit").show();
         }
     }
 })();

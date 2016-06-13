@@ -1,20 +1,7 @@
-<nav class="navbar navbar-default navbar-fixed-top black">
-    <div class="container_fluid">
-        <div class="navbar-header">
-            <div class="navbar-brand">OnlineKitchen</div>
-            <p class="navbar-text pull-right">
-                <a href="#/user/{{model.uid}}" class="navbar-link right_pad">
-                    Home
-                </a>
-                <a href="#/" class="navbar-link">
-                    Logout
-                </a>
-            </p>
-        </div>
-    </div>
-</nav>
 
-<div class="container">
+<ng-include src="'views/header/header.view.client.html'"></ng-include>
+
+<div class="container margin_top">
     <div class="input-group">
         <input ng-model="ingredients" type="text" class="form-control" placeholder="Search Recipes by ingredients">
         <span class="input-group-btn">
@@ -25,25 +12,25 @@
     </div>
 
     <div class="profile_body">
-        <div class="profile_tab_header" style="margin-top: 2%">
+        <div class="profile_tab_header margin_top">
             <ul class="nav nav-tabs nav-justified">
-                <li class="active"><a href="#/user/{{model.uid}}">Profile</a></li>
-                <li><a href="#/user/{{model.uid}}/favourites">Favourite</a></li>
-                <li><a href="#/user/{{model.uid}}/followers">Followers</a></li>
-                <li><a href="#/user/{{model.uid}}/following">Follows</a></li>
+                <li class="active app_gray"><a href="#/user/{{model.uid}}">Profile</a></li>
+                <li class="app_gray"><a href="#/user/{{model.uid}}/favourites">Favourite</a></li>
+                <li class="app_gray"><a href="#/user/{{model.uid}}/followers">Followers</a></li>
+                <li class="app_gray"><a href="#/user/{{model.uid}}/following">Follows</a></li>
             </ul>
         </div>
 
     </div>
 
-    <div class="container" >
+    <div class="container">
 
-        <div class="row margin_top" style="height:80%;">
+        <div class="row margin_top profile">
             <div class="profile_avatar col-sm-4">
                 <img src="https://farm8.staticflickr.com/7490/27488695586_8c84a993d0_s.jpg" width="75%" height="75%" border="1px">
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-4 margin_top">
                 <div class="row">
                     <div class="col-xs-6">
                         <label class="control-label">Username</label>
@@ -76,19 +63,23 @@
                         <p>{{model.user.lastName}}</p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-2">
-                        <a ng-click="model.unregister()" class="btn btn-danger">Unregister</a>
+                <div class="row margin_top">
+                    <div class="col-xs-12 edit_btn">
+                        <a ng-click="model.editUser()" class="btn btn-warning" style="width: 80%">Edit</a>
                     </div>
                 </div>
-
+                <div class="row margin_top">
+                    <div class="col-xs-12">
+                        <a ng-click="model.unregister()" class="btn btn-danger" style="width: 80%">Unregister</a>
+                    </div>
+                </div>
             </div>
         </div>
 
 
 
 
-        <div class="edit" style="visibility: hidden">
+        <div class="edit">
             <div ng-if="model.success" class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <strong>Success!</strong> {{model.success}}
@@ -118,7 +109,7 @@
                 </div>
             </div>
 
-            <a ng-click="model.updateUser(model.user)" class="btn btn-success btn-block">Save</a>
+            <a ng-click="model.updateUser(model.user)" class="btn btn-success btn-block save_btn">Save</a>
 
         </div>
     </div>

@@ -15,10 +15,10 @@ var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 // configure server
 //load module
-require("./public/assignment/server/app.js")(app);
+//require("./public/assignment/server/app.js")(app);
 
 //Configure project server
 var request = require('request');
-//require("./public/project/server/app.js")(app, request);
+require("./public/project/server/app.js")(app, request);
 
 app.listen(port, ipaddress);

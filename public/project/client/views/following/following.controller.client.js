@@ -37,7 +37,8 @@
                     }
                 );
 
-
+            $(".followings").show();
+            $(".users_search").hide();
         }
         init();
         
@@ -51,6 +52,9 @@
                     function (err) {
                         vm.error = "Failed to retrieve Users..";
                     });
+
+            $(".followings").hide();
+            $(".users_search").show();
         }
 
         function followUser(following) {
@@ -74,6 +78,8 @@
                     function (err) {
                         vm.error = "Failed to follow User..";
                     });
+
+            init();
         }
 
         function unFollowUser(following) {

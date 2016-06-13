@@ -1,27 +1,15 @@
-<nav class="navbar navbar-default navbar-fixed-top black">
-    <div class="container_fluid">
-        <div class="navbar-header">
-            <div class="navbar-brand">OnlineKitchen</div>
-            <p class="navbar-text pull-right">
-                <a href="#/user/{{model.uid}}" class="navbar-link right_pad">
-                    Home
-                </a>
-                <a href="#/" class="navbar-link">
-                    Logout
-                </a>
-            </p>
-        </div>
-    </div>
-</nav>
 
-<div class="container">
+<ng-include src="'views/header/header.view.client.html'"></ng-include>
+
+<div class="container margin_top">
+
     <div class="input-group">
         <input ng-model="ingredients" type="text" class="form-control" placeholder="Search Recipes by ingredients">
-        <span class="input-group-btn">
-            <a href="#/user/{{model.uid}}/search/{{ingredients}}" class="btn btn-default" type="button">
-                <span class="glyphicon glyphicon-search"></span>
-            </a>
-        </span>
+            <span class="input-group-btn">
+                <a href="#/user/{{model.uid}}/search/{{ingredients}}" class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+            </span>
     </div>
 
     <div class="profile_body">
@@ -36,41 +24,41 @@
 
     </div>
 
+    <div class="input-group margin_top">
+        <input ng-model="username" type="text" class="form-control" placeholder="Search Users by Username">
+                <span class="input-group-btn">
+                    <a ng-click="model.searchUsers(username)" class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </a>
+                </span>
+    </div>
 
-    <div class="container">
 
-        <div class="input-group margin_top">
-            <input ng-model="username" type="text" class="form-control" placeholder="Search Users by Username">
-            <span class="input-group-btn">
-                <a ng-click="model.searchUsers(username)" class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon-search"></span>
-                </a>
-            </span>
+    <div class="container margin_top">
+
+        <div ng-if="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
         </div>
 
-        <div ng-if="model.error">
-            <h2>{{model.error}}</h2>
-        </div>
-
-
-        <div ng-if="model.followings" class="row">
+        <div ng-if="model.followings" class="table followings">
             <div ng-repeat="following in model.followings">
                 <div class="col-xs-6 margin_top">
                     <a href="#/user/{{model.uid}}/following/{{following._id}}">{{following.following.username}}</a>
                 </div>
                 <div class="col-xs-6 margin_top">
-                    <a ng-click="model.unFollowUser(user)">UnFollow</a>
+                    <!--<a ng-click="model.unFollowUser(user)" style="border-style: solid">UnFollow</a>-->
+                    <button class="unfollow_btn" ng-click="model.unFollowUser(user)">UnFollow</button>
                 </div>
             </div>
         </div>
 
-        <div ng-if="model.users" class="row">
+        <div ng-if="model.users" class="table users_search">
             <div ng-repeat="user in model.users">
                 <div class="col-xs-6 margin_top">
                     <a href="#/">{{user.username}}</a>
                 </div>
                 <div class="col-xs-6 margin_top">
-                    <a ng-click="model.followUser(user)">Follow</a>
+                    <button class="unfollow_btn" ng-click="model.followUser(user)">Follow</button>
                 </div>
             </div>
         </div>

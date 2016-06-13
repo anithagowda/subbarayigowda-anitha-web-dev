@@ -17,6 +17,7 @@
 body {
     padding-top: 55px;
     padding-bottom: 55px;
+    /*background-color: black;*/
 }
 
 p.navbar-text.pull-right {
@@ -66,6 +67,15 @@ p.navbar-text.pull-left {
 .white{
     color: white;
 }
+
+.app_gray{
+    color: #4D4D4D;
+}
+
+.app_gray2{
+    color: #B8B8B8;
+}
+
 
 .jga-widget-tool {
     position: absolute;
@@ -129,11 +139,10 @@ p.navbar-text.pull-left {
 }
 
 .plain_background {
-    background: black no-repeat center center fixed;
+    background: black no-repeat center center;
     background-size: cover;
     position: absolute;
     width: 100%;
-    height: 100%;
     display: block;
     z-index: 1;
 }
@@ -152,3 +161,9 @@ p.navbar-text.pull-left {
     margin-top: 10%;
 }
 
+.unfollow_btn {
+    border-style: solid;
+    background: transparent;
+    color: #436EEE;
+    border-radius: 15px
+}

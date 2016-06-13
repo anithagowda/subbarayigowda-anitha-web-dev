@@ -1,3 +1,4 @@
+<!--
 <nav class="navbar navbar-default navbar-fixed-top black">
     <div class="container_fluid">
         <div class="navbar-header">
@@ -13,8 +14,10 @@
         </div>
     </div>
 </nav>
+-->
+<ng-include src="'views/header/header.view.client.html'"></ng-include>
 
-<div class="container">
+<div class="container margin_top">
     <div class="input-group">
         <input ng-model="ingredients" type="text" class="form-control" placeholder="Search Recipes by ingredients">
         <span class="input-group-btn">
@@ -38,8 +41,8 @@
 
     <div class="container">
 
-        <div ng-if="model.error">
-            <h2>{{model.error}}</h2>
+        <div ng-if="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
         </div>
 
         <div ng-if="model.favourites" class="row">
