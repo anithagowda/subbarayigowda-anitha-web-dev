@@ -14,12 +14,12 @@
                 controllerAs: "model"
             })
             .when("/search/:ingredients", {
-                templateUrl: "views/search_recipe.view.client.html",
+                templateUrl: "views/home/search_recipe.view.client.html",
                 controller: "SearchRecipeController",
                 controllerAs: "model"
             })
             .when("/top_rated_recipe", {
-                templateUrl: "views/top_rated_recipe.view.client.html",
+                templateUrl: "views/home/top_rated_recipe.view.client.html",
                 controller: "TopRecipeController",
                 controllerAs: "model"
             })
@@ -44,8 +44,8 @@
                 controllerAs: "model"
             })
             .when("/user/:uid/favourites", {
-                templateUrl: "views/profile/profile_favourites.view.client.html",
-                controller: "ProfileFavouriteController",
+                templateUrl: "views/favourites/favourites.view.client.html",
+                controller: "FavouriteController",
                 controllerAs: "model"
             })
             .when("/user/:uid/followers", {

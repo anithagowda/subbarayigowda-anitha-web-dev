@@ -11,6 +11,7 @@
         var ingredients = $routeParams.ingredients;
 
         vm.selectRecipe = selectRecipe;
+        vm.setLoginError = setLoginError;
         
         function init() {
             RecipeService
@@ -25,6 +26,10 @@
         function selectRecipe(recipe) {
             console.log(recipe.title);
             $window.open(recipe.source_url, '_blank');
+        }
+
+        function setLoginError() {
+            vm.error = "Login to save favourites";
         }
     }
 })();

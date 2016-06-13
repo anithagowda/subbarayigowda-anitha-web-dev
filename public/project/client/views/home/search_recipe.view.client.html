@@ -1,17 +1,18 @@
+
 <ng-include src="'views/header/header.view.client.html'"></ng-include>
 
 <div class="plain_background">
-    <div class="container">
+    <div class="container margin_top">
 
-        <div ng-if="model.error">
-            <h2>{{model.error}}</h2>
+        <div ng-if="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
         </div>
 
         <div ng-if="model.recipes" class="row">
             <div class="col-sm-4" ng-repeat="recipe in model.recipes">
 
                 <div class="jga-widget-tool">
-                    <a href="#/">
+                    <a ng-click="model.setLoginError()">
                     <span class="glyphicon-stack">
                         <i class="glyphicon glyphicon-circle glyphicon-stack-2x black"></i>
                         <i class="glyphicon glyphicon-heart glyphicon-stack glyphicon-stack-1x white"></i>
@@ -31,4 +32,3 @@
         </div>
     </div>
 </div>
-

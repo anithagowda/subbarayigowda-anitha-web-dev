@@ -39,7 +39,11 @@
 
     </div>
 
-    <div class="container">
+    <div class="container margin_top">
+
+        <div ng-if="model.success" class="alert alert-success" role="alert">
+            {{model.success}}
+        </div>
 
         <div ng-if="model.error" class="alert alert-danger" role="alert">
             {{model.error}}
@@ -47,6 +51,15 @@
 
         <div ng-if="model.favourites" class="row">
             <div class="col-sm-4" ng-repeat="recipe in model.favourites">
+
+                <div class="jga-widget-tool">
+                    <a ng-click="model.removeFavourite(recipe)">
+                    <span class="glyphicon-stack">
+                        <i class="glyphicon glyphicon-circle glyphicon-stack-2x black"></i>
+                        <i class="glyphicon glyphicon-remove glyphicon-stack glyphicon-stack-1x white"></i>
+                    </span>
+                    </a>
+                </div>
 
                 <img id="image_container"
                      ng-click="model.selectRecipe(recipe)"
@@ -61,3 +74,4 @@
     </div>
 
 </div>
+
