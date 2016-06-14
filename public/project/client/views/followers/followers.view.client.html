@@ -32,7 +32,7 @@
         <div ng-if="model.followers" class="table">
             <div ng-repeat="follower in model.followers">
                 <div class="margin_top">
-                    <a href="#/">{{follower.follower.username}}</a>
+                    <a href="#/user/{{model.uid}}/following/{{follower._id}}">{{follower.follower.username}}</a>
                 </div>
             </div>
         </div>

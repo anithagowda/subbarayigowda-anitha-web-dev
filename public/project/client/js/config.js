@@ -63,6 +63,11 @@
                 controller: "FollowingProfileController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/follower/:followerid", {
+                templateUrl: "views/followers/followers_profile.view.client.html",
+                controller: "FollowersProfileController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/"
             });
