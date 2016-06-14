@@ -13,6 +13,7 @@
         vm.updateUser = updateUser;
         vm.navigateToWebsite = navigateToWebsite;
         vm.unregister = unregister;
+        vm.logout = logout;
         
         function init() {
             UserService
@@ -52,6 +53,20 @@
                         vm.error = "Unable to remove user";
                     }
                 );
+        }
+        
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (res) {
+                        $location.url("/login");
+                    },
+                    function (err) {
+                        $location.url("/login");
+                    }
+                );
+            
         }
     }
 })();

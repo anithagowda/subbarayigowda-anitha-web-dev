@@ -15,7 +15,8 @@
             findUserByUsername : findUserByUsername,
             findUserByCredentials : findUserByCredentials,
             updateUser : updateUser,
-            deleteUser : deleteUser
+            deleteUser : deleteUser,
+            logout : logout
         };
 
         function login(username, password) {
@@ -51,6 +52,10 @@
         function deleteUser(userId) {
             var url = "/api/user/"+userId;
             return $http.delete(url);
+        }
+        
+        function logout() {
+            return $http.post("/api/logout");
         }
         return apis;
     }

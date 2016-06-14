@@ -2,37 +2,79 @@
  * Created by asubbarayigowda on 5/30/16.
  */
 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 module.exports = function (app, module) {
-    app.post("/api/login", login);
+
+    /*Any number of elements can read from the request or any other modifications
+    * Here both login and passport receives it
+    * Passport intercepts the request to get username and password
+    * local is the standard name for local strategy (as username and password are authenticated against our local DB)*/
+    app.post("/api/login", passport.authenticate('local'), login);
+
     app.get("/api/user", getUsers);
     app.post("/api/user", createUser);
-    //express uses only base url for matching. anything after ? is ignored
+
+    /*express uses only base url for matching. anything after ? is ignored*/
     // app.get("/api/user?username=username", findUserByUsername);
     // app.get("/api/user?username=username&password=password", findUserByCredentials);
     app.get("/api/user/:userId", findUserById);
+
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
+    app.post("/api/logout", logout);
+
 
     var UserModel = module.userModel;
 
+    passport.use('local', new LocalStrategy(localStrategy)); /*Here local need not be given as its a default name*/
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
 
-    //Send username and password in body and encrypt it with SSL
-    function login(req, res) {
-        var username = req.body.username;
-        var password = req.body.password;
-        
+    /*input values are intercepted values from body; done is the status*/
+    function localStrategy(username, password, done) {
         UserModel
             .findUserByCredentials(username, password)
             .then(
                 function (user) {
-                    console.log(req.session);
-                    req.session.currentUser = user;
-                    res.json(user);
+                    if (user) {
+                        done(null, user); /*only case control goes to login*/
+                    }
+                    else {
+                        done(null, false);
+                    }
                 },
                 function (err) {
-                    res.sendStatus(404).send(err);
+                    done(err);
                 }
             );
+    }
+
+    /*serialized user for the browser to be saved in cookie(encrypt n save)*/
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    /*called everytime browser makes any request*/
+    function deserializeUser(user, done) {
+        UserModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+    function login(req, res) {
+        /*If control comes to login, that implies user is authorized. If not control doesnt come here*/
+        /*user is saved in req by passport*/
+        var user = req.user;
+        res.json(user);
     }
     
     function getUsers(req, res) {
@@ -130,5 +172,10 @@ module.exports = function (app, module) {
                     res.sendStatus(404).send(err);
                 }
             );
+    }
+
+    function logout(req, res) {
+        req.logout(); /*invalidate session and cokkie, by passport*/
+        res.sendStatus(200);
     }
 };
