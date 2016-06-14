@@ -12,7 +12,8 @@ module.exports = function () {
         findAllFavouritesForUser: findAllFavouritesForUser,
         findFavouriteById: findFavouriteById,
         updateFavourite: updateFavourite,
-        deleteFavourite: deleteFavourite
+        deleteFavourite: deleteFavourite,
+        deleteFavouriteForUser: deleteFavouriteForUser
     };
     return apis;
     
@@ -35,5 +36,9 @@ module.exports = function () {
     
     function deleteFavourite(favouriteId) {
         return ProjFavourites.remove({_id: favouriteId});
+    }
+
+    function deleteFavouriteForUser(userId) {
+        return ProjFavourites.remove({"_user": userId});
     }
 };

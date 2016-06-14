@@ -13,7 +13,8 @@ module.exports = function () {
         findFollowerById: findFollowerById,
         updateFollower: updateFollower,
         deleteFollowerById: deleteFollowerById,
-        deleteFollowerByName: deleteFollowerByName
+        deleteFollowerByName: deleteFollowerByUserName,
+        deleteFollowerByUserId: deleteFollowerByUserId
     };
     return apis;
 
@@ -38,7 +39,11 @@ module.exports = function () {
         return ProjFollowers.remove({_id: followerId});
     }
 
-    function deleteFollowerByName(followerName) {
-        return ProjFollowers.remove({"follower.username": followerName});
+    function deleteFollowerByUserName(username) {
+        return ProjFollowers.remove({"follower.username": username});
+    }
+
+    function deleteFollowerByUserId(userId) {
+        return ProjFollowers.remove({"_user": ObjectId(userId)});
     }
 };

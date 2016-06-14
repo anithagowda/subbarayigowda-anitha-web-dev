@@ -14,6 +14,9 @@ module.exports = function (app, module) {
     app.delete("/api/user/:userId", deleteUser);
 
     var UserModel = module.userModel;
+    var FollowingModel = module.followingModel;
+    var FollowerModel = module.followerModel;
+    var FavouriteModel = module.favouriteModel;
 
     function getUsers(req, res) {
         var username = req.query.username;
@@ -116,15 +119,26 @@ module.exports = function (app, module) {
 
     function deleteUser(req, res) {
         var userId = req.params.userId;
+
         UserModel
-            .deleteUser(userId)
-            .then(
-                function (stat) {
-                    res.sendStatus(200);
-                },
-                function (err) {
-                    res.sendStatus(404);
-                }
-            );
+            .findUserById(userId)
+            .then(function (user) {
+                FollowerModel.deleteFollowerByName(user.username).then(function (stat) {});
+                //FollowerModel.deleteFollowerByUserId(userId).then(function (stat) {});
+                FollowingModel.deleteFollowingByName(user.username).then(function (stat) {});
+                //FollowingModel.deleteFollowingByUserId(userId).then(function (stat) {});
+                FavouriteModel.deleteFavouriteForUser(userId).then(function (stat) {});
+
+                UserModel
+                    .deleteUser(userId)
+                    .then(
+                        function (stat) {
+                            res.sendStatus(200);
+                        },
+                        function (err) {
+                            res.sendStatus(404);
+                        }
+                    );
+            });
     }
 };

@@ -7,6 +7,7 @@ module.exports = function (app, module) {
     app.get("/api/favourite/:favouriteId", findFavouriteById);
     app.put("/api/favourite/:favouriteId", updateFavourite);
     app.delete("/api/favourite/:favouriteId", deleteFavourite);
+    app.delete("/api/user/:userId/favourite", deleteFavouriteForUser);
     
 
     var favouriteModel = module.favouriteModel;
@@ -22,7 +23,7 @@ module.exports = function (app, module) {
                     res.json(favourite);
                 },
                 function (err) {
-                    res.sendStatus(400);
+                    res.sendStatus(400).send(err);
                 }
             );
     }
@@ -37,7 +38,7 @@ module.exports = function (app, module) {
                     res.json(favourites);
                 },
                 function (er) {
-                    res.sendStatus(400);
+                    res.sendStatus(400).send(err);
                 }
             );
     }
@@ -51,7 +52,7 @@ module.exports = function (app, module) {
                     res.json(favourite);
                 },
                 function (err) {
-                    res.sendStatus(400);
+                    res.sendStatus(400).send(err);
                 }
             );
     }
@@ -66,7 +67,7 @@ module.exports = function (app, module) {
                     res.sendStatus(200);
                 },
                 function (err) {
-                    res.sendStatus(400);
+                    res.sendStatus(400).send(err);
                 }
             );
     }
@@ -80,7 +81,21 @@ module.exports = function (app, module) {
                     res.sendStatus(200);
                 },
                 function (err) {
-                    res.sendStatus(400);
+                    res.sendStatus(400).send(err);
+                }
+            );
+    }
+    
+    function deleteFavouriteForUser(req, res) {
+        var userId = req.params.userId;
+        favouriteModel
+            .deleteFavouriteForUser(userId)
+            .then(
+                function (stat) {
+                    res.sendStatus(200);
+                },
+                function (err) {
+                    res.sendStatus(400).send(err);
                 }
             );
     }

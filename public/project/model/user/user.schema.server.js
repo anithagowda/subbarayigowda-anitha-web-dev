@@ -6,7 +6,7 @@ module.exports = function () {
     var mongoose = require("mongoose");
 
     var ProjUserSchema = mongoose.Schema({
-        username: {type: String, required: true, unique: true},
+        username: {type: String, required: true},
         password: String,
         firstName: String,
         lastName: String,
