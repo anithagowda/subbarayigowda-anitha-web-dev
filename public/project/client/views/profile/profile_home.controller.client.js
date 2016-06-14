@@ -6,7 +6,7 @@
         .module("OnlineKitchen")
         .controller("ProfileHomeController", ProfileHomeController);
 
-    function ProfileHomeController($routeParams, UserService) {
+    function ProfileHomeController($routeParams, UserService, $location) {
         var vm = this;
 
         vm.uid = $routeParams.uid;
@@ -28,7 +28,7 @@
         
         function unregister() {
             UserService
-                .deleteUser(id)
+                .deleteUser($routeParams.uid)
                 .then(
                     function (res) {
                         $location.url("/");

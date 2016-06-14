@@ -8,7 +8,7 @@ module.exports = function () {
     var mongoose = require("mongoose");
     var ProjUserSchema = require("./user.schema.server")();
     var ProjUser = mongoose.model("ProjectUser", ProjUserSchema);
-    
+
     var api = {
         createUser : createUser,
         findUserById : findUserById,
@@ -26,8 +26,7 @@ module.exports = function () {
     }
 
     function findUserById(userId) {
-        //return User.find({_id: userId});//returns an array which contains only one element
-        return ProjUser.findById(userId);//returns only one element
+        return ProjUser.findById(userId);
     }
     
     function findUserByUsername(username) {
@@ -35,7 +34,6 @@ module.exports = function () {
     }
 
     function findUserStartingWithUsername(username) {
-        //return ProjUser.findOne({username:{$regex: /^al/i}});
         var query = {};
         query.username = new RegExp(username, 'i');
         return ProjUser.find(query);

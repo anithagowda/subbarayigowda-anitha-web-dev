@@ -7,7 +7,7 @@
         .module("OnlineKitchen")
         .controller("FollowersProfileController", FollowersProfileController);
     
-    function FollowersProfileController($routeParams, FollowersService, FavouritesService, $window) {
+    function FollowersProfileController($routeParams, FollowersService, FavouritesService, $window, UserService) {
         
         var vm = this;
         vm.uid = $routeParams.uid;
@@ -20,9 +20,20 @@
                 .findFollowerById(followerid)
                 .then(
                     function (res) {
-                        vm.user = res.data.follower;
+                        var follower = res.data.follower;
+                        UserService
+                            .findUserById(follower._id)
+                            .then(
+                                function (res) {
+                                    vm.user = res.data;
+                                },
+                                function (err) {
+                                    vm.error = "Failed to retrieve Follower info";
+                                }
+                            );
+
                         FavouritesService
-                            .findFavouritesByUserId(vm.user._id)
+                            .findFavouritesByUserId(follower._id)
                             .then(
                                 function (res) {
                                     vm.favourites = res.data;
