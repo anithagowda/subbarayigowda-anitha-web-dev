@@ -3,6 +3,7 @@
  */
 
 module.exports = function (app, module) {
+    app.post("/api/login", login);
     app.get("/api/user", getUsers);
     app.post("/api/user", createUser);
     //express uses only base url for matching. anything after ? is ignored
@@ -14,15 +15,35 @@ module.exports = function (app, module) {
 
     var UserModel = module.userModel;
 
+
+    //Send username and password in body and encrypt it with SSL
+    function login(req, res) {
+        var username = req.body.username;
+        var password = req.body.password;
+        
+        UserModel
+            .findUserByCredentials(username, password)
+            .then(
+                function (user) {
+                    console.log(req.session);
+                    req.session.currentUser = user;
+                    res.json(user);
+                },
+                function (err) {
+                    res.sendStatus(404).send(err);
+                }
+            );
+    }
+    
     function getUsers(req, res) {
         var username = req.query.username;
         var password = req.query.password;
 
         if (username && password) {
-            findUserByCredentials(username, password, res);
+            findUserByCredentials(username, password, req, res);
         }
         else if (username) {
-            findUserByUsername(username, res);
+            findUserByUsername(username, req, res);
         }
     }
 
@@ -40,7 +61,7 @@ module.exports = function (app, module) {
                 });
     }
 
-    function findUserByUsername(username, res) {
+    function findUserByUsername(username, req, res) {
         UserModel
             .findUserByUsername(username)
             .then(
@@ -53,11 +74,13 @@ module.exports = function (app, module) {
             );
     }
 
-    function findUserByCredentials(username, password, res) {
+    function findUserByCredentials(username, password, req, res) {
         UserModel
             .findUserByCredentials(username, password)
             .then(
                 function (user) {
+                    console.log(req.session);
+                    req.session.currentUser = user;
                     res.json(user);
                 },
                 function (err) {
