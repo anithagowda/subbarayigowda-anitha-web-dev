@@ -16,7 +16,8 @@
             findUserByCredentials : findUserByCredentials,
             updateUser : updateUser,
             deleteUser : deleteUser,
-            logout : logout
+            logout : logout,
+            loggedIn: loggedIn
         };
 
         function login(username, password) {
@@ -56,6 +57,10 @@
         
         function logout() {
             return $http.post("/api/logout");
+        }
+        
+        function loggedIn() {
+            return $http.get("/api/loggedIn");
         }
         return apis;
     }

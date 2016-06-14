@@ -24,6 +24,7 @@ module.exports = function (app, module) {
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
     app.post("/api/logout", logout);
+    app.get("/api/loggedIn", loggedIn);
 
 
     var UserModel = module.userModel;
@@ -177,5 +178,14 @@ module.exports = function (app, module) {
     function logout(req, res) {
         req.logout(); /*invalidate session and cokkie, by passport*/
         res.sendStatus(200);
+    }
+
+    function loggedIn(req, res) {
+        if (req.isAuthenticated()) {
+            res.json(req.user);
+        }
+        else {
+            res.send('0');
+        }
     }
 };
