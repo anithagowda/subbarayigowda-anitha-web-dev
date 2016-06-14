@@ -24,20 +24,26 @@
 
     </div>
 
+    <div class="input-group margin_top">
+        <input ng-model="ingredient" type="text" class="form-control clear_search" placeholder="Add your ingredients">
+            <span class="input-group-btn">
+                <a id="search_toggle" ng-click="model.addGrocery(ingredient)" class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </span>
+    </div>
 
     <div class="container">
         <div ng-if="model.error" class="alert alert-danger" role="alert">
             {{model.error}}
         </div>
 
-        <a ng-click="model.addGrocery()">
-            <span class="glyphicon glyphicon-plus">Add Grocery</span>
-        </a>
-
         <div ng-if="model.groceries" class="table">
             <div ng-repeat="grocery in model.groceries">
-                <div class="margin_top">
-                    <input type="checkbox" value={{grocery.name}}>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> {{grocery.name}}
+                    </label>
                 </div>
             </div>
         </div>

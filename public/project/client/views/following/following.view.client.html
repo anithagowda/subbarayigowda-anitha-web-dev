@@ -22,16 +22,15 @@
                 <li class="active"><a href="#/user/{{model.uid}}/following">Follows</a></li>
             </ul>
         </div>
-
     </div>
 
     <div class="input-group margin_top">
         <input ng-model="username" type="text" class="form-control clear_search" placeholder="Search Users by Username">
-                <span class="input-group-btn">
-                    <a id="search_toggle" ng-click="model.handleSearchToggle(username)" class="btn btn-default" type="button">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </a>
-                </span>
+            <span class="input-group-btn">
+                <a id="search_toggle" ng-click="model.handleSearchToggle(username)" class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+            </span>
     </div>
 
 
@@ -47,7 +46,6 @@
                     <a href="#/user/{{model.uid}}/following/{{following._id}}">{{following.following.username}}</a>
                 </div>
                 <div class="col-xs-6 margin_top">
-                    <!--<a ng-click="model.unFollowUser(user)" style="border-style: solid">UnFollow</a>-->
                     <button class="unfollow_btn" ng-click="model.unFollowUser(following)">UnFollow</button>
                 </div>
             </div>

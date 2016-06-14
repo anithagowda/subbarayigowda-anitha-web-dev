@@ -19,7 +19,7 @@ module.exports = function () {
 
     function createGrocery(userId, grocery) {
         grocery._user = userId;
-        return ProjGrocery.create(follower);
+        return ProjGrocery.create(grocery);
     }
 
     function findAllGroceriesForUser(userId) {
@@ -30,8 +30,8 @@ module.exports = function () {
         return ProjGrocery.findById(groceryId);
     }
 
-    function updateGrocery(followerId, grocery) {
-        return ProjGrocery.update({_id: followerId}, {$set: grocery});
+    function updateGrocery(groceryId, grocery) {
+        return ProjGrocery.update({_id: groceryId}, {$set: grocery});
     }
 
     function deleteGroceryById(groceryId) {
