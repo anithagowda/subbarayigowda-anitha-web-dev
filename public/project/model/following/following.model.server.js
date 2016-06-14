@@ -44,6 +44,6 @@ module.exports = function () {
     }
 
     function deleteFollowingByUserId(userId) {
-        return ProjFollowing.remove({"following._user": userId});
+        return ProjFollowing.remove({"_user": ObjectId(userId)});
     }
 };

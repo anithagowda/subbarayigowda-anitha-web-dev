@@ -68,6 +68,11 @@
                 controller: "FollowersProfileController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/grocery", {
+                templateUrl: "views/grocery/grocery.view.client.html",
+                controller: "GroceryController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/"
             });

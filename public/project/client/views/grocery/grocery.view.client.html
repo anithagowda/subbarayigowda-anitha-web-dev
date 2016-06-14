@@ -15,9 +15,9 @@
         <div class="profile_tab_header margin_top">
             <ul class="nav nav-tabs nav-justified">
                 <li><a href="#/user/{{model.uid}}">Profile</a></li>
-                <li><a href="#/user/{{model.uid}}/grocery">Groceries</a></li>
+                <li class="active"><a href="#/user/{{model.uid}}/grocery">Groceries</a></li>
                 <li><a href="#/user/{{model.uid}}/favourites">Favourite</a></li>
-                <li class="active"><a href="#/user/{{model.uid}}/followers">Followers</a></li>
+                <li><a href="#/user/{{model.uid}}/followers">Followers</a></li>
                 <li><a href="#/user/{{model.uid}}/following">Follows</a></li>
             </ul>
         </div>
@@ -30,10 +30,14 @@
             {{model.error}}
         </div>
 
-        <div ng-if="model.followers" class="table">
-            <div ng-repeat="follower in model.followers">
+        <a ng-click="model.addGrocery()">
+            <span class="glyphicon glyphicon-plus">Add Grocery</span>
+        </a>
+
+        <div ng-if="model.groceries" class="table">
+            <div ng-repeat="grocery in model.groceries">
                 <div class="margin_top">
-                    <a href="#/user/{{model.uid}}/follower/{{follower._id}}">{{follower.follower.username}}</a>
+                    <input type="checkbox" value={{grocery.name}}>
                 </div>
             </div>
         </div>
