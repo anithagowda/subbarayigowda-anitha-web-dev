@@ -17,7 +17,8 @@
             updateUser : updateUser,
             deleteUser : deleteUser,
             logout : logout,
-            loggedIn: loggedIn
+            loggedIn: loggedIn,
+            register: register
         };
 
         function login(username, password) {
@@ -61,6 +62,11 @@
         
         function loggedIn() {
             return $http.get("/api/loggedIn");
+        }
+        
+        function register(username, password) {
+            var user = {username:username, password:password };
+            return $http.post("/api/register", user);
         }
         return apis;
     }

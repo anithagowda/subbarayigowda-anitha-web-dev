@@ -25,6 +25,7 @@ module.exports = function (app, module) {
     app.delete("/api/user/:userId", deleteUser);
     app.post("/api/logout", logout);
     app.get("/api/loggedIn", loggedIn);
+    app.post("/api/register", register);
 
 
     var UserModel = module.userModel;
@@ -187,5 +188,48 @@ module.exports = function (app, module) {
         else {
             res.send('0');
         }
+    }
+
+    function register(req, res) {
+        var username = req.body.username;
+        var password = req.body.password;
+
+        UserModel
+            .findUserByUsername(username)
+            .then(
+                function (user) {
+                    if(user) {
+                        res.status(400).send("Username already in use!")
+                        return;
+                    }
+                    else {
+                        return UserModel
+                            .createUser(req.body);
+                    }
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            )
+            /*this then is for createUser*/
+            .then(
+                function (user) {
+                    if (user) {
+                        /*passport login - serialize and send them to browser to be added in cookie*/
+                        req.login(user, function (err) {
+                            if (err) {
+                                res.status(400).send(err);
+                            }
+                            else {
+                                res.json(user);
+                            }
+                        });
+                    }
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+
     }
 };
