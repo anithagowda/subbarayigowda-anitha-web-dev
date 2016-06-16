@@ -6,7 +6,7 @@
         .module("OnlineKitchen")
         .controller("ProfileHomeController", ProfileHomeController);
 
-    function ProfileHomeController($routeParams, UserService, $location) {
+    function ProfileHomeController($routeParams, UserService, $location, $rootScope) {
         var vm = this;
 
         vm.uid = $routeParams.uid;
@@ -65,9 +65,11 @@
                 .logout()
                 .then(
                     function (res) {
+                        $rootScope.currentUser = null;
                         $location.url("/login");
                     },
                     function (err) {
+                        $rootScope.currentUser = null;
                         $location.url("/login");
                     }
                 );

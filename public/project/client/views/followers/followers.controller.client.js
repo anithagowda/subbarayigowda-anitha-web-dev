@@ -8,11 +8,12 @@
         .module("OnlineKitchen")
         .controller("FollowersController", FollowersController);
     
-    function FollowersController($routeParams, FollowersService) {
+    function FollowersController($routeParams, FollowersService, $rootScope, UserService, $location) {
         var vm = this;
 
         vm.uid = $routeParams.uid;
         vm.selectFollower = selectFollower;
+        vm.logout = logout;
 
         function init() {
             FollowersService
@@ -30,6 +31,22 @@
 
         function selectFollower(follower) {
             //Go to followers profile
+        }
+        
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (res) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function (err) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    }
+                );
+
         }
     }
 })();

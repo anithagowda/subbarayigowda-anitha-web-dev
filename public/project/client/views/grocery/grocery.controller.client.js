@@ -6,12 +6,13 @@
         .module("OnlineKitchen")
         .controller("GroceryController", GroceryController);
     
-    function GroceryController(GroceryService, $routeParams) {
+    function GroceryController(GroceryService, $routeParams, $rootScope, UserService, $location) {
         var vm = this;
         var userId = $routeParams.uid;
 
         vm.uid = $routeParams.uid;
         vm.addGrocery = addGrocery;
+        vm.logout = logout;
 
         function init() {
             GroceryService
@@ -45,6 +46,22 @@
             $('input[type=checkbox]').each(function () {
                 var sThisVal = (this.checked ? $(this).val() : "");
             });
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (res) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function (err) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    }
+                );
+
         }
     }
     

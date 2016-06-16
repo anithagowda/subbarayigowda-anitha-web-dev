@@ -6,12 +6,13 @@
         .module("OnlineKitchen")
         .controller("FavouriteController", FavouriteController);
     
-    function FavouriteController($routeParams, FavouritesService, $window) {
+    function FavouriteController($routeParams, FavouritesService, $window, $rootScope, UserService, $location) {
         var vm = this;
         
         vm.uid = $routeParams.uid;
         vm.selectRecipe = selectRecipe;
         vm.removeFavourite = removeFavourite;
+        vm.logout = logout;
 
         function init() {
             FavouritesService
@@ -43,6 +44,22 @@
                         vm.error = "Failed to remove your favourite recipe";
                     }
                 )
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (res) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function (err) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    }
+                );
+
         }
     }
 })();

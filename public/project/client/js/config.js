@@ -44,37 +44,58 @@
             .when("/user/:uid/search/:ingredients", {
                 templateUrl: "views/profile/profile_search.view.client.html",
                 controller: "ProfileSearchController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user/:uid/favourites", {
                 templateUrl: "views/favourites/favourites.view.client.html",
                 controller: "FavouriteController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user/:uid/followers", {
                 templateUrl: "views/followers/followers.view.client.html",
                 controller: "FollowersController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user/:uid/following", {
                 templateUrl: "views/following/following.view.client.html",
                 controller: "FollowingsController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user/:uid/following/:followingid", {
                 templateUrl: "views/following/following_profile.view.client.html",
                 controller: "FollowingProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user/:uid/follower/:followerid", {
                 templateUrl: "views/followers/followers_profile.view.client.html",
                 controller: "FollowersProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user/:uid/grocery", {
                 templateUrl: "views/grocery/grocery.view.client.html",
                 controller: "GroceryController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .otherwise({
                 redirectTo: "/"

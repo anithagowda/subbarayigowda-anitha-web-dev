@@ -6,7 +6,7 @@
         .module("OnlineKitchen")
         .controller("LoginController", LoginController);
     
-    function LoginController($location, UserService) {
+    function LoginController($location, UserService, $rootScope) {
         var vm = this;
         
         vm.login = login;
@@ -25,6 +25,8 @@
                             vm.error = "Invalid username/password!";
                         }
                         else {
+                            $rootScope.currentUser = user;
+                            $rootScope.$broadcast('currentUser', {loggedUser : user});
                             $location.url("/user/"+user._id);
                         }
                     },

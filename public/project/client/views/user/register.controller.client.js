@@ -6,7 +6,7 @@
         .module("OnlineKitchen")
         .controller("RegisterController", RegisterController);
     
-    function RegisterController($location, UserService) {
+    function RegisterController($location, UserService, $rootScope) {
         var vm = this;
         vm.register = register;
 
@@ -27,6 +27,8 @@
                         function (res) {
                             var user = res.data;
                             if (user) {
+                                $rootScope.currentUser = user;
+                                $rootScope.$broadcast('currentUser', {loggedUser : user});
                                 $location.url("/user/"+user._id);
                             }
                         },

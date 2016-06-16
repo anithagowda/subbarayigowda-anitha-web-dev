@@ -7,7 +7,7 @@
         .module("OnlineKitchen")
         .controller("FollowingsController", FollowingsController);
 
-    function FollowingsController($routeParams, FollowingsService, UserService, FollowersService) {
+    function FollowingsController($routeParams, FollowingsService, UserService, FollowersService, $rootScope, $location) {
         var vm = this;
 
         vm.uid = $routeParams.uid;
@@ -15,6 +15,7 @@
         vm.handleSearchToggle = handleSearchToggle;
         vm.followUser = followUser;
         vm.unFollowUser = unFollowUser;
+        vm.logout = logout;
 
         function init() {
             FollowingsService
@@ -141,6 +142,20 @@
                 )
         }
 
-        
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (res) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function (err) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    }
+                );
+
+        }
     }
 })();
