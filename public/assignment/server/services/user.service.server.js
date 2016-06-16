@@ -61,6 +61,7 @@ module.exports = function (app, module) {
 
     /*called everytime browser makes any request*/
     function deserializeUser(user, done) {
+        /*nothing to deserialize, just make sure user is still available in DB*/
         UserModel
             .findUserById(user._id)
             .then(

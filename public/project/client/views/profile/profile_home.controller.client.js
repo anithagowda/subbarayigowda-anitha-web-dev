@@ -13,6 +13,7 @@
         vm.unregister = unregister;
         vm.updateUser = updateUser;
         vm.editUser = editUser;
+        vm.logout = logout;
 
         function init() {
             UserService
@@ -57,6 +58,20 @@
         function editUser() {
             $(".profile").hide();
             $(".edit").show();
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (res) {
+                        $location.url("/login");
+                    },
+                    function (err) {
+                        $location.url("/login");
+                    }
+                );
+
         }
     }
 })();

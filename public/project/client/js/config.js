@@ -36,7 +36,10 @@
             .when("/user/:uid", {
                 templateUrl: "views/profile/profile_home.view.client.html",
                 controller: "ProfileHomeController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user/:uid/search/:ingredients", {
                 templateUrl: "views/profile/profile_search.view.client.html",
@@ -76,5 +79,31 @@
             .otherwise({
                 redirectTo: "/"
             });
+
+        //$q allows to work with promises
+        function checkLoggedIn(UserService, $location, $q) {
+
+            var deferred = $q.defer();
+
+            UserService
+                .loggedIn()
+                .then(
+                    function (res) {
+                        var user = res.data;
+                        if (user == '0') {
+                            deferred.reject();
+                            $location.url("/login");
+                        }
+                        else {
+                            deferred.resolve();
+                        }
+                    },
+                    function (err) {
+                        $location.url("/login");
+                    }
+                );
+
+            return deferred.promise;
+        }
     }
 })();

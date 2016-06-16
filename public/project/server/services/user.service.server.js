@@ -2,21 +2,71 @@
  * Created by asubbarayigowda on 5/30/16.
  */
 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require("bcrypt-nodejs");
+
 module.exports = function (app, module) {
     app.get("/api/user", getUsers);
     app.post("/api/user", createUser);
-    //express uses only base url for matching. anything after ? is ignored
-    // app.get("/api/user?username=username", findUserByUsername);
-    // app.get("/api/user?username=username&password=password", findUserByCredentials);
-    // app.get("/api/user?search=username", findUserStartingWithUsername);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
-
+    
+    app.post("/api/login", passport.authenticate('olKitchen'), login);
+    app.post("/api/logout", logout);
+    app.get("/api/loggedIn", loggedIn);
+    app.post("/api/register", register);
+    
+    passport.use('olKitchen', new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+    
     var UserModel = module.userModel;
     var FollowingModel = module.followingModel;
     var FollowerModel = module.followerModel;
     var FavouriteModel = module.favouriteModel;
+
+    function localStrategy(username, password, done) {
+        UserModel
+            .findUserByUsername(username)
+            .then(
+                function (user) {
+                    if (user && bcrypt.compareSync(password, user.password)) {
+                        done(null, user); /*only case control goes to login*/
+                    }
+                    else {
+                        done(null, false);
+                    }
+                },
+                function (err) {
+                    done(err);
+                }
+            );
+    }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        /*nothing to deserialize, just make sure user is still available in DB*/
+        UserModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
 
     function getUsers(req, res) {
         var username = req.query.username;
@@ -48,6 +98,7 @@ module.exports = function (app, module) {
                 });
     }
 
+    /*----/api/user?username=username---*/
     function findUserByUsername(username, res) {
         UserModel
             .findUserByUsername(username)
@@ -61,6 +112,7 @@ module.exports = function (app, module) {
             );
     }
 
+    /*----/api/user?search=username---*/
     function findUserStartingWithUsername(username, res) {
         UserModel
             .findUserStartingWithUsername(username)
@@ -75,6 +127,7 @@ module.exports = function (app, module) {
             );
     }
 
+    /*----/api/user?username=username&password=password---*/
     function findUserByCredentials(username, password, res) {
         UserModel
             .findUserByCredentials(username, password)
@@ -140,5 +193,64 @@ module.exports = function (app, module) {
                         }
                     );
             });
+    }
+
+    function logout(req, res) {
+        req.logout(); /*invalidate session and cookie, by passport*/
+        res.sendStatus(200);
+    }
+
+    function loggedIn(req, res) {
+        if (req.isAuthenticated()) {
+            res.json(req.user);
+        }
+        else {
+            res.send('0');
+        }
+    }
+
+    function register(req, res) {
+        var username = req.body.username;
+        var password = req.body.password;
+
+        UserModel
+            .findUserByUsername(username)
+            .then(
+                function (user) {
+                    if(user) {
+                        res.status(400).send("Username already in use!");
+                        return;
+                    }
+                    else {
+                        /*hasSync - synchronous call*/
+                        req.body.password = bcrypt.hashSync(password);
+                        return UserModel
+                            .createUser(req.body);
+                    }
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            )
+            /*this then is for createUser*/
+            .then(
+                function (user) {
+                    if (user) {
+                        /*passport login - serialize and send them to browser to be added in cookie*/
+                        req.login(user, function (err) {
+                            if (err) {
+                                res.status(400).send(err);
+                            }
+                            else {
+                                res.json(user);
+                            }
+                        });
+                    }
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+
     }
 };

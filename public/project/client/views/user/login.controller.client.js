@@ -12,17 +12,25 @@
         vm.login = login;
         
         function login(username, password) {
+            if (username === "" || password === "" || username == null || password == null) {
+                vm.error = "Username & Password required";
+                return;
+            }
+
             UserService
-                .findUserByCredentials(username, password)
+                .login(username, password)
                 .then(function (res) {
-                    var user = res.data;
-                    if (user == null) {
+                        var user = res.data;
+                        if (user == null) {
+                            vm.error = "Invalid username/password!";
+                        }
+                        else {
+                            $location.url("/user/"+user._id);
+                        }
+                    },
+                    function (err) {
                         vm.error = "Invalid username/password!"
-                    }
-                    else {
-                        $location.url("/user/"+user._id);
-                    }
-                });
+                    });
         }
     }
 })();
