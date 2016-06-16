@@ -14,11 +14,11 @@
     <div class="profile_body">
         <div class="profile_tab_header margin_top">
             <ul class="nav nav-tabs nav-justified">
-                <li class="active"><a href="#/user/{{model.uid}}">Profile</a></li>
-                <li><a href="#/user/{{model.uid}}/grocery">Groceries</a></li>
-                <li><a href="#/user/{{model.uid}}/favourites">Favourite</a></li>
-                <li><a href="#/user/{{model.uid}}/followers">Followers</a></li>
-                <li><a href="#/user/{{model.uid}}/following">Follows</a></li>
+                <li class="active font-effect-anaglyph"><a href="#/user/{{model.uid}}">Profile</a></li>
+                <li class="font-effect-anaglyph"><a href="#/user/{{model.uid}}/grocery">Groceries</a></li>
+                <li class="font-effect-anaglyph"><a href="#/user/{{model.uid}}/favourites">Favourites</a></li>
+                <li class="font-effect-anaglyph"><a href="#/user/{{model.uid}}/followers">Followers</a></li>
+                <li class="font-effect-anaglyph"><a href="#/user/{{model.uid}}/following">Follows</a></li>
             </ul>
         </div>
 
@@ -28,7 +28,7 @@
 
         <div class="row margin_top profile">
             <div class="profile_avatar col-sm-4">
-                <img src="https://farm8.staticflickr.com/7490/27488695586_8c84a993d0_s.jpg" width="75%" height="75%" border="1px">
+                <img src="https://farm8.staticflickr.com/7490/27488695586_8c84a993d0_s.jpg" width="50%" height="50%" border="1px">
             </div>
 
             <div class="col-sm-4 margin_top">
@@ -65,13 +65,13 @@
                     </div>
                 </div>
                 <div class="row margin_top">
-                    <div class="col-xs-12 edit_btn">
-                        <a ng-click="model.editUser()" class="btn btn-warning" style="width: 80%">Edit</a>
+                    <div class="col-xs-6 edit_btn">
+                        <button ng-click="model.editUser()" class="unfollow_btn">Edit</button>
                     </div>
                 </div>
                 <div class="row margin_top">
-                    <div class="col-xs-12">
-                        <a ng-click="model.unregister()" class="btn btn-danger" style="width: 80%">Unregister</a>
+                    <div class="col-xs-6 margin_top">
+                        <button ng-click="model.unregister()" class="unfollow_btn" style="color: red;">Unregister</button>
                     </div>
                 </div>
             </div>
@@ -80,11 +80,11 @@
 
 
 
-        <div class="edit">
-            <div ng-if="model.success" class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>Success!</strong> {{model.success}}
-            </div>
+        <div class="edit margin_top">
+            <!--<div ng-if="model.success" class="alert alert-success alert-dismissible" role="alert">-->
+                <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                <!--<strong>Success!</strong> {{model.success}}-->
+            <!--</div>-->
 
             <div ng-if="model.error" class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -110,7 +110,9 @@
                 </div>
             </div>
 
-            <a ng-click="model.updateUser(model.user)" class="btn btn-success btn-block save_btn">Save</a>
+            <div class="col-xs-4">
+                <button ng-click="model.updateUser(model.user)" class="unfollow_btn">Save</button>
+            </div>
 
         </div>
     </div>

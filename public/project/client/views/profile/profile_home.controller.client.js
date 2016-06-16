@@ -47,12 +47,12 @@
                     function (res) {
                         if (res.status == 200) {
                             vm.success = "Updated successfully";
+                            init();
                         }
                     },
                     function (err) {
                         vm.error = "Unable to update user";
                     });
-            init();
         }
 
         function editUser() {

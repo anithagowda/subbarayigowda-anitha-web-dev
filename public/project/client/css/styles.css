@@ -3,6 +3,10 @@
     padding: 5px;
 }
 
+.navbar-brand {
+    font-family: 'Atma', serif;
+}
+
 .navbar-header
 {
     position: absolute;
@@ -13,6 +17,17 @@
     padding-right: 25px;
 }
 
+.navbar-nav li a
+{
+    font-family: 'Changa', serif;
+}
+
+.nav-tabs li a {
+    font-family: 'Changa', serif;
+    color: #8B7500;
+    font-weight: bold;
+    font-size: 16px;
+}
 
 body {
     padding-top: 55px;
@@ -98,8 +113,8 @@ p.navbar-text.pull-left {
 
 .profile_avatar img{
     border: solid;
-    border-color: lightgray;
-    border-radius: 10px;
+    border-color: #8B7500;
+    border-radius: 30%;
     /*margin-left: auto;*/
     /*margin-right: auto;*/
     /*display: block;*/
@@ -151,11 +166,39 @@ p.navbar-text.pull-left {
 .unfollow_btn {
     border-style: solid;
     background: transparent;
-    color: #436EEE;
-    border-radius: 15px
+    font-family: 'Mitr', serif;
+    border-radius: 15px;
+    border-color: #8B7500;
+    font-weight: bold;
+    font-size: 16px;
 }
 
-.nav-tabs li a {
-    color: #4D4D4D;
-    font-weight: bold;
+.mitr-font {
+    font-family: 'Mitr', serif;
+    font-size: 16px;
+    color: black;
+}
+
+.control-label {
+    font-family: 'Mitr', serif
+}
+
+.col-xs-6 p {
+    font-family: 'Mitr', serif
+}
+
+.form-group label {
+    font-family: 'Mitr', serif
+}
+
+.form-group input {
+    font-family: 'Mitr', serif
+}
+
+.checkbox label {
+    font-family: 'Mitr', serif
+}
+
+.col-xs-6 p {
+    font-family: 'Mitr', serif
 }

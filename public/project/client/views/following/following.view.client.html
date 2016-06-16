@@ -15,11 +15,11 @@
     <div class="profile_body">
         <div class="profile_tab_header" style="margin-top: 2%">
             <ul class="nav nav-tabs nav-justified">
-                <li><a href="#/user/{{model.uid}}">Profile</a></li>
-                <li><a href="#/user/{{model.uid}}/grocery">Groceries</a></li>
-                <li><a href="#/user/{{model.uid}}/favourites">Favourite</a></li>
-                <li><a href="#/user/{{model.uid}}/followers">Followers</a></li>
-                <li class="active"><a href="#/user/{{model.uid}}/following">Follows</a></li>
+                <li class="font-effect-anaglyph"><a href="#/user/{{model.uid}}">Profile</a></li>
+                <li class="font-effect-anaglyph"><a href="#/user/{{model.uid}}/grocery">Groceries</a></li>
+                <li class="font-effect-anaglyph"><a href="#/user/{{model.uid}}/favourites">Favourites</a></li>
+                <li class="font-effect-anaglyph"><a href="#/user/{{model.uid}}/followers">Followers</a></li>
+                <li class="active font-effect-anaglyph"><a href="#/user/{{model.uid}}/following">Follows</a></li>
             </ul>
         </div>
     </div>
@@ -43,10 +43,10 @@
         <div ng-if="model.followings" class="table followings">
             <div ng-repeat="following in model.followings">
                 <div class="col-xs-6 margin_top">
-                    <a href="#/user/{{model.uid}}/following/{{following._id}}">{{following.following.username}}</a>
+                    <a class="mitr-font" href="#/user/{{model.uid}}/following/{{following._id}}">{{following.following.username}}</a>
                 </div>
                 <div class="col-xs-6 margin_top">
-                    <button class="unfollow_btn" ng-click="model.unFollowUser(following)">UnFollow</button>
+                    <button class="unfollow_btn" ng-click="model.unFollowUser(following)" style="color: red">UnFollow</button>
                 </div>
             </div>
         </div>
@@ -54,10 +54,10 @@
         <div ng-if="model.users" class="table users_search">
             <div ng-repeat="user in model.users">
                 <div class="col-xs-6 margin_top">
-                    <a href="#/">{{user.username}}</a>
+                    <a class="mitr-font" href="#/">{{user.username}}</a>
                 </div>
                 <div class="col-xs-6 margin_top">
-                    <button class="unfollow_btn" ng-click="model.followUser(user)" style="border-color: red">Follow</button>
+                    <button class="unfollow_btn" ng-click="model.followUser(user)">Follow</button>
                 </div>
             </div>
         </div>
