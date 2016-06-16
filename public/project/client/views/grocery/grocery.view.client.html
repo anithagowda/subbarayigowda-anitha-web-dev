@@ -42,10 +42,14 @@
             <div ng-repeat="grocery in model.groceries">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox"> {{grocery.name}}
+                        <input type="checkbox" value="{{grocery.name}}"> {{grocery.name}}
                     </label>
                 </div>
             </div>
+        </div>
+
+        <div class="col-xs-6 margin_top">
+            <button class="unfollow_btn" ng-click="model.searchRecipe()">Search Recipes</button>
         </div>
     </div>
 

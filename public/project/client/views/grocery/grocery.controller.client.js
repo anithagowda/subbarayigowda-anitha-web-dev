@@ -12,6 +12,7 @@
 
         vm.uid = $routeParams.uid;
         vm.addGrocery = addGrocery;
+        vm.searchRecipe = searchRecipe;
         vm.logout = logout;
 
         function init() {
@@ -43,9 +44,15 @@
         }
 
         function searchRecipe() {
+            var ingredients = "";
+
             $('input[type=checkbox]').each(function () {
-                var sThisVal = (this.checked ? $(this).val() : "");
+                if(this.checked) {
+                    ingredients = ingredients + "," + $(this).val();
+                }
             });
+            $location.url("/user/"+userId+"/search/"+ingredients);
+            console.log(ingredients);
         }
 
         function logout() {

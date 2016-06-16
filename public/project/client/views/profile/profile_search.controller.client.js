@@ -6,13 +6,14 @@
         .module("OnlineKitchen")
         .controller("ProfileSearchController", ProfileSearchController);
     
-    function ProfileSearchController($routeParams, RecipeService, FavouritesService) {
+    function ProfileSearchController($routeParams, RecipeService, FavouritesService, $window) {
         var vm = this;
 
         vm.uid = $routeParams.uid;
         var ingredients = $routeParams.ingredients;
 
         vm.addFavourite = addFavourite;
+        vm.selectRecipe = selectRecipe;
 
         function init() {
             RecipeService
@@ -40,5 +41,10 @@
                     }
                 );
         }
+
+        function selectRecipe(recipe) {
+            $window.open(recipe.source_url, '_blank');
+        }
+
     }
 })();
