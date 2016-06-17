@@ -40,16 +40,20 @@
 
         <div ng-if="model.groceries" class="table">
             <div ng-repeat="grocery in model.groceries">
-                <div class="checkbox">
-                    <label class="mitr-font">
-                        <input type="checkbox" value="{{grocery.name}}"> {{grocery.name}}
+                <div class="checkbox form-input-group">
+                    <button class="unfollow_btn" ng-click="model.deleteIngredient(grocery)">
+                        <span class="glyphicon glyphicon-trash pull-right" style="text-align: right"></span>
+                    </button>
+                    <label class="mitr-font" style="margin-left: 10%">
+                        <input ng-model="value" type="checkbox" value="{{grocery.name}}" ng-change="model.change(value)"> {{grocery.name}}
                     </label>
                 </div>
+
             </div>
         </div>
 
         <div class="col-xs-6 margin_top">
-            <button class="unfollow_btn" ng-click="model.searchRecipe()">Search Recipes</button>
+            <button id="search" class="unfollow_btn" ng-click="model.searchRecipe()">Search Recipes</button>
         </div>
     </div>
 

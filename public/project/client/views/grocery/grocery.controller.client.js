@@ -14,6 +14,10 @@
         vm.addGrocery = addGrocery;
         vm.searchRecipe = searchRecipe;
         vm.logout = logout;
+        vm.deleteIngredient = deleteIngredient;
+        vm.change = change;
+
+        var counter = 0;
 
         function init() {
             GroceryService
@@ -25,7 +29,8 @@
                     function (err) {
                         vm.error = "Failed to retrieve grocery list";
                     }
-                )
+                );
+            $("#search").hide();
         }
         init();
 
@@ -55,6 +60,31 @@
             console.log(ingredients);
         }
 
+        function change(value) {
+            if (value) {
+                counter++;
+                $("#search").show();
+            }
+            else {
+                counter--;
+                counter == 0 ? $("#search").hide() : "";
+            }
+
+        }
+        
+        function deleteIngredient(grocery) {
+            GroceryService
+                .deleteGroceryById(grocery._id)
+                .then(
+                    function (res) {
+                        init();      
+                    },
+                    function (err) {
+                        vm.error = "Failed to delete ingredient";
+                    }
+                );
+        }
+        
         function logout() {
             UserService
                 .logout()
