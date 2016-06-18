@@ -34,52 +34,82 @@
             .when("/user/:uid/website", {
                 templateUrl: "views/website/website_list.view.client.html",
                 controller: "WebsiteListController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user/:uid/website/new", {
                 templateUrl: "views/website/website_new.view.client.html",
                 controller: "NewWebsiteController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user/:uid/website/:wid", {
                 templateUrl: "views/website/website_edit.view.client.html",
                 controller: "EditWebsiteController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user/:uid/website/:wid/page", {
                 templateUrl: "views/page/page_list.view.client.html",
                 controller: "PageListController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user/:uid/website/:wid/page/new", {
                 templateUrl: "views/page/page_new.view.client.html",
                 controller: "NewPageController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user/:uid/website/:wid/page/:pid", {
                 templateUrl: "views/page/page_edit.view.client.html",
                 controller: "EditPageController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user/:uid/website/:wid/page/:pid/widget", {
                 templateUrl: "views/widget/widget_list.view.client.html",
                 controller: "WidgetListController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user/:uid/website/:wid/page/:pid/widget/new", {
                 templateUrl: "views/widget/widget_choose.view.client.html",
                 controller: "NewWidgetController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user/:uid/website/:wid/page/:pid/widget/:wgid", {
                 templateUrl: "views/widget/widget_edit.view.client.html",
                 controller: "EditWidgetController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user/:uid/website/:wid/page/:pid/widget/:wgid/flickr", {
                 templateUrl: "views/widget/widget_flickr_search.view.client.html",
                 controller: "FlickrImageSearchController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .otherwise({
                 redirectTo: "/login"
