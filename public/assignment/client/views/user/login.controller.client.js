@@ -25,7 +25,7 @@
                         vm.error = "Invalid username/password!";
                     }
                     else {
-                        $location.url("/user/"+user._id);
+                        $location.url("/user");
                     }
                 },
                 function (err) {
