@@ -5,14 +5,24 @@
         {{model.error}}
     </div>
 
+    <div ng-show="loginForm.$invalid && loginForm.$submitted" class="alert alert-danger" role="alert">
+        There is an error in the form!
+    </div>
+
     <h1>Login</h1>
 
-    <input ng-model="username" type="text" class="form-control" placeholder="username">
-    <input ng-model="password" type="password" class="form-control" placeholder="password">
+    <form name="loginForm" novalidate>
+        <input name="username" ng-model="username" type="text" class="form-control" placeholder="username" required>
+        <span  class="error-span" ng-show="loginForm.username.$invalid && loginForm.$submitted">Username cannot be empty</span>
 
-    <a ng-click="model.login(username, password)" class="btn btn-primary btn-block">Login</a>
-    <a href="/auth/facebook" class="btn btn-primary btn-block">
-        <span class="fa fa-facebook-official"></span> Facebook</a>
-    <a class="btn btn-success btn-block" href="#/register">Register</a>
+        <input name="password" ng-model="password" type="password" class="form-control" placeholder="password" required>
+        <span class="error-span" ng-show="loginForm.password.$invalid && loginForm.$submitted">Password cannot be empty</span>
+
+        <button type="submit" ng-click="model.login(username, password)" class="btn btn-primary btn-block">Login</button>
+        <button href="/auth/facebook" class="btn btn-primary btn-block">
+            <span class="fa fa-facebook-official"></span> Facebook</button>
+        <button class="btn btn-success btn-block" href="#/register">Register</button>
+
+    </form>
 
 </div>
