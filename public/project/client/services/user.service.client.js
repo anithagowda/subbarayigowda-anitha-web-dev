@@ -9,6 +9,7 @@
     function UserService($http) {
 
         var apis = {
+            checkInsertAdmin: checkInsertAdmin,
             createUser : createUser,
             findUserById : findUserById,
             findUserByUsername : findUserByUsername,
@@ -23,6 +24,9 @@
             register: register
         };
 
+        function checkInsertAdmin() {
+            return $http.get("/api/admin/create");
+        }
 
         function createUser(username, password) {
             var user = {username:username, password:password };

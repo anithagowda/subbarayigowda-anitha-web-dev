@@ -6,10 +6,21 @@
         .module("OnlineKitchen")
         .controller("HomeController",HomeController);
     
-    function HomeController($location) {
+    function HomeController($location, UserService) {
         var vm = this;
 
         vm.searchRecipes = searchRecipes;
+        
+        function init() {
+            UserService
+                .checkInsertAdmin()
+                .then(
+                    function (res) {
+                        //Admin created
+                    }
+                );
+        }
+        init();
 
         function searchRecipes(ingredients) {
             $location.url("/search/"+ingredients);

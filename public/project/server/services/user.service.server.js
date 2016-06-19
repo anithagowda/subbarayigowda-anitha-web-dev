@@ -7,6 +7,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require("bcrypt-nodejs");
 
 module.exports = function (app, module) {
+    app.get("/api/admin/create", createAdmin);
     app.get("/api/user", getUsers);
     app.post("/api/user", createUser);
     app.get("/api/user/:userId", findUserById);
@@ -67,6 +68,55 @@ module.exports = function (app, module) {
     function login(req, res) {
         var user = req.user;
         res.json(user);
+    }
+
+    function createAdmin(req, res) {
+        var username = 'admin';
+        var password = 'admin';
+
+        UserModel
+            .findUserByUsername(username)
+            .then(
+                function (user) {
+                    if(user) {
+                        console.log("Admin already present");
+                        return;
+                    }
+                    else {
+                        /*hasSync - synchronous call*/
+                        var admin = {username: username, password: bcrypt.hashSync(password)};
+                        return UserModel
+                            .createUser(admin);
+                    }
+                },
+                function (err) {
+                    console.log("Failed to find Admin account");
+                    res.status(400).send(err);
+                }
+            )
+            /*this then is for createUser*/
+            .then(
+                function (user) {
+                    if (user) {
+                        /*passport login - serialize and send them to browser to be added in cookie*/
+                        req.login(user, function (err) {
+                            if (err) {
+                                console.log("Failed to create Admin account");
+                                res.status(400).send(err);
+                            }
+                            else {
+                                console.log("Admin created successfully!");
+                                res.json(user);
+                            }
+                        });
+                    }
+                },
+                function (err) {
+                    console.log("Failed to create Admin account");
+                    res.status(400).send(err);
+                }
+            );
+
     }
 
     function getUsers(req, res) {
@@ -161,6 +211,11 @@ module.exports = function (app, module) {
             .findAllUsers()
             .then(
                 function (users) {
+                    for (var i in users) {
+                        if (users[i].username === 'admin') {
+                            users.splice(i,1);
+                        }
+                    }
                     res.json(users);
                 },
                 function (err) {

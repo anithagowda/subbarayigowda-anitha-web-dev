@@ -33,7 +33,7 @@
                             }
                         },
                         function (err) {
-                            vm.error = err;
+                            vm.error = err.data;
                         }
                     );
             }

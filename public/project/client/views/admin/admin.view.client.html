@@ -8,6 +8,10 @@
 
     <h1>Admin</h1>
 
+    <div ng-if="model.users.length === 0">
+        There are no users registered as of now!
+    </div>
+
     <div ng-if="model.users" class="table followings">
         <div ng-repeat="user in model.users">
             <div class="col-xs-6 margin_top">
