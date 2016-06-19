@@ -15,6 +15,7 @@ module.exports = function () {
         findUserByUsername: findUserByUsername,
         findUserStartingWithUsername: findUserStartingWithUsername,
         findUserByCredentials: findUserByCredentials,
+        findAllUsers: findAllUsers,
         updateUser: updateUser,
         deleteUser: deleteUser
     };
@@ -43,6 +44,10 @@ module.exports = function () {
         return ProjUser.findOne({username:username, password:password});
     }
 
+    function findAllUsers() {
+        return ProjUser.find();    
+    }
+    
     function updateUser(userId, user) {
         delete user._id; //remove _id field as older version of mongoDB complains about updating _id
         return ProjUser

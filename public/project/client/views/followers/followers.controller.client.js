@@ -23,9 +23,9 @@
                         vm.followers = res.data;
                     },
                     function (err) {
-                        vm.error = "Failed to retrieve your followers.."
+                        vm.error = "Failed to retrieve your followers..";
                     }
-                )
+                );
         }
         init();
 

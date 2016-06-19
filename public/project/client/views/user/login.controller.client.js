@@ -27,7 +27,12 @@
                         else {
                             $rootScope.currentUser = user;
                             $rootScope.$broadcast('currentUser', {loggedUser : user});
-                            $location.url("/user/"+user._id);
+                            if (user.username === 'admin') {
+                                $location.url("/admin/"+user._id);
+                            }
+                            else {
+                                $location.url("/user/"+user._id);
+                            }
                         }
                     },
                     function (err) {

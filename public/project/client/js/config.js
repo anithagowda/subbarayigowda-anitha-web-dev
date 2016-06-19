@@ -33,6 +33,16 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
+            .when("/admin/:uid", {
+                templateUrl: "views/admin/admin.view.client.html",
+                controller: "AdminController",
+                controllerAs: "model"
+            })
+            .when("/admin/user/:uid", {
+                templateUrl: "views/admin/user_profile.view.client.html",
+                controller: "UserProfileController",
+                controllerAs: "model"
+            })
             .when("/user/:uid", {
                 templateUrl: "views/profile/profile_home.view.client.html",
                 controller: "ProfileHomeController",
@@ -125,6 +135,10 @@
                 );
 
             return deferred.promise;
+        }
+        
+        function checkAdminLoggedIn() {
+            
         }
     }
 })();

@@ -10,6 +10,7 @@ module.exports = function (app, module) {
     app.get("/api/user", getUsers);
     app.post("/api/user", createUser);
     app.get("/api/user/:userId", findUserById);
+    app.get("/api/admin/user", findAllUsers);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
     
@@ -153,6 +154,19 @@ module.exports = function (app, module) {
                     res.sendStatus(404);
                 }
             );
+    }
+
+    function findAllUsers(req, res) {
+        UserModel
+            .findAllUsers()
+            .then(
+                function (users) {
+                    res.json(users);
+                },
+                function (err) {
+                    res.status(404).send(err);
+                }
+            )
     }
 
     function updateUser(req, res) {

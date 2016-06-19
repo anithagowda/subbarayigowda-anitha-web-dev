@@ -1,0 +1,21 @@
+<ng-include src="'views/header/header.view.client.html'"></ng-include>
+
+<div class="container margin_top">
+
+    <div ng-if="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+
+    <h1>Admin</h1>
+
+    <div ng-if="model.users" class="table followings">
+        <div ng-repeat="user in model.users">
+            <div class="col-xs-6 margin_top">
+                <a class="mitr-font" href="#/admin/user/{{user._id}}">{{user.username}}</a>
+            </div>
+            <div class="col-xs-6 margin_top">
+                <button class="unfollow_btn" ng-click="model.deleteUser(user)" style="color: red">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
