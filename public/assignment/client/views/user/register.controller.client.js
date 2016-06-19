@@ -13,7 +13,7 @@
         function register(username, password, verify_password) {
             if (username === "" || password === "" || verify_password === "" ||
                 username == null || password == null || verify_password == null) {
-                vm.error = "Username, Password & Verify_password required";
+                //vm.error = "Username, Password & Verify_password required";
                 return;
             }
 
@@ -40,7 +40,7 @@
                         function (res) {
                             var user = res.data;
                             if (user) {
-                                $location.url("/user/"+user._id);
+                                $location.url("/user");
                             }
                         },
                         function (err) {
