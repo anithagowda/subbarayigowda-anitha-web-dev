@@ -21,17 +21,21 @@
         {{model.error}}
     </div>
 
-    Name
-    <input ng-model="model.widget.name" class="form-control"/>
-    Text
-    <input ng-model="model.widget.text" class="form-control"/>
-    Rows
-    <input ng-model="model.widget.rows" class="form-control" type="number"/>
-    Placeholder
-    <input ng-model="model.widget.placeholder" class="form-control"/>
-    Formatted
-    <input ng-model="model.widget.formatted" type="checkbox"/>
-    <a class="btn btn-danger btn-block" ng-click="model.delete_widget(model.widget)">Delete</a>
+    <form name="textForm">
+        Name
+        <input name="widgetName" ng-model="model.widget.name" class="form-control" required/>
+        <span class="warning-span" ng-if="textForm.widgetName.$invalid">Name cannot be empty</span><br>
+        Text
+        <input ng-model="model.widget.text" class="form-control"/>
+        Rows
+        <input ng-model="model.widget.rows" class="form-control" type="number"/>
+        Placeholder
+        <input ng-model="model.widget.placeholder" class="form-control"/>
+        Formatted
+        <input ng-model="model.widget.formatted" type="checkbox"/>
+        <a class="btn btn-danger btn-block" ng-click="model.delete_widget(model.widget)">Delete</a>
+
+    </form>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

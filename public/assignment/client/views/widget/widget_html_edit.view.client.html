@@ -22,18 +22,22 @@
         {{model.error}}
     </div>
 
-    <div class="form-group">
-        <label>Name</label>
-        <input ng-model="model.widget.name" class="form-control" type="text" placeholder="Name">
-    </div>
+    <form name="htmlForm">
+        <div class="form-group">
+            <label>Name</label>
+            <input name="widgetName" ng-model="model.widget.name" class="form-control" type="text" placeholder="Name" required>
+            <span class="warning-span" ng-if="htmlForm.widgetName.$invalid">Name cannot be empty</span>
+        </div>
 
-    <div ng-model="model.widget.text"
-         text-angular
-         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        <div ng-model="model.widget.text"
+             text-angular
+             ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
             ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
             ['indent','outdent'],['html']]">
-    </div>
-    <a class="btn btn-danger btn-block" ng-click="model.delete_widget(model.widget)">Delete</a>
+        </div>
+        <a class="btn btn-danger btn-block" ng-click="model.delete_widget(model.widget)">Delete</a>
+    </form>
+
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

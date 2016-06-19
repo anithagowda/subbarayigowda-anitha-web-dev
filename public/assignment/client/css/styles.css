@@ -65,3 +65,7 @@ p.navbar-text.pull-left {
 .error-span {
     color: red;
 }
+
+.warning-span {
+    color: orange;
+}

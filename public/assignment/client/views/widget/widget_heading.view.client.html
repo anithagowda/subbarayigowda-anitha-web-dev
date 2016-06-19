@@ -23,10 +23,11 @@
         {{model.error}}
     </div>
 
-    <div role="form">
+    <form name="headerForm">
         <div class="form-group">
             <label>Name</label>
-            <input ng-model="model.widget.name" class="form-control" type="text" placeholder="Name" >
+            <input name="widgetName" ng-model="model.widget.name" class="form-control" type="text" placeholder="Name" required>
+            <span class="warning-span" ng-if="headerForm.widgetName.$invalid">Name cannot be empty</span>
         </div>
 
         <div class="form-group">
@@ -45,7 +46,7 @@
                 <option>6</option>
             </select>
         </div>
-    </div>
+    </form>
     <a class="btn btn-danger btn-block" ng-click="model.delete_widget(model.widget)">Delete</a>
 </div>
 

@@ -22,10 +22,11 @@
         {{model.error}}
     </div>
 
-    <div role="form">
+    <form name="imageForm">
         <div class="form-group">
             <label>Name</label>
-            <input ng-model="model.widget.name" class="form-control" type="text" placeholder="Name">
+            <input name="widgetName" ng-model="model.widget.name" class="form-control" type="text" placeholder="Name" required>
+            <span class="warning-span" ng-if="imageForm.widgetName.$invalid">Name cannot be empty</span>
         </div>
 
         <div class="form-group">
@@ -53,7 +54,7 @@
             <button type="submit"   class="btn btn-block btn-primary">Upload Local Image</button>
         </form>
 
-    </div>
+    </form>
 
     <a class="btn btn-success btn-block" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.widget._id}}/flickr">Upload image from Flickr</a>
     <a class="btn btn-danger btn-block" ng-click="model.delete_widget(model.widget)">Delete</a>
