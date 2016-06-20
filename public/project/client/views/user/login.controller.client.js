@@ -31,7 +31,7 @@
                                 $location.url("/admin/"+user._id);
                             }
                             else {
-                                $location.url("/user/"+user._id);
+                                $location.url("/user");
                             }
                         }
                     },

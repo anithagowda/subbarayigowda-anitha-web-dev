@@ -43,7 +43,7 @@
                 controller: "UserProfileController",
                 controllerAs: "model"
             })
-            .when("/user/:uid", {
+            .when("/user/", {
                 templateUrl: "views/profile/profile_home.view.client.html",
                 controller: "ProfileHomeController",
                 controllerAs: "model",

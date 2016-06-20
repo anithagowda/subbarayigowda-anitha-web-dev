@@ -5,8 +5,11 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require("bcrypt-nodejs");
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 module.exports = function (app, module) {
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
     app.get("/api/admin/create", createAdmin);
     app.get("/api/user", getUsers);
     app.post("/api/user", createUser);
@@ -19,10 +22,24 @@ module.exports = function (app, module) {
     app.post("/api/logout", logout);
     app.get("/api/loggedIn", loggedIn);
     app.post("/api/register", register);
-    
+
+    app.get('/auth/google/callback',
+        passport.authenticate('google', {
+            successRedirect: '/#/user',
+            failureRedirect: '/#/login'
+        }));
+
     passport.use('olKitchen', new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
+
+
+    var googleConfig = {
+        clientID     : process.env.GOOGLE_CLIENT_ID,
+        clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL  : process.env.GOOGLE_CALLBACK_URL
+    };
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
     
     var UserModel = module.userModel;
     var FollowingModel = module.followingModel;
@@ -320,6 +337,36 @@ module.exports = function (app, module) {
                     res.status(400).send(err);
                 }
             );
+    }
+    
+    function googleStrategy(token, refreshToken, profile, done) {
+        UserModel
+            .findGoogleUser(profile.id)
+            .then(function (googleUser) {
+                if (googleUser) {
+                    return done(null, googleUser);
+                }
+                else {
+                    return createGoogleUser(token, profile);
+                }
+            });
+    }
 
+    function createGoogleUser(token, profile) {
+        var googleUser = {
+            username: profile.displayName.replace(/ /g, ''),
+            google : {
+                token: token,
+                id: profile.id,
+                displayName: profile.displayName
+            }
+        };
+        UserModel
+            .createUser(googleUser)
+            .then(
+                function (user) {
+                    done(null, user);
+                }
+            );
     }
 };

@@ -9,7 +9,7 @@
     function ProfileHomeController($routeParams, UserService, $location, $rootScope) {
         var vm = this;
 
-        vm.uid = $routeParams.uid;
+        vm.uid = $rootScope.currentUser._id;
         vm.unregister = unregister;
         vm.updateUser = updateUser;
         vm.editUser = editUser;
@@ -18,7 +18,7 @@
 
         function init() {
             UserService
-                .findUserById($routeParams.uid)
+                .findUserById(vm.uid)
                 .then(function (res) {
                     vm.user = res.data;
                 });
@@ -30,7 +30,7 @@
         
         function unregister() {
             UserService
-                .deleteUser($routeParams.uid)
+                .deleteUser(vm.uid)
                 .then(
                     function (res) {
                         $location.url("/");
@@ -43,7 +43,7 @@
 
         function updateUser(user) {
             UserService
-                .updateUser($routeParams.uid, user)
+                .updateUser(vm.uid, user)
                 .then(
                     function (res) {
                         if (res.status == 200) {

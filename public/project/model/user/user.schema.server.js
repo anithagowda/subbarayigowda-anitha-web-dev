@@ -11,6 +11,11 @@ module.exports = function () {
         firstName: String,
         lastName: String,
         email: String,
+        google : {
+            token: String,
+            id: String,
+            displayName: String
+        },
         dateCreated: {type: Date, default: Date.now()}
     }, {collection: "project.user"});
     

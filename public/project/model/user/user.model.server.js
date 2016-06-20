@@ -17,7 +17,8 @@ module.exports = function () {
         findUserByCredentials: findUserByCredentials,
         findAllUsers: findAllUsers,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        findGoogleUser: findGoogleUser
     };
     
     return api;
@@ -65,5 +66,9 @@ module.exports = function () {
     
     function deleteUser(userId) {
         return ProjUser.remove({_id: userId});
+    }
+
+    function findGoogleUser(id) {
+        return ProjUser.findOne({"google.id" : id});
     }
 };
