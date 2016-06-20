@@ -12,7 +12,7 @@
     <h1>Login</h1>
 
     <form name="loginForm" novalidate>
-        <input name="username" ng-model="username" type="text" class="form-control" placeholder="username" required>
+        <input name="username" ng-model="username" type="text" class="form-control" placeholder="username" required autocorrect="off" autocapitalize="off">
         <span  class="error-span" ng-show="loginForm.username.$invalid && loginForm.$submitted">Username cannot be empty</span>
 
         <input name="password" ng-model="password" type="password" class="form-control" placeholder="password" required>
