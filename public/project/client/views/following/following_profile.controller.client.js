@@ -7,14 +7,16 @@
         .module("OnlineKitchen")
         .controller("FollowingProfileController", FollowingProfileController);
     
-    function FollowingProfileController($routeParams, FollowingsService, FavouritesService, $window, UserService) {
+    function FollowingProfileController($routeParams, FollowingsService, FavouritesService, $window, UserService, $rootScope) {
         
         var vm = this;
         vm.uid = $routeParams.uid;
         var followingid = $routeParams.followingid;
         vm.selectRecipe = selectRecipe;
         vm.addFavourite = addFavourite;
-
+        vm.logout = logout;
+        vm.home = home;
+        
         function init() {
             FollowingsService
                 .findFollowingById(followingid)
@@ -69,6 +71,31 @@
                         vm.error = "Failed to save favourite";
                     }
                 );
+        }
+
+        function home() {
+            if($rootScope.currentUser.username === 'admin') {
+                $location.url("/admin/"+vm.uid);
+            }
+            else {
+                $location.url("/user/"+vm.uid);
+            }
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (res) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function (err) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    }
+                );
+
         }
     }
 })();

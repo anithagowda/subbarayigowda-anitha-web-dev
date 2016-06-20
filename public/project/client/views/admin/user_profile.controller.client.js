@@ -7,11 +7,13 @@
         .module("OnlineKitchen")
         .controller("UserProfileController", UserProfileController);
     
-    function UserProfileController(UserService, $routeParams, FavouritesService, FollowersService, FollowingsService, $location) {
+    function UserProfileController(UserService, $routeParams, FavouritesService, FollowersService, FollowingsService, $location, $rootScope) {
         var vm = this;
         var uid = $routeParams.uid;
         vm.uid = $routeParams.uid;
         vm.deleteUser = deleteUser;
+        vm.logout = logout;
+        vm.home = home;
         
         function init() {
             UserService
@@ -72,6 +74,31 @@
                         vm.error = "Failed to delete user";
                     }
                 );
+        }
+
+        function home() {
+            if($rootScope.currentUser.username === 'admin') {
+                $location.url("/admin/"+vm.uid);
+            }
+            else {
+                $location.url("/user/"+vm.uid);
+            }
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (res) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function (err) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    }
+                );
+
         }
     }
     

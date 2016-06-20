@@ -14,6 +14,7 @@
         vm.uid = $routeParams.uid;
         vm.selectFollower = selectFollower;
         vm.logout = logout;
+        vm.home = home;
 
         function init() {
             FollowersService
@@ -31,6 +32,15 @@
 
         function selectFollower(follower) {
             //Go to followers profile
+        }
+
+        function home() {
+            if($rootScope.currentUser.username === 'admin') {
+                $location.url("/admin/"+vm.uid);
+            }
+            else {
+                $location.url("/user/"+vm.uid);
+            }
         }
         
         function logout() {

@@ -17,6 +17,7 @@
         console.log("LoggedIn: "+vm.loggedIn);
 
         vm.logout = logout;
+        vm.home = home;
         
         function init() {
             scope.$on('currentUser', function (event, data) {
@@ -35,6 +36,15 @@
         }
         init();
 
+        function home() {
+            if(vm.user.username === 'admin') {
+                $location.url("/admin/"+vm.user._id);
+            }
+            else {
+                $location.url("/user/"+vm.user._id);
+            }
+        }
+        
         function logout() {
             UserService
                 .logout()

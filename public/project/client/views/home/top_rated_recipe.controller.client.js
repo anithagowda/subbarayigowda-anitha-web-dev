@@ -6,10 +6,12 @@
         .module("OnlineKitchen")
         .controller("TopRecipeController", TopRecipeController);
     
-    function TopRecipeController(RecipeService, $window) {
+    function TopRecipeController(RecipeService, $window, $rootScope, FavouritesService, $location) {
         var vm = this;
         vm.selectRecipe = selectRecipe;
-        vm.setLoginError = setLoginError;
+        vm.checkLogin = checkLogin;
+        vm.home = home;
+        vm.logout = logout;
 
         function init() {
             RecipeService
@@ -29,8 +31,48 @@
             $window.open(recipe.source_url, '_blank');
         }
 
-        function setLoginError() {
-            vm.error = "Login to save favourites";
+        function checkLogin(recipe) {
+            if ($rootScope.currentUser) {
+                FavouritesService
+                    .createFavourite($rootScope.currentUser._id, recipe)
+                    .then(
+                        function (res) {
+                            vm.success = "Saved favourite successfully";
+                        },
+                        function (err) {
+                            vm.error = "Failed to save favourite";
+                        }
+                    );
+            }
+            else {
+                vm.error = "Login to save favourites";
+            }
+        }
+
+
+        function home() {
+            if($rootScope.currentUser.username === 'admin') {
+                $location.url("/admin/"+$rootScope.currentUser._id);
+            }
+            else {
+                $location.url("/user/"+$rootScope.currentUser._id);
+            }
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (res) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function (err) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    }
+                );
+
         }
     }
 })();

@@ -23,7 +23,7 @@
                 <li><a href="#/top_rated_recipe">TopRecipes</a></li>
                 <li><a class="loggedOut" href="#/register">Register</a></li>
                 <li><a class="loggedOut" href="#/login">Login</a></li>
-                <li><a class="loggedIn" href="#/user/{{model.uid}}">Home</a></li>
+                <li><a class="loggedIn" ng-click="model.home()">Home</a></li>
                 <li><a class="loggedIn" ng-click="model.logout()">Logout</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->

@@ -13,6 +13,7 @@
         vm.selectRecipe = selectRecipe;
         vm.removeFavourite = removeFavourite;
         vm.logout = logout;
+        vm.home = home;
 
         function init() {
             FavouritesService
@@ -46,6 +47,15 @@
                 )
         }
 
+        function home() {
+            if($rootScope.currentUser.username === 'admin') {
+                $location.url("/admin/"+vm.uid);
+            }
+            else {
+                $location.url("/user/"+vm.uid);
+            }
+        }
+        
         function logout() {
             UserService
                 .logout()

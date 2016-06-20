@@ -7,9 +7,11 @@
         .module("OnlineKitchen")
         .controller("AdminController", AdminController);
     
-    function AdminController(UserService) {
+    function AdminController(UserService, $location, $rootScope) {
         var vm = this;
         vm.deleteUser = deleteUser;
+        vm.logout = logout;
+        vm.home = home;
 
         function init() {
             UserService
@@ -37,6 +39,31 @@
                         vm.error = "Failed to delete user";
                     }
                 );
+        }
+
+        function home() {
+            if($rootScope.currentUser.username === 'admin') {
+                $location.url("/admin/"+vm.uid);
+            }
+            else {
+                $location.url("/user/"+vm.uid);
+            }
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (res) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function (err) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    }
+                );
+
         }
     }
 })();

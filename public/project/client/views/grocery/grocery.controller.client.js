@@ -16,6 +16,7 @@
         vm.logout = logout;
         vm.deleteIngredient = deleteIngredient;
         vm.change = change;
+        vm.home = home;
 
         var counter = 0;
 
@@ -83,6 +84,15 @@
                         vm.error = "Failed to delete ingredient";
                     }
                 );
+        }
+
+        function home() {
+            if($rootScope.currentUser.username === 'admin') {
+                $location.url("/admin/"+vm.uid);
+            }
+            else {
+                $location.url("/user/"+vm.uid);
+            }
         }
         
         function logout() {
