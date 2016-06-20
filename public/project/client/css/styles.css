@@ -126,8 +126,9 @@ p.navbar-text.pull-left {
 }
 
 .carousel-inner .item img {
-    padding-bottom: 10%;
-    border-radius: 10px;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 7%;
 }
 
 .img_background {

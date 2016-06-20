@@ -1,15 +1,17 @@
 <ng-include src="'views/header/header.view.client.html'"></ng-include>
 
-<div class="plain_background" >
-    <div class="container">
+<div>
+
+    <div class="container" style="background: #C2C2C2; width: 100%;">
         <div class="input-group margin_top">
             <input ng-model="ingredients" type="text" class="form-control" placeholder="Search Recipes by ingredients">
-        <span class="input-group-btn">
-            <a ng-click="model.searchRecipes(ingredients)" class="btn btn-default" type="button">
-                <span class="glyphicon glyphicon-search"></span>
-            </a>
-        </span>
+            <span class="input-group-btn">
+                <a ng-click="model.searchRecipes(ingredients)" class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+            </span>
         </div>
+
 
         <div id="carousel-example-generic" class="carousel slide margin_top" data-ride="carousel">
             <!-- Indicators -->
@@ -22,21 +24,21 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img src="./views/images/image1.jpg" width="100%" height="100%">
+                    <img src="./views/images/image1.jpg" width="100%" height="50%">
                     <div class="carousel-caption">
-                        Yummy Food Awaits..
+                        <h4>One place for all the Yummy Recipes</h4>
                     </div>
                 </div>
                 <div class="item">
-                    <img src="./views/images/image2.jpg" width="100%" height="100%">
+                    <img src="./views/images/image2.jpg" width="100%" height="80%">
                     <div class="carousel-caption">
-                        Manage Groceries..
+                        Manage your Groceries
                     </div>
                 </div>
                 <div class="item">
-                    <img src="./views/images/image3.jpg">
+                    <img src="./views/images/image3.jpg" width="100%" height="80%">
                     <div class="carousel-caption">
-                        Share Recipes..
+                        Connect with friends and have Fun
                     </div>
                 </div>
             </div>
@@ -53,5 +55,27 @@
         </div>
     </div>
 
+    <div class="plain_background">
+
+        <div class="margin_top">
+            <h1 class="font-effect-shadow-multiple" style="text-align: center; color: white">
+                Here are some Top Recipes for today..
+            </h1>
+        </div>
+
+        <div ng-if="model.recipes" class="row" style="margin: 2%">
+            <div class="col-sm-4" ng-repeat="recipe in model.recipes">
+
+                <img id="image_container"
+                     ng-click="model.selectRecipe(recipe)"
+                     width=100% height="200px"
+                     ng-src="{{recipe.image_url}}"/>
+
+                <div class="carousel-caption">
+                    <label>{{recipe.title}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 

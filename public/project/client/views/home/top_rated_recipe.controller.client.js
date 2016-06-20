@@ -22,7 +22,7 @@
                     },
                 function (err) {
                     vm.error = "Unable to Fetch our Top Rated Recipe. Please try again later";
-                })
+                });
         }
         init();
 
