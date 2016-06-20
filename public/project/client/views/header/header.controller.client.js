@@ -41,7 +41,7 @@
                 $location.url("/admin/"+vm.user._id);
             }
             else {
-                $location.url("/user/"+vm.user._id);
+                $location.url("/user");
             }
         }
         

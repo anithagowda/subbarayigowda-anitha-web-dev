@@ -7,7 +7,7 @@
         .module("OnlineKitchen")
         .controller("FollowersProfileController", FollowersProfileController);
     
-    function FollowersProfileController($routeParams, FollowersService, FavouritesService, $window, UserService, $rootScope) {
+    function FollowersProfileController($routeParams, FollowersService, FavouritesService, $window, UserService, $rootScope, $location) {
         
         var vm = this;
         vm.uid = $routeParams.uid;
@@ -78,7 +78,7 @@
                 $location.url("/admin/"+vm.uid);
             }
             else {
-                $location.url("/user/"+vm.uid);
+                $location.url("/user");
             }
         }
 

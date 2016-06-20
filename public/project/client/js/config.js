@@ -112,7 +112,7 @@
             });
 
         //$q allows to work with promises
-        function checkLoggedIn(UserService, $location, $q) {
+        function checkLoggedIn(UserService, $location, $q, $rootScope) {
 
             var deferred = $q.defer();
 
@@ -122,10 +122,12 @@
                     function (res) {
                         var user = res.data;
                         if (user == '0') {
+                            $rootScope.currentUser = null;
                             deferred.reject();
                             $location.url("/login");
                         }
                         else {
+                            $rootScope.currentUser = user;
                             deferred.resolve();
                         }
                     },

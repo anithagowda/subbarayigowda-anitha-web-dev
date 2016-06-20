@@ -52,7 +52,7 @@
                 $location.url("/admin/"+vm.uid);
             }
             else {
-                $location.url("/user/"+vm.uid);
+                $location.url("/user");
             }
         }
         
