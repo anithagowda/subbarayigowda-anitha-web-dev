@@ -1,0 +1,45 @@
+<ng-include src="'views/header/header.view.client.html'"></ng-include>
+
+<div class="container">
+    <div  style="text-align: center">
+        <h2 class="font-effect-anaglyph">{{model.recipe.title}}</h2>
+    </div>
+
+    <img src="{{model.recipe.image_url}}" class="margin_top" style="margin-left: auto; margin-right: auto; display: block; width: 100%;">
+
+
+    <div class="margin_top">
+        <h4 class="mitr-font font-effect-anaglyph">Ingredients</h4>
+        <ul ng-repeat="ingredient in model.recipe.ingredients">
+            <li>{{ingredient}}</li>
+        </ul>
+    </div>
+
+    <div class="margin_top">
+        <h4  class="mitr-font font-effect-anaglyph">Directions</h4>
+        <a class="margin_left" href="{{model.recipe.source_url}}" target="_blank">View in {{model.recipe.publisher}}</a>
+    </div>
+
+    <div class="margin_top">
+        <h4 class="mitr-font font-effect-anaglyph">Comments</h4>
+        <button id="addComment_btn" class="unfollow_btn" ng-click="model.addComment()">Add Comment</button>
+
+        <div id="addComment_div">
+            <textarea ng-model="comment.comment" class="form-control" placeholder="Type your comment here"></textarea>
+            <button class="unfollow_btn margin_top" ng-click="model.saveComment(comment)">Save</button>
+            <button class="unfollow_btn margin_top" ng-click="model.cancel()">Cancel</button>
+        </div>
+    </div>
+
+    <div class="margin_top">
+        <h4 class="mitr-font font-effect-anaglyph">Reviews by Users</h4>
+        <h6 ng-if="!model.comments" class="margin_left">Be the first one to write a review</h6>
+        <ul ng-if="model.comments" ng-repeat="comment in model.comments" class="list-group">
+            <li class="list-item-group">
+                <h5 class="mitr-font" style="text-transform: capitalize; font-weight: bold">{{comment.username}}</h5>
+                <h6 class="margin_left">{{comment.comment}}</h6>
+            </li>
+        </ul>
+    </div>
+
+</div>

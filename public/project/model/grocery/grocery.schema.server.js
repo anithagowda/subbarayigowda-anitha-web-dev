@@ -8,7 +8,7 @@ module.exports = function () {
     var GrocerySchema = mongoose.Schema({
         "_user" : {type:mongoose.Schema.ObjectId, ref: "ProjUser"},
         "name" : String,
-        dateCreated: {type: Date, default: Date.now()}
+        "dateCreated": {type: Date, default: Date.now()}
     }, {collection: "project.grocery" });
     
     return GrocerySchema;

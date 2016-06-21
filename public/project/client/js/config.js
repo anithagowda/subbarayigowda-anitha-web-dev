@@ -67,6 +67,14 @@
                     loggedIn : checkLoggedIn
                 }
             })
+            .when("/user/:uid/favourites/:rId", {
+                templateUrl: "views/favourites/fav_recipe.view.client.html",
+                controller: "FavRecipeController",
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
+            })
             .when("/user/:uid/followers", {
                 templateUrl: "views/followers/followers.view.client.html",
                 controller: "FollowersController",

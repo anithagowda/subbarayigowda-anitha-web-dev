@@ -32,7 +32,8 @@ module.exports = function () {
         favouriteModel: require("./favourites/favourites.model.server")(),
         followerModel: require("./followers/followers.model.server")(),
         followingModel: require("./following/following.model.server")(),
-        groceryModel: require("./grocery/grocery.model.server")()
+        groceryModel: require("./grocery/grocery.model.server")(),
+        commentsModel: require("./comments/comments.model.server")()
     };
     return models;
 };

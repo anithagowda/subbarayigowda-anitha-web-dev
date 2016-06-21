@@ -8,7 +8,8 @@ module.exports = function () {
 
     var ProjFollowersSchema = mongoose.Schema({
         "_user": {type: mongoose.Schema.ObjectId, ref: "ProjectUser"},
-        "follower" : followerUserSchema
+        "follower" : followerUserSchema,
+        "dateCreated": {type: Date, default: Date.now()}
     }, {collection: "project.followers"});
     
     return ProjFollowersSchema;

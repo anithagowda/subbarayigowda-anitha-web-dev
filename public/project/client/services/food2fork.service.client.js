@@ -10,7 +10,8 @@
 
         var api = {
             searchRecipe: searchRecipe,
-            getTopRecipes: getTopRecipes
+            getTopRecipes: getTopRecipes,
+            getRecipe: getRecipe
         };
         return api;
         
@@ -20,6 +21,10 @@
 
         function getTopRecipes() {
             return $http.get("/top_recipes");
+        }
+
+        function getRecipe(rId) {
+            return $http.get("/get/"+rId);
         }
     }
 })();

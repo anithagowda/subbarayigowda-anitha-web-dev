@@ -11,4 +11,5 @@ module.exports = function (app, request) {
     require("./services/followers.service.server.js")(app, models);
     require("./services/followings.service.server.js")(app, models);
     require("./services/grocery.service.server.js")(app, models);
+    require("./services/comments.service.server.js")(app, models);
 };

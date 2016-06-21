@@ -29,7 +29,7 @@
                             if (user) {
                                 $rootScope.currentUser = user;
                                 $rootScope.$broadcast('currentUser', {loggedUser : user});
-                                $location.url("/user/"+user._id);
+                                $location.url("/user");
                             }
                         },
                         function (err) {
