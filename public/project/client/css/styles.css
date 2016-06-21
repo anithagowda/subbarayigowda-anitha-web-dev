@@ -208,3 +208,7 @@ p.navbar-text.pull-left {
     font-weight: bold;
     font-size: 16px;
 }
+
+.error-span {
+    color: red;
+}

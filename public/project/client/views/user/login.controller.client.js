@@ -13,7 +13,7 @@
         
         function login(username, password) {
             if (username === "" || password === "" || username == null || password == null) {
-                vm.error = "Username & Password required";
+                //vm.error = "Username & Password required";
                 return;
             }
 

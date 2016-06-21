@@ -7,12 +7,14 @@
         .module("OnlineKitchen")
         .controller("FavRecipeController", FavRecipeController);
     
-    function FavRecipeController($routeParams, RecipeService, CommentsService, UserService) {
+    function FavRecipeController($routeParams, RecipeService, CommentsService, UserService, $rootScope, $location) {
         var vm = this;
         vm.uid = $routeParams.uid;
         vm.addComment = addComment;
         vm.saveComment = saveComment;
         vm.cancel = cancel;
+        vm.logout = logout;
+        vm.home = home;
 
         function init() {
             $("#addComment_div").hide();
@@ -74,6 +76,32 @@
         function cancel() {
             $("#addComment_div").hide();
             $("#addComment_btn").show();
+        }
+
+
+        function home() {
+            if($rootScope.currentUser.username === 'admin') {
+                $location.url("/admin/"+vm.uid);
+            }
+            else {
+                $location.url("/user");
+            }
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (res) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function (err) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    }
+                );
+
         }
     }
 })();

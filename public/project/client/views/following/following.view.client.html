@@ -54,7 +54,7 @@
         <div ng-if="model.users" class="table users_search">
             <div ng-repeat="user in model.users">
                 <div class="col-xs-6 margin_top">
-                    <a class="mitr-font" href="#/">{{user.username}}</a>
+                    <a class="mitr-font" href="#/" style="text-transform: capitalize;">{{user.username}}</a>
                 </div>
                 <div class="col-xs-6 margin_top">
                     <button class="unfollow_btn" ng-click="model.followUser(user)">Follow</button>
