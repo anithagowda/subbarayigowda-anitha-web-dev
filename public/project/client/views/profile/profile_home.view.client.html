@@ -28,7 +28,22 @@
 
         <div class="row margin_top profile">
             <div class="profile_avatar col-sm-4">
-                <img src="./views/images/default_profile.png" width="50%" height="50%" border="1px">
+
+                <img ng-if="model.user.url" ng-src="{{model.user.url}}" width="50%" height="50%" border="1px">
+                <img ng-if="!model.user.url" ng-src="./views/images/default_profile.png" width="50%" height="50%" border="1px">
+
+                <div id="edit_img">
+                    <button ng-click="model.editImage()" class="unfollow_btn margin_left margin_top">Change Image</button>
+                </div>
+
+                <div id="upload_img" class="margin_top">
+                    <form action="/api/project/upload"  method="post" enctype="multipart/form-data" class="form-group ">
+                        <input  name="myFile"   type="file" class="form-control" />
+                        <input  name="uid" value="{{model.uid}}"   style="display: none"/>
+                        <button type="submit"   class="unfollow_btn margin_top">Upload Profile Image</button>
+                    </form>
+                    <button href="#/user" class="unfollow_btn">Cancel</button>
+                </div>
             </div>
 
             <div class="col-sm-4 margin_top">
@@ -106,7 +121,7 @@
                     <input ng-model="model.user.lastName" type="text" class="form-control" placeholder="Pinto">
                 </div>
 
-                <button type="submit" ng-click="model.updateUser(model.user)" class="unfollow_btn">Save</button>
+                <button type="submit" ng-click="model.updateUser(model.user)" class="unfollow_btn margin_top">Save</button>
             </form>
 
         </div>

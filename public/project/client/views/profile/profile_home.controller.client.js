@@ -13,6 +13,7 @@
         vm.unregister = unregister;
         vm.updateUser = updateUser;
         vm.editUser = editUser;
+        vm.editImage = editImage;
         vm.logout = logout;
         vm.home = home;
 
@@ -25,6 +26,9 @@
 
             $(".profile").show();
             $(".edit").hide();
+
+            $("#edit_img").show();
+            $("#upload_img").hide();
         }
         init();
         
@@ -54,6 +58,11 @@
                     function (err) {
                         vm.error = "Unable to update user";
                     });
+        }
+
+        function editImage() {
+            $("#edit_img").hide();
+            $("#upload_img").show();
         }
 
         function editUser() {

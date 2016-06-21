@@ -31,7 +31,7 @@
 
 body {
     padding-top: 55px;
-    padding-bottom: 55px;
+    padding-bottom: 75px;
     /*background-color: #4D4D4D;*/
 }
 
@@ -114,7 +114,7 @@ p.navbar-text.pull-left {
 .profile_avatar img{
     border: solid;
     border-color: #8B7500;
-    border-radius: 50%;
+    border-radius: 10%;
     /*margin-left: auto;*/
     /*margin-right: auto;*/
     /*display: block;*/

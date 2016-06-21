@@ -57,6 +57,7 @@ module.exports = function () {
                     firstName: user.firstName,
                     lastName: user.lastName,
                     email: user.email,
+                    url: user.url,
                     grocery: user.grocery,
                     followers: user.followers,
                     following: user.following

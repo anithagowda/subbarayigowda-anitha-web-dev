@@ -8,6 +8,11 @@ var bcrypt = require("bcrypt-nodejs");
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 module.exports = function (app, module) {
+
+    var multer = require('multer');
+    var upload = multer({dest: __dirname+'/../../uploads'});
+    app.post("/api/project/upload", upload.single('myFile'), uploadImage);
+    
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 
     app.get("/api/admin/create", createAdmin);
@@ -366,6 +371,45 @@ module.exports = function (app, module) {
             .then(
                 function (user) {
                     done(null, user);
+                }
+            );
+    }
+
+    function uploadImage(req, res) {
+
+        var uid = req.body.uid;
+        var myFile = req.file;
+
+        if (myFile == null) {
+            res.sendStatus(200);
+            return;
+        }
+
+        var filename = myFile.filename; //multer assigns a unique name
+
+        UserModel
+            .findUserById(uid)
+            .then(
+                function (user) {
+                    user.url = "../uploads/" + filename;
+                    delete user._id;
+                    //var newUser  = {"widgetType": "IMAGE", "name":widget.name, "text":widget.text, "url": "../uploads/" + filename, "width":widget.width};
+                    UserModel
+                        .updateUser(uid, user)
+                        .then(
+                            function (stat) {
+                                res.redirect("/project/client/#/user/");
+                                res.sendStatus(200);
+                            },
+                            function (err) {
+                                console.log("updateWidget : "+err);
+                                res.sendStatus(400).send(err);
+                            }
+                        );
+                },
+                function (err) {
+                    console.log("findWidgetById : "+err);
+                    res.sendStatus(400).send(err);
                 }
             );
     }

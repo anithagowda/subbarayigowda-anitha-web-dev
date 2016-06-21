@@ -88,7 +88,7 @@
                 .logout()
                 .then(
                     function (res) {
-                        scope.currentUser = null;
+                        $rootScope.currentUser = null;
                         $rootScope.$broadcast('currentUser', {loggedUser : null});
                         $location.url("/login");
                     },

@@ -11,6 +11,7 @@ module.exports = function () {
         firstName: String,
         lastName: String,
         email: String,
+        url: String,
         google : {
             token: String,
             id: String,
