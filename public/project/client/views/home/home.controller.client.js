@@ -6,10 +6,12 @@
         .module("OnlineKitchen")
         .controller("HomeController",HomeController);
     
-    function HomeController($location, UserService, RecipeService) {
+    function HomeController($location, UserService, RecipeService, $rootScope) {
         var vm = this;
 
         vm.searchRecipes = searchRecipes;
+        vm.home = home;
+        vm.logout = logout;
         
         function init() {
             RecipeService
@@ -34,6 +36,31 @@
 
         function searchRecipes(ingredients) {
             $location.url("/search/"+ingredients);
+        }
+
+
+        function home() {
+            if($rootScope.currentUser.username === 'admin') {
+                $location.url("/admin/"+$rootScope.currentUser._id);
+            }
+            else {
+                $location.url("/user");
+            }
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (res) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function (err) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    }
+                );
         }
     }
 })();

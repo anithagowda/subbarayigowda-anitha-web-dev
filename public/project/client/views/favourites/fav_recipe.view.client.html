@@ -32,12 +32,14 @@
     </div>
 
     <div class="margin_top">
-        <h4 class="mitr-font font-effect-anaglyph">Reviews by Users</h4>
         <h6 ng-if="!model.comments" class="margin_left">Be the first one to write a review</h6>
         <ul ng-if="model.comments" ng-repeat="comment in model.comments" class="list-group">
             <div class="list-item-group">
-                <h6 class="mitr-font capitalize" style="font-weight: bold">{{comment.username}}</h6>
-                <h6 class="margin_left">{{comment.comment}}</h6>
+                <h6 class="capitalize" style="font-weight: bold; color: #8B7500">
+                    {{comment.username}} :
+                    <span style="color: black">{{comment.comment}}</span>
+                </h6>
+
             </div>
         </ul>
     </div>

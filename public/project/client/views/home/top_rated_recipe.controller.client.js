@@ -6,7 +6,7 @@
         .module("OnlineKitchen")
         .controller("TopRecipeController", TopRecipeController);
     
-    function TopRecipeController(RecipeService, $window, $rootScope, FavouritesService, $location) {
+    function TopRecipeController(RecipeService, $window, $rootScope, FavouritesService, $location, UserService) {
         var vm = this;
         vm.selectRecipe = selectRecipe;
         vm.checkLogin = checkLogin;
@@ -55,7 +55,7 @@
                 $location.url("/admin/"+$rootScope.currentUser._id);
             }
             else {
-                $location.url("/user/"+$rootScope.currentUser._id);
+                $location.url("/user");
             }
         }
 
@@ -72,7 +72,6 @@
                         $location.url("/login");
                     }
                 );
-
         }
     }
 })();
