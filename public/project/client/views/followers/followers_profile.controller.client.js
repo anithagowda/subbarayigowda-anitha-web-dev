@@ -55,7 +55,8 @@
         init();
 
         function selectRecipe(recipe) {
-            $window.open(recipe.source_url, '_blank');
+            $location.url("/user/"+vm.uid+"/favourites/"+recipe.recipe_id);
+            //$window.open(recipe.source_url, '_blank');
         }
 
         function addFavourite(recipe) {

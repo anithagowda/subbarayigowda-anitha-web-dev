@@ -36,12 +36,18 @@
             .when("/admin/:uid", {
                 templateUrl: "views/admin/admin.view.client.html",
                 controller: "AdminController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/admin/user/:uid", {
                 templateUrl: "views/admin/user_profile.view.client.html",
                 controller: "UserProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user/", {
                 templateUrl: "views/profile/profile_home.view.client.html",

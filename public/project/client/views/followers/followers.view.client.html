@@ -33,7 +33,7 @@
         <div ng-if="model.followers" class="table">
             <div ng-repeat="follower in model.followers">
                 <div class="margin_top">
-                    <a class="mitr-font" href="#/user/{{model.uid}}/follower/{{follower._id}}" style="text-transform: capitalize;">{{follower.follower.username}}</a>
+                    <a class="mitr-font capitalize" href="#/user/{{model.uid}}/follower/{{follower._id}}">{{follower.follower.username}}</a>
                 </div>
             </div>
         </div>

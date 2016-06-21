@@ -36,7 +36,7 @@
         <h6 ng-if="!model.comments" class="margin_left">Be the first one to write a review</h6>
         <ul ng-if="model.comments" ng-repeat="comment in model.comments" class="list-group">
             <div class="list-item-group">
-                <h6 class="mitr-font" style="text-transform: capitalize; font-weight: bold">{{comment.username}}</h6>
+                <h6 class="mitr-font capitalize" style="font-weight: bold">{{comment.username}}</h6>
                 <h6 class="margin_left">{{comment.comment}}</h6>
             </div>
         </ul>
