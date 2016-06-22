@@ -15,6 +15,10 @@
         vm.logout = logout;
         
         function init() {
+            $('.carousel').carousel({
+                interval: 3000
+            });
+            
             RecipeService
                 .getTopRecipes()
                 .then(

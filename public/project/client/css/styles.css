@@ -121,14 +121,6 @@ p.navbar-text.pull-left {
 
 }
 
-.carousel-indicators .active {
-    background-color: #4D4D4D;
-}
-
-.carousel-inner .item img {
-    padding-bottom: 7%;
-}
-
 .img_background {
     background: url("./../views/images/background.jpg") no-repeat center center fixed;
     background-size: cover;
