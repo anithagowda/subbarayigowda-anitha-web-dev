@@ -45,7 +45,8 @@
         }
 
         function selectRecipe(recipe) {
-            $window.open(recipe.source_url, '_blank');
+            $location.url("/favourites/"+recipe.recipe_id);
+            // $window.open(recipe.source_url, '_blank');
         }
 
         function home() {

@@ -28,7 +28,8 @@
 
         function selectRecipe(recipe) {
             console.log(recipe.title);
-            $window.open(recipe.source_url, '_blank');
+            $location.url("/favourites/"+recipe.recipe_id);
+            // $window.open(recipe.source_url, '_blank');
         }
 
         function checkLogin(recipe) {

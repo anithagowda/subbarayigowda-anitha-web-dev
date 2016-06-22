@@ -30,7 +30,7 @@
         init();
 
         function selectRecipe(recipe) {
-            $location.url("/user/"+vm.uid+"/favourites/"+recipe.recipe_id);
+            $location.url("/favourites/"+recipe.recipe_id);
             //$window.open(recipe.source_url, '_blank');
         }
 

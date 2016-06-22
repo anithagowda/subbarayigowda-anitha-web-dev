@@ -10,6 +10,7 @@
         var vm = this;
 
         vm.searchRecipes = searchRecipes;
+        vm.selectRecipe = selectRecipe;
         vm.home = home;
         vm.logout = logout;
         
@@ -38,7 +39,10 @@
             $location.url("/search/"+ingredients);
         }
 
-
+        function selectRecipe(recipe) {
+            $location.url("/favourites/"+recipe.recipe_id);
+        }
+        
         function home() {
             if($rootScope.currentUser.username === 'admin') {
                 $location.url("/admin/"+$rootScope.currentUser._id);

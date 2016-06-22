@@ -22,6 +22,11 @@
 
     <div class="margin_top">
         <h4 class="mitr-font font-effect-anaglyph">Comments</h4>
+
+        <div ng-if="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+
         <button id="addComment_btn" class="unfollow_btn" ng-click="model.addComment()">Add Comment</button>
 
         <div id="addComment_div">
@@ -33,6 +38,7 @@
 
     <div class="margin_top">
         <h6 ng-if="!model.comments" class="margin_left">Be the first one to write a review</h6>
+
         <ul ng-if="model.comments" ng-repeat="comment in model.comments" class="list-group">
             <div class="list-item-group">
                 <h6 class="capitalize" style="font-weight: bold; color: #8B7500">

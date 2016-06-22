@@ -9,7 +9,6 @@
     
     function FavRecipeController($routeParams, RecipeService, CommentsService, UserService, $rootScope, $location) {
         var vm = this;
-        vm.uid = $routeParams.uid;
         vm.addComment = addComment;
         vm.saveComment = saveComment;
         vm.cancel = cancel;
@@ -41,26 +40,34 @@
                     }
                 );
 
-            UserService
-                .findUserById(vm.uid)
-                .then(
-                    function (res) {
-                        vm.user = res.data;
-                    }
-                )
+            if ($rootScope.currentUser) {
+                vm.uid = $rootScope.currentUser._id;
+                UserService
+                    .findUserById(vm.uid)
+                    .then(
+                        function (res) {
+                            vm.user = res.data;
+                        }
+                    );
+            }
         }
         init();
 
         function addComment() {
-            $("#addComment_div").show();
-            $("#addComment_btn").hide();
+            if ($rootScope.currentUser) {
+                $("#addComment_div").show();
+                $("#addComment_btn").hide();
+            }
+            else {
+                vm.error = "Login to write comments";
+            }
         }
 
         function saveComment(comment) {
             comment.recipeId = $routeParams.rId;
             comment.username = vm.user.username;
             CommentsService
-                .createComment($routeParams.uid, $routeParams.rId, comment)
+                .createComment(vm.user._id, $routeParams.rId, comment)
                 .then(
                     function (res) {
                         init();
