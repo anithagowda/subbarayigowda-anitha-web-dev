@@ -25,7 +25,7 @@
                     <div class="col-xs-6">
                         <label class="control-label">Username</label>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-6" style="margin-left: -30px; font-style: italic">
                         <p class="capitalize">{{model.user.username}}</p>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                     <div class="col-xs-6">
                         <label class="control-label">Email</label>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-6" style="margin-left: -30px; font-style: italic">
                         <p>{{model.user.email}}</p>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                     <div class="col-xs-6">
                         <label class="control-label">First Name</label>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-6" style="margin-left: -30px; font-style: italic">
                         <p>{{model.user.firstName}}</p>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     <div class="col-xs-6">
                         <label class="control-label">Last Name</label>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-6" style="margin-left: -30px; font-style: italic">
                         <p>{{model.user.lastName}}</p>
                     </div>
                 </div>
@@ -62,9 +62,9 @@
             <h4 class="headlines font-effect-anaglyph">Favourites</h4>
         </div>
         <div ng-if="model.favourites" class="row">
-            <div class="col-sm-4" ng-repeat="recipe in model.favourites">
+            <div id="image_container" class="col-sm-4" ng-repeat="recipe in model.favourites">
 
-                <img id="image_container"
+                <img
                      ng-click="model.selectRecipe(recipe)"
                      width=100% height="200px"
                      ng-src="{{recipe.image_url}}"/>

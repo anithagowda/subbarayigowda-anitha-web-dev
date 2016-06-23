@@ -1,10 +1,10 @@
 #image_container {
-    margin: 10px;
-    padding: 5px;
+    padding: 15px;
 }
 
 .navbar-brand {
     font-family: 'Atma', serif;
+    padding-left: 0px;
 }
 
 .navbar-header
@@ -31,7 +31,7 @@
 
 body {
     padding-top: 55px;
-    padding-bottom: 75px;
+    padding-bottom: 105px;
     /*background-color: #4D4D4D;*/
 }
 
@@ -207,4 +207,12 @@ p.navbar-text.pull-left {
 
 .capitalize {
     text-transform: capitalize;
+}
+
+.carousel-caption {
+    padding-bottom: 5px;
+}
+
+.carousel-indicators {
+    margin-bottom: 0px;
 }

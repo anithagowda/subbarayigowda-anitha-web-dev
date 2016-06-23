@@ -381,6 +381,7 @@ module.exports = function (app, module) {
         var myFile = req.file;
 
         if (myFile == null) {
+            res.redirect("/project/client/#/user/");
             res.sendStatus(200);
             return;
         }
