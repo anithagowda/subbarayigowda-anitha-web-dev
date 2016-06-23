@@ -34,6 +34,10 @@
             {{model.error}}
         </div>
 
+        <div ng-if="model.favourites.length == 0" class="margin_top empty_list">
+            Currently you have no Favourites added in your account
+        </div>
+
         <div ng-if="model.favourites" class="row">
             <div id="image_container" class="col-sm-4" ng-repeat="recipe in model.favourites">
 

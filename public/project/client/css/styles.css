@@ -216,3 +216,8 @@ p.navbar-text.pull-left {
 .carousel-indicators {
     margin-bottom: 0px;
 }
+
+.empty_list {
+    color: darkgray;
+    font-style: italic;
+}

@@ -38,6 +38,10 @@
             {{model.error}}
         </div>
 
+        <div ng-if="model.groceries.length == 0" class="margin_top empty_list">
+            Currently you have no Groceries added in your account
+        </div>
+
         <div ng-if="model.groceries" class="table">
             <div ng-repeat="grocery in model.groceries">
                 <div class="checkbox form-input-group">

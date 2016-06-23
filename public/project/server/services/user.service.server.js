@@ -31,7 +31,7 @@ module.exports = function (app, module) {
     app.get('/auth/google/callback',
         passport.authenticate('google', {
             successRedirect: '/project/client/#/user',
-            failureRedirect: '/project/client//#/login'
+            failureRedirect: '/project/client/#/login'
         }));
 
     passport.use('olKitchen', new LocalStrategy(localStrategy));

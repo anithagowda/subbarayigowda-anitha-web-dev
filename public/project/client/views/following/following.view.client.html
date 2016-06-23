@@ -40,6 +40,10 @@
             {{model.error}}
         </div>
 
+        <div ng-if="model.followings.length == 0" class="margin_top empty_list">
+            Currently you are not following any one
+        </div>
+
         <div ng-if="model.followings" class="table followings">
             <div ng-repeat="following in model.followings">
                 <div class="col-xs-6 margin_top">
