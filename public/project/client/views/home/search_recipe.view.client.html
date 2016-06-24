@@ -4,6 +4,15 @@
 <div class="plain_background"  style="margin-bottom: 5%">
     <div class="container margin_top">
 
+        <form class="input-group margin_top" ng-submit="model.searchRecipes(ingredients)">
+            <input ng-model="ingredients" type="text" class="form-control" placeholder="Search Recipes by ingredients">
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </form>
+
         <div ng-if="model.error" class="alert alert-danger" role="alert">
             {{model.error}}
         </div>

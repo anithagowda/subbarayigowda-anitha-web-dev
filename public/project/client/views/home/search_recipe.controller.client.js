@@ -10,6 +10,7 @@
         var vm = this;
         var ingredients = $routeParams.ingredients;
 
+        vm.searchRecipes = searchRecipes;
         vm.selectRecipe = selectRecipe;
         vm.checkLogin = checkLogin;
         vm.home = home;
@@ -23,7 +24,14 @@
                 });
         }
         init();
-        
+
+        function searchRecipes(ingredients) {
+            RecipeService
+                .searchRecipe(ingredients)
+                .then(function (res) {
+                    vm.recipes = res.data;
+                });
+        }
 
         function selectRecipe(recipe) {
             console.log(recipe.title);
