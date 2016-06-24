@@ -6,7 +6,7 @@
         .module("OnlineKitchen")
         .controller("SearchRecipeController", SearchRecipeController);
     
-    function SearchRecipeController(RecipeService, $window, $routeParams, $location, UserService, $rootScope, FavouritesService) {
+    function SearchRecipeController(RecipeService, $routeParams, $location, UserService, $rootScope, FavouritesService) {
         var vm = this;
         var ingredients = $routeParams.ingredients;
 
@@ -17,26 +17,40 @@
         vm.logout = logout;
 
         function init() {
-            RecipeService
-                .searchRecipe(ingredients)
-                .then(function (res) {
-                    vm.recipes = res.data;
-                });
+            searchRecipes(ingredients);
         }
         init();
 
         function searchRecipes(ingredients) {
-            RecipeService
-                .searchRecipe(ingredients)
-                .then(function (res) {
-                    vm.recipes = res.data;
-                });
+            if (ingredients && ingredients !== "undefined") {
+                RecipeService
+                    .searchRecipe(ingredients)
+                    .then(
+                        function (res) {
+                            vm.recipes = res.data;
+                            if (vm.recipes.length === 0) {
+                                vm.error = "Not an ingredient.. Try again"
+                            }
+                        },
+                        function (err) {
+                            vm.error = "Unable to Fetch Recipes. Please try again later";
+                        });
+            } else {
+                RecipeService
+                    .getTopRecipes()
+                    .then(
+                        function (res) {
+                            vm.recipes = res.data;
+                        },
+                        function (err) {
+                            vm.error = "Unable to Fetch our Top Rated Recipe. Please try again later";
+                        });
+            }
+
         }
 
         function selectRecipe(recipe) {
-            console.log(recipe.title);
             $location.url("/favourites/"+recipe.recipe_id);
-            // $window.open(recipe.source_url, '_blank');
         }
 
         function checkLogin(recipe) {

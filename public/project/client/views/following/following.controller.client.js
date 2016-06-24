@@ -22,6 +22,7 @@
         vm.home = home;
 
         function init() {
+            $(".select_input").val("");
             FollowingsService
                 .findFollowingsByUserId($routeParams.uid)
                 .then(
@@ -49,7 +50,6 @@
 
         function searchUserWithName(searchStr) {
             if(searchStr === '') {
-                $(".select_input").val("");
                 init();
             }
             else {
