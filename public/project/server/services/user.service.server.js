@@ -30,7 +30,7 @@ module.exports = function (app, module) {
 
     app.get('/auth/google/callback',
         passport.authenticate('google', {
-            successRedirect: '/project/client/#/user',
+            successRedirect: '/project/client/#/user/google/grocery',
             failureRedirect: '/project/client/#/login'
         }));
 

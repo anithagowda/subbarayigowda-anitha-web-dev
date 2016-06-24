@@ -71,7 +71,7 @@
                 $location.url("/admin/"+$rootScope.currentUser._id);
             }
             else {
-                $location.url("/user");
+                $location.url("/user/"+$rootScope.currentUser._id+"/grocery");
             }
         }
 

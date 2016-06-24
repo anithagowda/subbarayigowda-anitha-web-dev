@@ -8,9 +8,9 @@
     
     function GroceryController(GroceryService, $routeParams, $rootScope, UserService, $location) {
         var vm = this;
-        var userId = $routeParams.uid;
+        var userId = $rootScope.currentUser._id;
 
-        vm.uid = $routeParams.uid;
+        vm.uid = $rootScope.currentUser._id;
         vm.addGrocery = addGrocery;
         vm.searchRecipe = searchRecipe;
         vm.logout = logout;
@@ -91,7 +91,7 @@
                 $location.url("/admin/"+vm.uid);
             }
             else {
-                $location.url("/user");
+                $location.url("/user/"+vm.uid+"/grocery");
             }
         }
         

@@ -110,6 +110,14 @@
                     loggedIn : checkLoggedIn
                 }
             })
+            .when("/user/google/grocery", {
+                templateUrl: "views/grocery/google_redirect_grocery.view.client.html",
+                controller: "GroceryController",
+                controllerAs: "model",
+                resolve: {
+                    loggedIn : checkLoggedIn
+                }
+            })
             .when("/user/:uid/grocery", {
                 templateUrl: "views/grocery/grocery.view.client.html",
                 controller: "GroceryController",
