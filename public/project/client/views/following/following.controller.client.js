@@ -30,7 +30,8 @@
                         vm.followings = res.data;
                     },
                     function (err) {
-                        vm.error = "Failed to retrieve your followings.."
+                        vm.error = "Failed to retrieve your followings. Please try again later";
+                        $('#launch_model').modal('show');
                     }
                 );
             vm.users = null;
@@ -71,7 +72,8 @@
                         vm.users = users;
                     },
                     function (err) {
-                        vm.error = "Failed to retrieve Users..";
+                        vm.error = "Failed to retrieve Users. Please try again later";
+                        $('#launch_model').modal('show');
                     });
 
             $(".followings").hide();
@@ -93,10 +95,12 @@
                 .then(
                     function (following) {
                         vm.success = "Success!";
+                        $('#launch_model').modal('show');
                         init();
                     },
                     function (err) {
-                        vm.error = "Failed to follow User..";
+                        vm.error = "Failed to follow User. Please try again later";
+                        $('#launch_model').modal('show');
                     });
 
             FollowersService
@@ -104,9 +108,11 @@
                 .then(
                     function (follower) {
                         vm.success = "Success!";
+                        $('#launch_model').modal('show');
                     },
                     function (err) {
-                        vm.error = "Failed to follow User..";
+                        vm.error = "Failed to follow User. Please try again later";
+                        $('#launch_model').modal('show');
                     });
 
             init();
@@ -118,21 +124,24 @@
                 .then(
                     function (stat) {
                         vm.success = "Unfollowed!";
-
+                        $('#launch_model').modal('show');
+                        
                         FollowersService
                             .deleteFollowerByName(user.username)
                             .then(
                                 function (stat) {
-                                    vm.success = "Unfollowed!";
+                                    //vm.success = "Unfollowed!";
                                     init();
                                 },
                                 function (err) {
-                                    vm.error = "Failed to unfollow"
+                                    vm.error = "Failed to unfollow. Please try again later";
+                                    $('#launch_model').modal('show');
                                 }
                             );
                     },
                     function (err) {
-                        vm.error = "Failed to unfollow"
+                        vm.error = "Failed to unfollow. Please try again later";
+                        $('#launch_model').modal('show');
                     }
                 )
         }

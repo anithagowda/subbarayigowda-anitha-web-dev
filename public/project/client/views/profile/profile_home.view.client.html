@@ -1,6 +1,25 @@
 
 <ng-include src="'views/header/header.view.client.html'"></ng-include>
 
+<div class="container" style="height: 0px;">
+    <div class="modal fade" id="launch_model">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 ng-if="model.success" class="modal-title">Success</h4>
+                    <h4 ng-if="model.error" class="modal-title">Error</h4>
+                </div>
+                <div class="modal-body">
+                    <p ng-if="model.success">{{model.success}}</p>
+                    <p ng-if="model.error">{{model.error}}</p>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+
+
 <div class="container margin_top">
     <form class="input-group margin_top" ng-submit="model.searchRecipeWithIngredient(ingredients)">
         <input ng-model="ingredients" type="text" class="form-control" placeholder="Search Recipes by ingredients">
@@ -96,11 +115,6 @@
 
 
         <div class="edit margin_top">
-
-            <div ng-if="model.error" class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>Error!</strong> {{model.error}}
-            </div>
 
             <form  name="profileForm" novalidate>
                 <div class="form-group">

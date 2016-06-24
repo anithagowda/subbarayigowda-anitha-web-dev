@@ -26,6 +26,7 @@
                     },
                     function (err) {
                         vm.error = "Failed to retrieve information about your Recipe";
+                        $('#launch_model').modal('show');
                     }
                 );
 
@@ -37,6 +38,7 @@
                     },
                     function (err) {
                         vm.error = "Failed to retrieve comments for this Recipe";
+                        $('#launch_model').modal('show');
                     }
                 );
 
@@ -60,6 +62,7 @@
             }
             else {
                 vm.error = "Login to write comments";
+                $('#launch_model').modal('show');
             }
         }
 
@@ -74,6 +77,7 @@
                     },
                     function (err) {
                         vm.error = "Failed to save your comment";
+                        $('#launch_model').modal('show');
                         $("#addComment_div").hide();
                         $("#addComment_btn").show();
                     }

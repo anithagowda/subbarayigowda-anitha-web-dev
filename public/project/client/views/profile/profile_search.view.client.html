@@ -1,15 +1,24 @@
 <ng-include src="'views/header/header.view.client.html'"></ng-include>
 
-<div class="container">
-    <!--<div class="input-group margin_top">-->
-        <!--<input ng-model="ingredients" type="text" class="form-control" placeholder="Search Recipes by ingredients">-->
-        <!--<span class="input-group-btn">-->
-            <!--<a ng-click="model.searchRecipes(ingredients)" class="btn btn-default" type="button">-->
-                <!--<span class="glyphicon glyphicon-search"></span>-->
-            <!--</a>-->
-        <!--</span>-->
-    <!--</div>-->
+<div class="container" style="height: 0px;">
+    <div class="modal fade" id="launch_model">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 ng-if="model.success" class="modal-title">Success</h4>
+                    <h4 ng-if="model.error" class="modal-title">Error</h4>
+                </div>
+                <div class="modal-body">
+                    <p ng-if="model.success">{{model.success}}</p>
+                    <p ng-if="model.error">{{model.error}}</p>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
 
+<div class="container">
     <form class="input-group margin_top" ng-submit="model.searchRecipeWithIngredient(ingredients)">
         <input ng-model="ingredients" type="text" class="form-control" placeholder="Search Recipes by ingredients">
             <span class="input-group-btn">
@@ -18,14 +27,6 @@
                 </button>
             </span>
     </form>
-
-    <div ng-if="model.success" class="alert alert-success" role="alert">
-        <h2>{{model.success}}</h2>
-    </div>
-
-    <div ng-if="model.error" class="alert alert-danger" role="alert">
-        <h2>{{model.error}}</h2>
-    </div>
 
     <div ng-if="model.recipes" class="row">
         <div id="image_container" class="col-sm-4" ng-repeat="recipe in model.recipes">

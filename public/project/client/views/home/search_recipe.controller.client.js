@@ -30,10 +30,12 @@
                             vm.recipes = res.data;
                             if (vm.recipes.length === 0) {
                                 vm.error = "Not an ingredient.. Try again"
+                                $('#launch_model').modal('show');
                             }
                         },
                         function (err) {
                             vm.error = "Unable to Fetch Recipes. Please try again later";
+                            $('#launch_model').modal('show');
                         });
             } else {
                 RecipeService
@@ -44,6 +46,7 @@
                         },
                         function (err) {
                             vm.error = "Unable to Fetch our Top Rated Recipe. Please try again later";
+                            $('#launch_model').modal('show');
                         });
             }
 
@@ -60,14 +63,17 @@
                     .then(
                         function (res) {
                             vm.success = "Saved favourite successfully";
+                            $('#launch_model').modal('show');
                         },
                         function (err) {
                             vm.error = "Failed to save favourite";
+                            $('#launch_model').modal('show');
                         }
                     );
             }
             else {
                 vm.error = "Login to save favourites";
+                $('#launch_model').modal('show');
             }
         }
 

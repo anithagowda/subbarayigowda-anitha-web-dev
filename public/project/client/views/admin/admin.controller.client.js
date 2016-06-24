@@ -22,6 +22,7 @@
                     },
                     function (err) {
                         vm.error = err;
+                        $('#launch_model').modal('show');
                     }
                 );
         }
@@ -33,10 +34,12 @@
                 .then(
                     function (res) {
                         vm.success = "User deleted";
+                        $('#launch_model').modal('show');
                         init();
                     },
                     function (err) {
                         vm.error = "Failed to delete user";
+                        $('#launch_model').modal('show');
                     }
                 );
         }

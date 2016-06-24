@@ -24,6 +24,7 @@
                     },
                     function (err) {
                         vm.error = "Failed to retrieve User info";
+                        $('#launch_model').modal('show');
                     }
                 );
 
@@ -35,6 +36,7 @@
                     },
                     function (err) {
                         vm.error = "Failed to retrieve favourites for " + vm.user.username;
+                        $('#launch_model').modal('show');
                     }
                 );
 
@@ -46,6 +48,7 @@
                     },
                     function (err) {
                         vm.error = "Failed to retrieve followers for " + vm.user.username;
+                        $('#launch_model').modal('show');
                     }
                 );
 
@@ -57,6 +60,7 @@
                     },
                     function (err) {
                         vm.error = "Failed to retrieve followings for " + vm.user.username;
+                        $('#launch_model').modal('show');
                     }
                 );
         }
@@ -69,9 +73,11 @@
                     function (res) {
                         vm.success = "User deleted";
                         $location.url("/admin/"+uid);
+                        $('#launch_model').modal('show');
                     },
                     function (err) {
                         vm.error = "Failed to delete user";
+                        $('#launch_model').modal('show');
                     }
                 );
         }

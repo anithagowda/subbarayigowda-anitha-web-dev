@@ -24,7 +24,8 @@
                         vm.favourites = res.data;
                     },
                     function (err) {
-                        vm.error = "Failed to retrieve favourites"
+                        vm.error = "Failed to retrieve favourites";
+                        $('#launch_model').modal('show');
                     }
                 )
         }
@@ -49,6 +50,7 @@
                     },
                     function (err) {
                         vm.error = "Failed to remove your favourite recipe";
+                        $('#launch_model').modal('show');
                     }
                 )
         }

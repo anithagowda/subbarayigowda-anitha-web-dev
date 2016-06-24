@@ -6,7 +6,7 @@
         .module("OnlineKitchen")
         .controller("TopRecipeController", TopRecipeController);
     
-    function TopRecipeController(RecipeService, $window, $rootScope, FavouritesService, $location, UserService) {
+    function TopRecipeController(RecipeService, $rootScope, FavouritesService, $location, UserService) {
         var vm = this;
         vm.selectRecipe = selectRecipe;
         vm.checkLogin = checkLogin;
@@ -22,14 +22,13 @@
                     },
                 function (err) {
                     vm.error = "Unable to Fetch our Top Rated Recipe. Please try again later";
+                    $('#launch_model').modal('show');
                 });
         }
         init();
 
         function selectRecipe(recipe) {
-            console.log(recipe.title);
             $location.url("/favourites/"+recipe.recipe_id);
-            // $window.open(recipe.source_url, '_blank');
         }
 
         function checkLogin(recipe) {
@@ -39,14 +38,17 @@
                     .then(
                         function (res) {
                             vm.success = "Saved favourite successfully";
+                            $('#launch_model').modal('show');
                         },
                         function (err) {
-                            vm.error = "Failed to save favourite";
+                            vm.error = "Failed to save favourite. Please try again later";
+                            $('#launch_model').modal('show');
                         }
                     );
             }
             else {
                 vm.error = "Login to save favourites";
+                $('#launch_model').modal('show');
             }
         }
 

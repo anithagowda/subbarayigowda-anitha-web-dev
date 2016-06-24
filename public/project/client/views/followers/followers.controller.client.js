@@ -26,6 +26,7 @@
                     },
                     function (err) {
                         vm.error = "Failed to retrieve your followers..";
+                        $('#launch_model').modal('show');
                     }
                 );
         }

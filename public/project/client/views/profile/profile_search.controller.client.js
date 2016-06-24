@@ -26,7 +26,8 @@
                         vm.recipes = res.data;
                     },
                     function (err) {
-                        vm.error = "Failed to retreive recipes";
+                        vm.error = "Failed to retrieve recipes. Please try again later";
+                        $('#launch_model').modal('show');
                     }
                 );
         }
@@ -38,16 +39,17 @@
                 .then(
                     function (res) {
                         vm.success = "Saved favourite successfully";
+                        $('#launch_model').modal('show');
                     },
                     function (err) {
-                        vm.error = "Failed to save favourite";
+                        vm.error = "Failed to save favourite. Please try again later";
+                        $('#launch_model').modal('show');
                     }
                 );
         }
 
         function selectRecipe(recipe) {
             $location.url("/favourites/"+recipe.recipe_id);
-            // $window.open(recipe.source_url, '_blank');
         }
 
         function searchRecipeWithIngredient(ingredient) {

@@ -32,6 +32,7 @@
                                 },
                                 function (err) {
                                     vm.error = "Failed to retrieve Follower info";
+                                    $('#launch_model').modal('show');
                                 }
                             );
 
@@ -43,11 +44,13 @@
                                 },
                                 function (err) {
                                     vm.error = "Failed to retrieve favourites for " + vm.user.username;
+                                    $('#launch_model').modal('show');
                                 }
                             );
                     },
                     function (err) {
                         vm.error = "Failed to retrieve User Info";
+                        $('#launch_model').modal('show');
                     }
                 );
         }
@@ -67,9 +70,11 @@
                 .then(
                     function (res) {
                         vm.success = "Saved favourite successfully";
+                        $('#launch_model').modal('show');
                     },
                     function (err) {
                         vm.error = "Failed to save favourite";
+                        $('#launch_model').modal('show');
                     }
                 );
         }

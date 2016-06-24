@@ -1,15 +1,25 @@
 
 <ng-include src="'views/header/header.view.client.html'"></ng-include>
 
-<div class="container">
-    <div ng-if="model.error" class="alert alert-danger" role="alert">
-        <h2>{{model.error}}</h2>
-    </div>
+<div class="container" style="height: 0px;">
+    <div class="modal fade" id="launch_model">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 ng-if="model.success" class="modal-title">Success</h4>
+                    <h4 ng-if="model.error" class="modal-title">Error</h4>
+                </div>
+                <div class="modal-body">
+                    <p ng-if="model.success">{{model.success}}</p>
+                    <p ng-if="model.error">{{model.error}}</p>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
 
-    <div ng-if="model.success" class="alert alert-success" role="alert">
-        <h2>{{model.success}}</h2>
-    </div>
-
+<div>
     <div class="container">
         <div class="row margin_top margin_left" style="height:80%;">
             <div class="profile_avatar col-sm-4">

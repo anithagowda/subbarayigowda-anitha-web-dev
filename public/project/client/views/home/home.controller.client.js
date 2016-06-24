@@ -28,6 +28,7 @@
                     },
                     function (err) {
                         vm.error = "Unable to Fetch our Top Rated Recipe. Please try again later";
+                        $('#launch_model').modal('show');
                     });
             
             UserService
@@ -55,14 +56,17 @@
                     .then(
                         function (res) {
                             vm.success = "Saved favourite successfully";
+                            $('#launch_model').modal('show');
                         },
                         function (err) {
                             vm.error = "Failed to save favourite";
+                            $('#launch_model').modal('show');
                         }
                     );
             }
             else {
                 vm.error = "Login to save favourites";
+                $('#launch_model').modal('show');
             }
         }
 

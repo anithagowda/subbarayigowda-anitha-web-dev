@@ -29,7 +29,8 @@
                         vm.groceries = res.data;
                     },
                     function (err) {
-                        vm.error = "Failed to retrieve grocery list";
+                        vm.error = "Failed to retrieve grocery list. Please try again later";
+                        $('#launch_model').modal('show');
                     }
                 );
             $("#search").hide();
@@ -45,7 +46,8 @@
                         init();
                     },
                     function (err) {
-                        vm.error = "Failed to add Ingredients";
+                        vm.error = "Failed to add Ingredients. Please try again later";
+                        $('#launch_model').modal('show');
                     }
                 )
         }
@@ -59,7 +61,6 @@
                 }
             });
             $location.url("/user/"+userId+"/search/"+ingredients);
-            console.log(ingredients);
         }
 
         function searchRecipeWithIngredient(ingredient) {

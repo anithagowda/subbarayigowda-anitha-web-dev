@@ -41,7 +41,8 @@
                         $location.url("/");
                     },
                     function (err) {
-                        vm.error = "Unable to remove user";
+                        vm.error = "Failed to remove user. Please try again later";
+                        $('#launch_model').modal('show');
                     }
                 );
         }
@@ -57,7 +58,8 @@
                         }
                     },
                     function (err) {
-                        vm.error = "Unable to update user";
+                        vm.error = "Failed to update user. Please try again later";
+                        $('#launch_model').modal('show');
                     });
         }
 
