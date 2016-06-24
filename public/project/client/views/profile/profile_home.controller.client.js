@@ -14,6 +14,7 @@
         vm.updateUser = updateUser;
         vm.editUser = editUser;
         vm.editImage = editImage;
+        vm.searchRecipeWithIngredient = searchRecipeWithIngredient;
         vm.logout = logout;
         vm.home = home;
 
@@ -77,6 +78,10 @@
             else {
                 $location.url("/user/"+vm.uid+"/grocery");
             }
+        }
+        
+        function searchRecipeWithIngredient(ingredient) {
+            $location.url("/user/"+vm.uid+"/search/"+ingredient);
         }
         
         function logout() {

@@ -2,14 +2,15 @@
 <ng-include src="'views/header/header.view.client.html'"></ng-include>
 
 <div class="container margin_top">
-    <div class="input-group">
+    <form class="input-group margin_top" ng-submit="model.searchRecipeWithIngredient(ingredients)">
         <input ng-model="ingredients" type="text" class="form-control" placeholder="Search Recipes by ingredients">
-        <span class="input-group-btn">
-            <a href="#/user/{{model.uid}}/search/{{ingredients}}" class="btn btn-default" type="button">
-                <span class="glyphicon glyphicon-search"></span>
-            </a>
-        </span>
-    </div>
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+    </form>
+
 
     <div class="profile_body">
         <div class="profile_tab_header" style="margin-top: 2%">

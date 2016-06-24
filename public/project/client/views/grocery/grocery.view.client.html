@@ -2,14 +2,16 @@
 <ng-include src="'views/header/header.view.client.html'"></ng-include>
 
 <div class="container margin_top">
-    <div class="input-group">
+
+    <form class="input-group margin_top" ng-submit="model.searchRecipeWithIngredient(ingredients)">
         <input ng-model="ingredients" type="text" class="form-control" placeholder="Search Recipes by ingredients">
-        <span class="input-group-btn">
-            <a href="#/user/{{model.uid}}/search/{{ingredients}}" class="btn btn-default" type="button">
-                <span class="glyphicon glyphicon-search"></span>
-            </a>
-        </span>
-    </div>
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+    </form>
+
 
     <div class="profile_body">
         <div class="profile_tab_header margin_top">
@@ -21,17 +23,16 @@
                 <li class="font-effect-anaglyph"><a href="#/user">Profile</a></li>
             </ul>
         </div>
-
     </div>
 
-    <div class="input-group margin_top">
+    <form class="input-group margin_top" ng-submit="model.addGrocery(ingredient)">
         <input ng-model="ingredient" type="text" class="form-control clear_search" placeholder="Add your ingredients">
             <span class="input-group-btn">
-                <a id="search_toggle" ng-click="model.addGrocery(ingredient)" class="btn btn-default" type="button">
+                <button type="submit" class="btn btn-default">
                     <span class="glyphicon glyphicon-plus"></span>
-                </a>
+                </button>
             </span>
-    </div>
+    </form>
 
     <div>
         <div ng-if="model.error" class="alert alert-danger" role="alert">
@@ -57,7 +58,7 @@
         </div>
 
         <div class="col-xs-6 margin_top">
-            <button id="search" class="unfollow_btn" ng-click="model.searchRecipe()">Search Recipes</button>
+            <button id="search" class="unfollow_btn" ng-click="model.searchRecipeFromCheckbox()">Search Recipes</button>
         </div>
     </div>
 

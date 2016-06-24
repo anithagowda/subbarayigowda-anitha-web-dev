@@ -11,10 +11,13 @@
         var vm = this;
 
         vm.uid = $routeParams.uid;
+        vm.searchString = '';
         var user = null;
-        vm.handleSearchToggle = handleSearchToggle;
+
+        vm.searchUserWithName = searchUserWithName;
         vm.followUser = followUser;
         vm.unFollowUser = unFollowUser;
+        vm.searchRecipeWithIngredient = searchRecipeWithIngredient;
         vm.logout = logout;
         vm.home = home;
 
@@ -42,24 +45,15 @@
             $(".followings").show();
             $(".users_search").hide();
         }
-
-        function initSearchToggle() {
-            $("#search_toggle").click(function () {
-                $(this).find('span').toggleClass('glyphicon-search').toggleClass('glyphicon-remove');
-            });
-        }
         init();
-        initSearchToggle();
 
-
-        function handleSearchToggle(username) {
-            //glyphicon is already changed to remove before taking action for search
-            if ($("#search_toggle").find('span').hasClass('glyphicon-remove'))   {
-                searchUsers(username);
+        function searchUserWithName(searchStr) {
+            if(searchStr === '') {
+                $(".select_input").val("");
+                init();
             }
             else {
-                $(".clear_search").val("");
-                init();
+                searchUsers(searchStr);    
             }
         }
 
@@ -141,6 +135,11 @@
                         vm.error = "Failed to unfollow"
                     }
                 )
+        }
+
+
+        function searchRecipeWithIngredient(ingredient) {
+            $location.url("/user/"+vm.uid+"/search/"+ingredient);
         }
 
         function home() {

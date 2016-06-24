@@ -13,6 +13,7 @@
 
         vm.uid = $routeParams.uid;
         vm.selectFollower = selectFollower;
+        vm.searchRecipeWithIngredient = searchRecipeWithIngredient;
         vm.logout = logout;
         vm.home = home;
 
@@ -32,6 +33,10 @@
 
         function selectFollower(follower) {
             //Go to followers profile
+        }
+
+        function searchRecipeWithIngredient(ingredient) {
+            $location.url("/user/"+vm.uid+"/search/"+ingredient);
         }
 
         function home() {

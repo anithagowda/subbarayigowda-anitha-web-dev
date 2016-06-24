@@ -11,6 +11,7 @@
         
         vm.uid = $routeParams.uid;
         vm.selectRecipe = selectRecipe;
+        vm.searchRecipeWithIngredient = searchRecipeWithIngredient;
         vm.removeFavourite = removeFavourite;
         vm.logout = logout;
         vm.home = home;
@@ -33,7 +34,11 @@
             $location.url("/favourites/"+recipe.recipe_id);
             //$window.open(recipe.source_url, '_blank');
         }
-
+        
+        function searchRecipeWithIngredient(ingredient) {
+            $location.url("/user/"+vm.uid+"/search/"+ingredient);
+        }
+        
         function removeFavourite(recipe) {
             FavouritesService
                 .deleteFavourite(recipe._id)

@@ -12,7 +12,8 @@
 
         vm.uid = $rootScope.currentUser._id;
         vm.addGrocery = addGrocery;
-        vm.searchRecipe = searchRecipe;
+        vm.searchRecipeFromCheckbox = searchRecipeFromCheckbox;
+        vm.searchRecipeWithIngredient = searchRecipeWithIngredient;
         vm.logout = logout;
         vm.deleteIngredient = deleteIngredient;
         vm.change = change;
@@ -49,7 +50,7 @@
                 )
         }
 
-        function searchRecipe() {
+        function searchRecipeFromCheckbox() {
             var ingredients = "";
 
             $('input[type=checkbox]').each(function () {
@@ -61,6 +62,10 @@
             console.log(ingredients);
         }
 
+        function searchRecipeWithIngredient(ingredient) {
+            $location.url("/user/"+userId+"/search/"+ingredient);
+        }
+        
         function change(value) {
             if (value) {
                 counter++;

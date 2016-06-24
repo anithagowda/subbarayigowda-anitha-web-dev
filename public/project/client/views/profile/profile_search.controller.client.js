@@ -14,6 +14,7 @@
 
         vm.addFavourite = addFavourite;
         vm.selectRecipe = selectRecipe;
+        vm.searchRecipeWithIngredient = searchRecipeWithIngredient;
         vm.home = home;
         vm.logout = logout;
 
@@ -49,6 +50,10 @@
             // $window.open(recipe.source_url, '_blank');
         }
 
+        function searchRecipeWithIngredient(ingredient) {
+            $location.url("/user/"+vm.uid+"/search/"+ingredient);
+        }
+        
         function home() {
             if($rootScope.currentUser.username === 'admin') {
                 $location.url("/admin/"+$rootScope.currentUser._id);
