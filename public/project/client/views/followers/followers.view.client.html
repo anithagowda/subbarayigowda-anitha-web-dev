@@ -25,7 +25,7 @@
     </div>
 
 
-    <div class="container">
+    <div class="margin_top">
         <div ng-if="model.error" class="alert alert-danger" role="alert">
             {{model.error}}
         </div>
@@ -34,12 +34,12 @@
             Currently you have no one following you
         </div>
 
-        <div ng-if="model.followers" class="table">
-            <div ng-repeat="follower in model.followers">
-                <div class="margin_top">
+        <div ng-if="model.followers">
+            <ul ng-repeat="follower in model.followers" class="list-group">
+                <li class="list-group-item">
                     <a class="mitr-font capitalize" href="#/user/{{model.uid}}/follower/{{follower._id}}">{{follower.follower.username}}</a>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
     </div>
 

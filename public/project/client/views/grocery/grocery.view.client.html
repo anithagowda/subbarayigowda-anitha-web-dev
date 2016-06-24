@@ -33,7 +33,7 @@
             </span>
     </div>
 
-    <div class="container">
+    <div>
         <div ng-if="model.error" class="alert alert-danger" role="alert">
             {{model.error}}
         </div>
@@ -42,18 +42,18 @@
             Currently you have no Groceries added in your account
         </div>
 
-        <div ng-if="model.groceries" class="table">
-            <div ng-repeat="grocery in model.groceries">
-                <div class="checkbox form-input-group">
+        <div ng-if="model.groceries">
+            <ul ng-repeat="grocery in model.groceries" class="list-group">
+                <li class="checkbox form-input-group list-group-item">
                     <button class="unfollow_btn" ng-click="model.deleteIngredient(grocery)">
                         <span class="glyphicon glyphicon-trash pull-right" style="text-align: right"></span>
                     </button>
                     <label class="mitr-font" style="margin-left: 10%">
                         <input ng-model="value" type="checkbox" value="{{grocery.name}}" ng-change="model.change(value)"> {{grocery.name}}
                     </label>
-                </div>
+                </li>
 
-            </div>
+            </ul>
         </div>
 
         <div class="col-xs-6 margin_top">

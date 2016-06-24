@@ -34,7 +34,7 @@
     </div>
 
 
-    <div class="container margin_top">
+    <div class="margin_top">
 
         <div ng-if="model.error" class="alert alert-danger" role="alert">
             {{model.error}}
@@ -44,26 +44,22 @@
             Currently you are not following any one
         </div>
 
-        <div ng-if="model.followings" class="table followings">
-            <div ng-repeat="following in model.followings">
-                <div class="col-xs-6 margin_top">
-                    <a class="mitr-font capitalize" href="#/user/{{model.uid}}/following/{{following._id}}">{{following.following.username}}</a>
-                </div>
-                <div class="col-xs-6 margin_top">
-                    <button class="unfollow_btn" ng-click="model.unFollowUser(following)">UnFollow</button>
-                </div>
-            </div>
+        <div ng-if="model.followings" class="followings">
+            <ul ng-repeat="following in model.followings" class="list-group">
+                <li class="list-group-item">
+                    <a class="mitr-font capitalize margin_top" href="#/user/{{model.uid}}/following/{{following._id}}">{{following.following.username}}</a>
+                    <button class="unfollow_btn pull-right" ng-click="model.unFollowUser(following)" style="margin-top: -3px">UnFollow</button>
+                </li>
+            </ul>
         </div>
 
         <div ng-if="model.users" class="table users_search">
-            <div ng-repeat="user in model.users">
-                <div class="col-xs-6 margin_top">
-                    <a class="mitr-font capitalize" href="#/">{{user.username}}</a>
-                </div>
-                <div class="col-xs-6 margin_top">
-                    <button class="unfollow_btn" ng-click="model.followUser(user)">Follow</button>
-                </div>
-            </div>
+            <ul ng-repeat="user in model.users" class="list-group">
+                <li class="list-group-item">
+                    <a class="mitr-font capitalize">{{user.username}}</a>
+                    <button class="unfollow_btn pull-right" ng-click="model.followUser(user)" style="margin-top: -3px">Follow</button>
+                </li>
+            </ul>
         </div>
     </div>
 
