@@ -7,7 +7,7 @@
         .module("OnlineKitchen")
         .controller("FollowingProfileController", FollowingProfileController);
     
-    function FollowingProfileController($routeParams, FollowingsService, FavouritesService, $window, UserService, $rootScope, $location) {
+    function FollowingProfileController($routeParams, FollowingsService, FavouritesService, FollowersService, UserService, $rootScope, $location) {
         
         var vm = this;
         vm.uid = $routeParams.uid;
@@ -47,6 +47,30 @@
                                     $('#launch_model').modal('show');
                                 }
                             );
+
+                        FollowersService
+                            .findFollowersByUserId(following._id)
+                            .then(
+                                function (res) {
+                                    vm.followers = res.data;
+                                },
+                                function (err) {
+                                    vm.error = "Failed to retrieve followers for " + vm.user.username;
+                                    $('#launch_model').modal('show');
+                                }
+                            );
+
+                        FollowingsService
+                            .findFollowingsByUserId(following._id)
+                            .then(
+                                function (res) {
+                                    vm.followings = res.data;
+                                },
+                                function (err) {
+                                    vm.error = "Failed to retrieve followings for " + vm.user.username;
+                                    $('#launch_model').modal('show');
+                                }
+                            );
                     },
                     function (err) {
                         vm.error = "Failed to retrieve User Info";
@@ -59,7 +83,6 @@
 
         function selectRecipe(recipe) {
             $location.url("/favourites/"+recipe.recipe_id);
-            //$window.open(recipe.source_url, '_blank');
         }
 
         function addFavourite(recipe) {

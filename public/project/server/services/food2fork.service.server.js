@@ -12,6 +12,10 @@ module.exports = function (app, request) {
 
     function getTopRecipes(req, res) {
         request(searchUrl, function (err, resp, body) {
+            if (resp.statusCode === 500) {
+                res.status(400).send(resp.statusMessage);
+                return;
+            }
             body = JSON.parse(body);
             res.send(body.recipes);
         });
@@ -21,6 +25,10 @@ module.exports = function (app, request) {
         var ingredients = req.params.ingredients;
         var url = searchUrl+"&q="+ingredients;
         request(url, function (err, resp, body) {
+            if (resp.statusCode === 500) {
+                res.status(400).send(resp.statusMessage);
+                return;
+            }
             body = JSON.parse(body);
             res.json(body.recipes);
         });
@@ -30,6 +38,10 @@ module.exports = function (app, request) {
         var rId = req.params.rId;
         var url = getUrl+"&rId="+rId;
         request(url, function (err, resp, body) {
+            if (resp.statusCode === 500) {
+                res.status(400).send(resp.statusMessage);
+                return;
+            }
             body = JSON.parse(body);
             res.json(body.recipe);
         });

@@ -19,8 +19,8 @@
     </div><!-- /.modal -->
 </div>
 
-<div>
-    <div class="container">
+<div class="container">
+    <div>
         <div class="row margin_top margin_left" style="height:80%;">
             <div class="profile_avatar col-sm-4">
                 <img ng-if="model.user.url" ng-src="{{model.user.url}}" width="50%" height="50%" border="1px">
@@ -64,9 +64,9 @@
         </div>
     </div>
 
-    <div class="container margin_top bottom_pad" >
+    <div class="margin_top bottom_pad" >
         <div class="margin_top margin_left">
-            <h4 class="mitr-font">Favourites</h4>
+            <h4 class="mitr-font headlines">Favourites</h4>
         </div>
         <div ng-if="model.favourites" class="row">
             <div id="image_container" class="col-sm-4" ng-repeat="recipe in model.favourites">
@@ -89,6 +89,33 @@
                     <label>{{recipe.title}}</label>
                 </div>
             </div>
+        </div>
+    </div>
+
+
+    <div class="margin_top bottom_pad" >
+        <div class="margin_top margin_left">
+            <h4 class="mitr-font headlines">Followers</h4>
+        </div>
+        <div ng-if="model.followers">
+            <ul ng-repeat="follower in model.followers" class="list-group">
+                <li class="list-group-item">
+                    <a class="mitr-font capitalize" href="#/user/{{model.uid}}/follower/{{follower._id}}">{{follower.follower.username}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class=" margin_top bottom_pad" >
+        <div class="margin_top margin_left">
+            <h4 class="mitr-font headlines">Followings</h4>
+        </div>
+        <div ng-if="model.followings" class="followings">
+            <ul ng-repeat="following in model.followings" class="list-group">
+                <li class="list-group-item">
+                    <a class="mitr-font capitalize margin_top" href="#/user/{{model.uid}}/following/{{following._id}}">{{following.following.username}}</a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

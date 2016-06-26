@@ -19,8 +19,8 @@
     </div><!-- /.modal -->
 </div>
 
-<div>
-    <div class="container">
+<div class="container">
+    <div>
 
         <button class="unfollow_btn margin_top margin_left" ng-click="model.deleteUser()" style="color: red">Delete User</button>
 
@@ -67,7 +67,7 @@
         </div>
     </div>
 
-    <div class="container margin_top bottom_pad" >
+    <div class=" margin_top bottom_pad" >
         <div class="margin_top margin_left">
             <h4 class="headlines font-effect-anaglyph">Favourites</h4>
         </div>
@@ -85,30 +85,29 @@
             </div>
         </div>
     </div>
-
-    <div class="container margin_top bottom_pad" >
+    <div class="margin_top bottom_pad" >
         <div class="margin_top margin_left">
-            <h4 class="headlines font-effect-anaglyph">Followers</h4>
+            <h4 class="mitr-font headlines">Followers</h4>
         </div>
-        <div ng-if="model.followers" class="table">
-            <div ng-repeat="follower in model.followers">
-                <div class="margin_top margin_left">
+        <div ng-if="model.followers">
+            <ul ng-repeat="follower in model.followers" class="list-group">
+                <li class="list-group-item">
                     <a class="mitr-font capitalize" href="#/user/{{model.uid}}/follower/{{follower._id}}">{{follower.follower.username}}</a>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
     </div>
 
-    <div class="container margin_top bottom_pad" >
+    <div class=" margin_top bottom_pad" >
         <div class="margin_top margin_left">
-            <h4 class="headlines font-effect-anaglyph">Followings</h4>
+            <h4 class="mitr-font headlines">Followings</h4>
         </div>
-        <div ng-if="model.followings" class="table followings">
-            <div ng-repeat="following in model.followings">
-                <div class="col-xs-6 margin_top margin_left">
-                    <a class="mitr-font capitalize" href="#/user/{{model.uid}}/following/{{following._id}}">{{following.following.username}}</a>
-                </div>
-            </div>
+        <div ng-if="model.followings" class="followings">
+            <ul ng-repeat="following in model.followings" class="list-group">
+                <li class="list-group-item">
+                    <a class="mitr-font capitalize margin_top" href="#/user/{{model.uid}}/following/{{following._id}}">{{following.following.username}}</a>
+                </li>
+            </ul>
         </div>
     </div>
     </div>

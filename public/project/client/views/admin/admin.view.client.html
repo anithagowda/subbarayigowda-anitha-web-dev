@@ -21,23 +21,23 @@
 <div class="container margin_top">
 
     <h1 class="font-effect-anaglyph" style="font-family: 'Mitr', serif;">Welcome Admin</h1>
-    <h3 style="font-family: 'Mitr', serif;">Registered Users</h3>
+    
+    <div class=" margin_top bottom_pad" >
+        <div class="margin_top margin_left">
+            <h4 class="mitr-font headlines">Registered Users</h4>
+        </div>
 
-    <div ng-if="model.users.length === 0">
-        There are no users registered as of now!
-    </div>
+        <div ng-if="model.users.length === 0">
+            There are no users registered as of now!
+        </div>
 
-    <div ng-if="model.users" class="table followings">
-        <ul ng-repeat="user in model.users" class="form-group">
-            <div class="form-group-item">
-                <div class="col-xs-6 margin_top">
-                    <a class="mitr-font capitalize" href="#/admin/user/{{user._id}}">{{user.username}}</a>
-                </div>
-                <div class="col-xs-6 margin_top">
-                    <button class="unfollow_btn" ng-click="model.deleteUser(user)" style="color: red">Delete</button>
-                </div>
-            </div>
-
-        </ul>
+        <div ng-if="model.users" class="followings">
+            <ul ng-repeat="user in model.users" class="list-group">
+                <li class="list-group-item">
+                    <a class="mitr-font capitalize margin_top" href="#/admin/user/{{user._id}}">{{user.username}}</a>
+                    <button class="unfollow_btn pull-right" ng-click="model.deleteUser(user)" style="color: red">Delete</button>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

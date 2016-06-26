@@ -7,7 +7,7 @@
         .module("OnlineKitchen")
         .controller("FollowersProfileController", FollowersProfileController);
     
-    function FollowersProfileController($routeParams, FollowersService, FavouritesService, $window, UserService, $rootScope, $location) {
+    function FollowersProfileController($routeParams, FollowersService, FavouritesService, FollowingsService, UserService, $rootScope, $location) {
         
         var vm = this;
         vm.uid = $routeParams.uid;
@@ -44,6 +44,30 @@
                                 },
                                 function (err) {
                                     vm.error = "Failed to retrieve favourites for " + vm.user.username;
+                                    $('#launch_model').modal('show');
+                                }
+                            );
+
+                        FollowersService
+                            .findFollowersByUserId(follower._id)
+                            .then(
+                                function (res) {
+                                    vm.followers = res.data;
+                                },
+                                function (err) {
+                                    vm.error = "Failed to retrieve followers for " + vm.user.username;
+                                    $('#launch_model').modal('show');
+                                }
+                            );
+
+                        FollowingsService
+                            .findFollowingsByUserId(follower._id)
+                            .then(
+                                function (res) {
+                                    vm.followings = res.data;
+                                },
+                                function (err) {
+                                    vm.error = "Failed to retrieve followings for " + vm.user.username;
                                     $('#launch_model').modal('show');
                                 }
                             );
