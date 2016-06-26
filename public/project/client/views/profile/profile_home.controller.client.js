@@ -35,16 +35,22 @@
         
         function unregister() {
             UserService
-                .deleteUser(vm.uid)
-                .then(
-                    function (res) {
-                        $location.url("/");
-                    },
-                    function (err) {
-                        vm.error = "Failed to remove user. Please try again later";
-                        $('#launch_model').modal('show');
-                    }
-                );
+                .logout()
+                .then(function (res) {
+                    $rootScope.currentUser = null;
+                    UserService
+                        .deleteUser(vm.uid)
+                        .then(
+                            function (res) {
+                                $location.url("/");
+                            },
+                            function (err) {
+                                vm.error = "Failed to remove user. Please try again later";
+                                $('#launch_model').modal('show');
+                            }
+                        );
+                });
+
         }
 
         function updateUser(user) {
