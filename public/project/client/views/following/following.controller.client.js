@@ -69,6 +69,12 @@
                                 users.splice(i,1);
                             }
                         }
+
+                        for (var j in users) {
+                            if (users[j].username === 'admin') {
+                                users.splice(j,1);
+                            }
+                        }
                         vm.users = users;
                     },
                     function (err) {
