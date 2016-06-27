@@ -7,8 +7,10 @@
         .module("OnlineKitchen")
         .controller("FavRecipeController", FavRecipeController);
     
-    function FavRecipeController($routeParams, RecipeService, CommentsService, UserService, $rootScope, $location) {
+    function FavRecipeController($routeParams, RecipeService, CommentsService, UserService, $rootScope, $location, FavouritesService) {
         var vm = this;
+        var path = $location.path();
+        
         vm.addComment = addComment;
         vm.saveComment = saveComment;
         vm.cancel = cancel;
@@ -18,6 +20,7 @@
         function init() {
             $("#addComment_div").hide();
             $("#addComment_btn").show();
+            
             RecipeService
                 .getRecipe($routeParams.rId)
                 .then(
@@ -25,8 +28,20 @@
                         vm.recipe = res.data;
                     },
                     function (err) {
-                        vm.error = "Food2Fork error : "+err.data;
-                        $('#launch_model').modal('show');
+                        vm.error = "Food2Fork failed to get ingredients : "+err.data;
+                        // $('#launch_model').modal('show');
+                        launchModal();
+                        
+                        FavouritesService.
+                            findFavouriteByRecipeId($routeParams.rId)
+                            .then(
+                                function (res) {
+                                    vm.recipe = res.data;
+                                },
+                                function (err) {
+                                    
+                                }
+                            )
                     }
                 );
 
@@ -89,7 +104,13 @@
             $("#addComment_btn").show();
         }
 
-
+        function launchModal() {
+            if ($location.path() === path) {
+                $('#launch_model').modal('show');
+                $("#spinner").hide();
+            }
+        }
+        
         function home() {
             if($rootScope.currentUser.username === 'admin') {
                 $location.url("/admin/"+vm.uid);

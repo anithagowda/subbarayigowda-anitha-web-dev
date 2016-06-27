@@ -5,6 +5,7 @@ module.exports = function (app, module) {
     app.post("/api/user/:userId/favourite", createFavourite);
     app.get("/api/user/:userId/favourite", findAllFavouritesForUser);
     app.get("/api/favourite/:favouriteId", findFavouriteById);
+    app.get("/api/recipe/:recipeId", findFavouriteByRecipeId);
     app.put("/api/favourite/:favouriteId", updateFavourite);
     app.delete("/api/favourite/:favouriteId", deleteFavourite);
     app.delete("/api/user/:userId/favourite", deleteFavouriteForUser);
@@ -47,6 +48,20 @@ module.exports = function (app, module) {
         var favouriteId = req.params.favouriteId;
         favouriteModel
             .findFavouriteById(favouriteId)
+            .then(
+                function (favourite) {
+                    res.json(favourite);
+                },
+                function (err) {
+                    res.sendStatus(400).send(err);
+                }
+            );
+    }
+
+    function findFavouriteByRecipeId(req, res) {
+        var recipeId = req.params.recipeId;
+        favouriteModel
+            .findFavouriteByRecipeId(recipeId)
             .then(
                 function (favourite) {
                     res.json(favourite);

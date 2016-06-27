@@ -12,6 +12,7 @@
             createFavourite : createFavourite,
             findFavouritesByUserId : findFavouritesByUserId,
             findFavouriteById : findFavouriteById,
+            findFavouriteByRecipeId: findFavouriteByRecipeId,
             updateFavourite : updateFavourite,
             deleteFavourite : deleteFavourite
         };
@@ -33,6 +34,11 @@
             return $http.get(url);
         }
 
+        function findFavouriteByRecipeId(recipeId) {
+            var url = "/api/recipe/"+recipeId;
+            return $http.get(url);
+        }
+        
         function updateFavourite(favouriteId, favourite) {
             var url = "/api/favourite/"+favouriteId;
             return $http.put(url, favourite);

@@ -11,6 +11,7 @@ module.exports = function () {
         createFavourite: createFavourite,
         findAllFavouritesForUser: findAllFavouritesForUser,
         findFavouriteById: findFavouriteById,
+        findFavouriteByRecipeId: findFavouriteByRecipeId,
         updateFavourite: updateFavourite,
         deleteFavourite: deleteFavourite,
         deleteFavouriteForUser: deleteFavouriteForUser
@@ -28,6 +29,10 @@ module.exports = function () {
     
     function findFavouriteById(favouriteId) {
         return ProjFavourites.findById(favouriteId);
+    }
+
+    function findFavouriteByRecipeId(rId) {
+        return ProjFavourites.findOne({"recipe_id": rId});
     }
     
     function updateFavourite(favouriteId, favourite) {
