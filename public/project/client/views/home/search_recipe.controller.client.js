@@ -9,6 +9,7 @@
     function SearchRecipeController(RecipeService, $routeParams, $location, UserService, $rootScope, FavouritesService) {
         var vm = this;
         var ingredients = $routeParams.ingredients;
+        var path = $location.path();
 
         vm.searchRecipes = searchRecipes;
         vm.selectRecipe = selectRecipe;
@@ -18,10 +19,12 @@
 
         function init() {
             searchRecipes(ingredients);
+            $("#spinner").show();
         }
         init();
 
         function searchRecipes(ingredients) {
+            $("#spinner").show();
             if (ingredients && ingredients !== "undefined") {
                 RecipeService
                     .searchRecipe(ingredients)
@@ -29,13 +32,15 @@
                         function (res) {
                             vm.recipes = res.data;
                             if (vm.recipes.length === 0) {
-                                vm.error = "Not an ingredient.. Try again"
-                                $('#launch_model').modal('show');
+                                vm.error = "No recipe found.. Try again";
+                                // $('#launch_model').modal('show');
+                                launchModal();
                             }
                         },
                         function (err) {
                             vm.error = "Food2Fork error : "+err.data;
-                            $('#launch_model').modal('show');
+                            // $('#launch_model').modal('show');
+                            launchModal();
                         });
             } else {
                 RecipeService
@@ -46,7 +51,8 @@
                         },
                         function (err) {
                             vm.error = "Food2Fork error : "+err.data;
-                            $('#launch_model').modal('show');
+                            // $('#launch_model').modal('show');
+                            launchModal();
                         });
             }
 
@@ -78,6 +84,12 @@
         }
 
 
+        function launchModal() {
+            if ($location.path() === path) {
+                $('#launch_model').modal('show');
+                $("#spinner").hide();
+            }
+        }
         function home() {
             if($rootScope.currentUser.username === 'admin') {
                 $location.url("/admin/"+$rootScope.currentUser._id);

@@ -8,6 +8,7 @@
     
     function ProfileSearchController($routeParams, RecipeService, FavouritesService, $window, $rootScope, $location, UserService) {
         var vm = this;
+        var path = $location.path();
 
         vm.uid = $routeParams.uid;
         var ingredients = $routeParams.ingredients;
@@ -27,7 +28,8 @@
                     },
                     function (err) {
                         vm.error = "Food2Fork error : "+err.data;
-                        $('#launch_model').modal('show');
+                        // $('#launch_model').modal('show');
+                        launchModal();
                     }
                 );
         }
@@ -54,6 +56,13 @@
 
         function searchRecipeWithIngredient(ingredient) {
             $location.url("/user/"+vm.uid+"/search/"+ingredient);
+        }
+
+        function launchModal() {
+            if ($location.path() === path) {
+                $('#launch_model').modal('show');
+                $("#spinner").hide();
+            }
         }
         
         function home() {

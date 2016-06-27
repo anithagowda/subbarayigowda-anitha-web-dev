@@ -28,6 +28,13 @@
             </span>
     </form>
 
+    <div id="spinner" class="container margin_top">
+        <p>
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"  style="margin-left: auto; margin-right: auto; display: block;"></i>
+            <span class="sr-only">Loading...</span>
+        </p>
+    </div>
+
     <div ng-if="model.recipes" class="row">
         <div id="image_container" class="col-sm-4" ng-repeat="recipe in model.recipes">
 

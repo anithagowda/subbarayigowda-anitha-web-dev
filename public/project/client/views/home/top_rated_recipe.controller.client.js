@@ -8,6 +8,8 @@
     
     function TopRecipeController(RecipeService, $rootScope, FavouritesService, $location, UserService) {
         var vm = this;
+        var path = $location.path();
+
         vm.selectRecipe = selectRecipe;
         vm.checkLogin = checkLogin;
         vm.home = home;
@@ -22,7 +24,8 @@
                     },
                 function (err) {
                     vm.error = "Food2Fork error : "+err.data;
-                    $('#launch_model').modal('show');
+                    // $('#launch_model').modal('show');
+                    launchModal();
                 });
         }
         init();
@@ -51,7 +54,13 @@
                 $('#launch_model').modal('show');
             }
         }
-
+        
+        function launchModal() {
+            if ($location.path() === path) {
+                $('#launch_model').modal('show');
+                $("#spinner").hide();
+            }
+        }
 
         function home() {
             if($rootScope.currentUser.username === 'admin') {

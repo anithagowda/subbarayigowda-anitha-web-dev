@@ -8,6 +8,7 @@
     
     function HomeController($location, UserService, RecipeService, $rootScope, FavouritesService) {
         var vm = this;
+        var path = $location.path();
 
         vm.searchRecipes = searchRecipes;
         vm.selectRecipe = selectRecipe;
@@ -28,7 +29,8 @@
                     },
                     function (err) {
                         vm.error = "Food2Fork error : "+err.data;
-                        $('#launch_model').modal('show');
+                        // $('#launch_model').modal('show');
+                        launchModal();
                     });
             
             UserService
@@ -67,6 +69,13 @@
             else {
                 vm.error = "Login to save favourites";
                 $('#launch_model').modal('show');
+            }
+        }
+
+        function launchModal() {
+            if ($location.path() === path) {
+                $('#launch_model').modal('show');
+                $("#spinner").hide();
             }
         }
 
