@@ -27,7 +27,7 @@
                         vm.recipes = res.data.splice(0,6);
                     },
                     function (err) {
-                        vm.error = "Unable to Fetch our Top Rated Recipe. Please try again later";
+                        vm.error = "Food2Fork error : "+err.data;
                         $('#launch_model').modal('show');
                     });
             

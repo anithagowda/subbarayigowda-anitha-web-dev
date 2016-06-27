@@ -25,7 +25,7 @@
                         vm.recipe = res.data;
                     },
                     function (err) {
-                        vm.error = "Failed to retrieve information about your Recipe";
+                        vm.error = "Food2Fork error : "+err.data;
                         $('#launch_model').modal('show');
                     }
                 );
