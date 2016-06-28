@@ -67,7 +67,7 @@
         }
 
         function checkLogin(recipe) {
-            if($rootScope.currentUser.username) {
+            if($rootScope.currentUser) {
                 FavouritesService
                     .createFavourite($rootScope.currentUser._id, recipe)
                     .then(
