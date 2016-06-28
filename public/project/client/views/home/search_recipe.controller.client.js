@@ -36,6 +36,9 @@
                                 // $('#launch_model').modal('show');
                                 launchModal();
                             }
+                            else {
+                                $("#spinner").hide();
+                            }
                         },
                         function (err) {
                             vm.error = "Food2Fork error : "+err.data;
@@ -48,6 +51,7 @@
                     .then(
                         function (res) {
                             vm.recipes = res.data;
+                            $("#spinner").hide();
                         },
                         function (err) {
                             vm.error = "Food2Fork error : "+err.data;

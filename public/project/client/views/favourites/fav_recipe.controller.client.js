@@ -26,6 +26,7 @@
                 .then(
                     function (res) {
                         vm.recipe = res.data;
+                        $("#spinner").hide();
                     },
                     function (err) {
                         vm.error = "Food2Fork failed to get ingredients : "+err.data;

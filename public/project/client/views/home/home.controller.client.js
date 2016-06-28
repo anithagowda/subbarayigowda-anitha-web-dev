@@ -26,6 +26,7 @@
                 .then(
                     function (res) {
                         vm.recipes = res.data.splice(0,6);
+                        $("#spinner").hide();
                     },
                     function (err) {
                         vm.error = "Food2Fork error : "+err.data;
